@@ -1,25 +1,1460 @@
-import logo from './logo.svg';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
+import { Ship, Anchor, Users, FileCheck, Award, Globe, Phone, Mail, MapPin, Menu, X, ChevronRight, CheckCircle, Waves, TrendingUp, Building, Briefcase, GraduationCap, Shield, Camera, Wifi, Car, Coffee, Monitor, Clock, UserCheck, Navigation, Compass } from 'lucide-react';
 
-function App() {
+const App = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [visibleSections, setVisibleSections] = useState({});
+  const [countedStats, setCountedStats] = useState({});
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    service: '',
+    message: ''
+  });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [selectedFacility, setSelectedFacility] = useState(null);
+
+  const sectionRefs = useRef({});
+  const statsRefs = useRef({});
+
+  useEffect(() => {
+    setTimeout(() => setIsLoaded(true), 100);
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+
+      const sections = ['home', 'about', 'services', 'fleet', 'team', 'facilities', 'certifications', 'contact'];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
+
+      sections.forEach(section => {
+        const element = sectionRefs.current[section];
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const isVisible = rect.top < window.innerHeight * 0.75;
+          if (isVisible && !visibleSections[section]) {
+            setVisibleSections(prev => ({ ...prev, [section]: true }));
+            if (section === 'home' || section === 'about') {
+              animateStats();
+            }
+          }
+        }
+      });
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    const interval = setInterval(() => {
+      setCurrentTestimonial(prev => (prev + 1) % testimonials.length);
+    }, 5000);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearInterval(interval);
+    };
+  }, [visibleSections]);
+
+  const animateStats = () => {
+    stats.forEach((stat, index) => {
+      if (!countedStats[index]) {
+        const target = parseInt(stat.number.replace(/\D/g, ''));
+        const duration = 2000;
+        const increment = target / (duration / 16);
+        let current = 0;
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+            setCountedStats(prev => ({ ...prev, [index]: true }));
+          }
+
+          setCountedStats(prev => ({
+            ...prev,
+            [`value_${index}`]: Math.floor(current)
+          }));
+        }, 16);
+      }
+    });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    setTimeout(() => {
+      setFormSubmitted(false);
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        service: '',
+        message: ''
+      });
+    }, 3000);
+  };
+
+  const navigation = [
+    { name: 'Home', href: '#home', id: 'home' },
+    { name: 'About', href: '#about', id: 'about' },
+    { name: 'Services', href: '#services', id: 'services' },
+    { name: 'Fleet', href: '#fleet', id: 'fleet' },
+    { name: 'Team', href: '#team', id: 'team' },
+    { name: 'Facilities', href: '#facilities', id: 'facilities' },
+    { name: 'Certifications', href: '#certifications', id: 'certifications' },
+    { name: 'Contact', href: '#contact', id: 'contact' }
+  ];
+
+  const services = [
+    {
+      icon: Ship,
+      title: 'Ship Management Services',
+      description: 'Comprehensive vessel management including technical operations, maintenance planning, regulatory compliance, and crew management. We ensure your vessels operate at peak efficiency with full adherence to international maritime standards including ISM Code and SOLAS requirements.',
+      features: ['Technical Management', 'Crew Management', 'Safety & Compliance', 'Maintenance Planning'],
+      keywords: 'ship management Indonesia, vessel management services'
+    },
+    {
+      icon: Users,
+      title: 'Crew Manning Solutions',
+      description: 'Professional seafarer recruitment, training, and deployment services. Our extensive network provides qualified, STCW-certified crew members for all vessel types. We handle complete crew management from recruitment to repatriation with 24/7 support.',
+      features: ['STCW Certified Crew', 'Global Deployment', 'Training Programs', '24/7 Crew Support'],
+      keywords: 'crew manning agency, seafarer recruitment Indonesia'
+    },
+    {
+      icon: FileCheck,
+      title: 'Maritime Documentation',
+      description: 'Complete documentation processing for seafarers and vessels including certifications, licenses, visa processing, and regulatory compliance. We streamline all paperwork to ensure smooth operations and full legal compliance for international voyages.',
+      features: ['Certificate Processing', 'Visa Services', 'License Renewal', 'Flag State Compliance'],
+      keywords: 'seafarer documentation, maritime certificates'
+    },
+    {
+      icon: Anchor,
+      title: 'Vessel Operations',
+      description: 'Full operational support for commercial vessels including voyage planning, port operations, bunker procurement, and logistics coordination. Our experienced team ensures efficient, cost-effective vessel operations across global trade routes.',
+      features: ['Voyage Planning', 'Port Operations', 'Bunker Management', 'Logistics Support'],
+      keywords: 'vessel operations, maritime logistics Indonesia'
+    }
+  ];
+
+  const fleet = [
+    {
+      name: 'MV Kamandanu 1',
+      type: 'General Cargo Vessel',
+      dwt: '5,000 DWT',
+      year: '2018',
+      specs: 'LOA: 95m, Beam: 16m, Draft: 6.5m'
+    },
+    {
+      name: 'MV Samudra Jaya',
+      type: 'Container Ship',
+      dwt: '8,500 DWT',
+      year: '2020',
+      specs: 'LOA: 120m, Beam: 20m, TEU: 400'
+    },
+    {
+      name: 'MV Pacific Star',
+      type: 'Bulk Carrier',
+      dwt: '12,000 DWT',
+      year: '2019',
+      specs: 'LOA: 140m, Beam: 22m, Draft: 8.5m'
+    }
+  ];
+
+  const stats = [
+    { number: '15+', label: 'Years of Excellence', icon: Award },
+    { number: '50+', label: 'Vessels Managed', icon: Ship },
+    { number: '500+', label: 'Certified Seafarers', icon: Users },
+    { number: '98%', label: 'Client Satisfaction', icon: TrendingUp }
+  ];
+
+  const onboardCrew = [
+    {
+      name: 'Captain Ahmad Wijaya',
+      position: 'Master Mariner',
+      vessel: 'MV Kamandanu 1',
+      experience: '15 years',
+      certification: 'STCW II/2 Master',
+      avatar: '/api/placeholder/150/150',
+      status: 'Onboard',
+      nextPort: 'Singapore',
+      contractEnd: '2024-06-15'
+    },
+    {
+      name: 'Chief Officer Budi Santoso',
+      position: 'Chief Mate',
+      vessel: 'MV Samudra Jaya',
+      experience: '12 years',
+      certification: 'STCW II/1 Chief Mate',
+      avatar: '/api/placeholder/150/150',
+      status: 'Onboard',
+      nextPort: 'Jakarta',
+      contractEnd: '2024-05-30'
+    },
+    {
+      name: 'Chief Engineer Surya Pratama',
+      position: 'Chief Engineer',
+      vessel: 'MV Pacific Star',
+      experience: '18 years',
+      certification: 'STCW III/2 Chief Engineer',
+      avatar: '/api/placeholder/150/150',
+      status: 'Onboard',
+      nextPort: 'Surabaya',
+      contractEnd: '2024-07-20'
+    },
+    {
+      name: '2nd Engineer Ratna Dewi',
+      position: 'Second Engineer',
+      vessel: 'MV Kamandanu 1',
+      experience: '8 years',
+      certification: 'STCW III/1 Second Engineer',
+      avatar: '/api/placeholder/150/150',
+      status: 'Onboard',
+      nextPort: 'Batam',
+      contractEnd: '2024-06-01'
+    }
+  ];
+
+  const teamMembers = [
+    {
+      name: 'Capt. Hendra Kusuma',
+      position: 'Managing Director',
+      department: 'Management',
+      experience: '20+ years',
+      expertise: 'Ship Management, Maritime Operations',
+      avatar: '/api/placeholder/200/200',
+      linkedin: '#',
+      email: 'hendra@kamandanujayasamudera.com'
+    },
+    {
+      name: 'Ir. Siti Nurhaliza',
+      position: 'Technical Director',
+      department: 'Technical',
+      experience: '18+ years',
+      expertise: 'Vessel Maintenance, Naval Architecture',
+      avatar: '/api/placeholder/200/200',
+      linkedin: '#',
+      email: 'siti@kamandanujayasamudera.com'
+    },
+    {
+      name: 'Ahmad Fauzi',
+      position: 'Crew Manager',
+      department: 'Human Resources',
+      experience: '15+ years',
+      expertise: 'Crew Recruitment, Training',
+      avatar: '/api/placeholder/200/200',
+      linkedin: '#',
+      email: 'ahmad@kamandanujayasamudera.com'
+    },
+    {
+      name: 'Maya Putri',
+      position: 'Operations Manager',
+      department: 'Operations',
+      experience: '12+ years',
+      expertise: 'Vessel Operations, Logistics',
+      avatar: '/api/placeholder/200/200',
+      linkedin: '#',
+      email: 'maya@kamandanujayasamudera.com'
+    },
+    {
+      name: 'Capt. Budi Hartono',
+      position: 'Marine Superintendent',
+      department: 'Technical',
+      experience: '25+ years',
+      expertise: 'Marine Safety, Inspections',
+      avatar: '/api/placeholder/200/200',
+      linkedin: '#',
+      email: 'budi@kamandanujayasamudera.com'
+    },
+    {
+      name: 'Diana Susanti',
+      position: 'Documentation Manager',
+      department: 'Administration',
+      experience: '10+ years',
+      expertise: 'Maritime Documentation, Compliance',
+      avatar: '/api/placeholder/200/200',
+      linkedin: '#',
+      email: 'diana@kamandanujayasamudera.com'
+    }
+  ];
+
+  const officeFacilities = [
+    {
+      name: 'Operations Control Center',
+      description: '24/7 monitoring and control center equipped with advanced tracking systems',
+      icon: Monitor,
+      image: '/api/placeholder/400/300',
+      features: ['Real-time Vessel Tracking', 'Weather Monitoring', 'Communication Systems', 'Emergency Response']
+    },
+    {
+      name: 'Training Facility',
+      description: 'State-of-the-art training center for seafarer certification and skill development',
+      icon: GraduationCap,
+      image: '/api/placeholder/400/300',
+      features: ['Simulator Room', 'Classroom Training', 'Safety Drills', 'STCW Certification']
+    },
+    {
+      name: 'Crew Lounge',
+      description: 'Comfortable lounge area for crew rest and recreation during office visits',
+      icon: Coffee,
+      image: '/api/placeholder/400/300',
+      features: ['Refreshment Area', 'Entertainment System', 'WiFi Access', 'Rest Rooms']
+    },
+    {
+      name: 'Medical Center',
+      description: 'Fully-equipped medical facility for crew health check-ups and emergency care',
+      icon: Shield,
+      image: '/api/placeholder/400/300',
+      features: ['Medical Check-ups', 'First Aid', 'Health Records', 'Emergency Care']
+    },
+    {
+      name: 'Conference Rooms',
+      description: 'Modern meeting spaces equipped with video conferencing capabilities',
+      icon: Users,
+      image: '/api/placeholder/400/300',
+      features: ['Video Conference', 'Presentation Systems', 'Capacity 50 people', 'Catering Service']
+    },
+    {
+      name: 'Transportation',
+      description: 'Company transportation for crew and staff mobility',
+      icon: Car,
+      image: '/api/placeholder/400/300',
+      features: ['Airport Transfer', 'Port Shuttle', 'City Transport', '24/7 Availability']
+    }
+  ];
+
+  const certifications = [
+    {
+      name: 'ISO 9001:2015',
+      issuer: 'BSI Group',
+      date: '2023-01-15',
+      validUntil: '2026-01-14',
+      category: 'Quality Management',
+      image: '/api/placeholder/600/400',
+      description: 'International standard for quality management systems ensuring consistent quality in ship management services'
+    },
+    {
+      name: 'ISO 14001:2015',
+      issuer: 'BSI Group',
+      date: '2023-01-15',
+      validUntil: '2026-01-14',
+      category: 'Environmental Management',
+      image: '/api/placeholder/600/400',
+      description: 'Environmental management system certification demonstrating commitment to sustainable maritime operations'
+    },
+    {
+      name: 'ISM Code Certificate',
+      issuer: 'ClassNK',
+      date: '2023-03-20',
+      validUntil: '2028-03-19',
+      category: 'Safety Management',
+      image: '/api/placeholder/600/400',
+      description: 'International Safety Management Code certification for safe operation of ships and pollution prevention'
+    },
+    {
+      name: 'MLC 2006 Compliance',
+      issuer: 'Directorate General of Sea Transportation',
+      date: '2023-02-10',
+      validUntil: '2026-02-09',
+      category: 'Maritime Labour',
+      image: '/api/placeholder/600/400',
+      description: 'Maritime Labour Convention compliance ensuring decent working conditions for seafarers'
+    },
+    {
+      name: 'DOC Certificate',
+      issuer: 'Republic of Indonesia',
+      date: '2023-01-01',
+      validUntil: '2028-01-01',
+      category: 'Safety Management',
+      image: '/api/placeholder/600/400',
+      description: 'Document of Compliance confirming adherence to International Safety Management Code'
+    },
+    {
+      name: 'AEO Certificate',
+      issuer: 'Indonesian Customs',
+      date: '2023-06-15',
+      validUntil: '2026-06-14',
+      category: 'Trade Facilitation',
+      image: '/api/placeholder/600/400',
+      description: 'Authorized Economic Operator certification for secure and efficient supply chain operations'
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: 'Global Maritime Solutions Ltd.',
+      role: 'International Shipping Company',
+      text: 'PT Kamandanu Jaya Samudera has been our trusted partner for ship management services for over 5 years. Their professional crew and technical expertise ensure our vessels operate safely and efficiently across Asia-Pacific routes.',
+      rating: 5,
+      country: 'Singapore'
+    },
+    {
+      name: 'Pacific Cargo Lines',
+      role: 'Vessel Owner',
+      text: 'Outstanding crew manning services with highly qualified seafarers. The documentation process is seamless and their 24/7 support ensures our operations run smoothly. Highly recommend for any shipping company.',
+      rating: 5,
+      country: 'Indonesia'
+    }
+  ];
+
+  const whyChooseUs = [
+    {
+      icon: CheckCircle,
+      title: 'ISO Certified Operations',
+      description: 'Full compliance with international quality, safety, and environmental standards'
+    },
+    {
+      icon: Globe,
+      title: 'Global Network',
+      description: 'Extensive reach across Southeast Asia, Middle East, and international waters'
+    },
+    {
+      icon: Users,
+      title: 'Expert Team',
+      description: 'Highly experienced maritime professionals and certified seafarers'
+    },
+    {
+      icon: Award,
+      title: 'Proven Track Record',
+      description: 'Over 15 years of excellence in ship management and maritime services'
+    }
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`min-h-screen bg-white transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+      <style>
+        {`
+          @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+          }
+          @keyframes wave {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(20px) translateY(-10px); }
+            50% { transform: translateX(0) translateY(-20px); }
+            75% { transform: translateX(-20px) translateY(-10px); }
+            100% { transform: translateX(0) translateY(0); }
+          }
+          @keyframes pulse-slow {
+            0% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 0.1; }
+          }
+          @keyframes slide-in-left {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+          }
+          @keyframes slide-in-right {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+          }
+          @keyframes slide-in-bottom {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+          }
+          @keyframes scale-in {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+          }
+          .float-animation {
+            animation: float 6s ease-in-out infinite;
+          }
+          .wave-animation {
+            animation: wave 8s ease-in-out infinite;
+          }
+          .pulse-slow {
+            animation: pulse-slow 4s ease-in-out infinite;
+          }
+          .slide-in-left {
+            animation: slide-in-left 0.8s ease-out forwards;
+          }
+          .slide-in-right {
+            animation: slide-in-right 0.8s ease-out forwards;
+          }
+          .slide-in-bottom {
+            animation: slide-in-bottom 0.8s ease-out forwards;
+          }
+          .scale-in {
+            animation: scale-in 0.8s ease-out forwards;
+          }
+          .stagger-1 { animation-delay: 0.1s; }
+          .stagger-2 { animation-delay: 0.2s; }
+          .stagger-3 { animation-delay: 0.3s; }
+          .stagger-4 { animation-delay: 0.4s; }
+          .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+          }
+          .loading-dots span {
+            animation: blink 1.4s infinite both;
+          }
+          .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+          }
+          .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+          }
+          @keyframes blink {
+            0%, 60%, 100% { opacity: 0.2; }
+            20% { opacity: 1; }
+          }
+        `}
+      </style>
+
+      {/* SEO Schema JSON-LD */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "PT Kamandanu Jaya Samudera",
+          "alternateName": "Kamandanu Shipping",
+          "description": "Professional ship management and maritime services company in Indonesia providing crew manning, vessel operations, seafarer documentation, and shipping solutions for commercial vessels worldwide",
+          "url": "https://kamandanujayasamudera.com",
+          "logo": "https://kamandanujayasamudera.com/logo.png",
+          "image": "https://kamandanujayasamudera.com/og-image.jpg",
+          "telephone": "+62-21-xxxx-xxxx",
+          "email": "info@kamandanujayasamudera.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "ID",
+            "addressLocality": "Jakarta",
+            "addressRegion": "DKI Jakarta"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+62-21-xxxx-xxxx",
+            "contactType": "Customer Service",
+            "areaServed": ["ID", "SG", "MY", "TH", "PH"],
+            "availableLanguage": ["English", "Indonesian"]
+          },
+          "sameAs": [
+            "https://www.linkedin.com/company/kamandanu-jaya-samudera"
+          ],
+          "knowsAbout": [
+            "Ship Management",
+            "Crew Manning",
+            "Maritime Services",
+            "Vessel Operations",
+            "Seafarer Documentation"
+          ],
+          "areaServed": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+              "@type": "GeoCoordinates",
+              "latitude": "-6.2088",
+              "longitude": "106.8456"
+            }
+          }
+        })}
+      </script>
+
+      {/* Enhanced Navigation Bar */}
+      <nav className={`fixed w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? 'bg-[#0A2540] shadow-xl py-2'
+          : 'bg-gradient-to-r from-[#0A2540] to-blue-900 py-4'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center">
+            <a href="#home" className="flex items-center space-x-3 group">
+              <div className="bg-blue-500 p-2 rounded-lg group-hover:bg-blue-600 transition-all duration-300 transform group-hover:rotate-12">
+                <Ship className="h-8 w-8 text-white" />
+              </div>
+              <div>
+                <h1 className="text-white font-bold text-lg md:text-xl leading-tight">
+                  PT KAMANDANU JAYA SAMUDERA
+                </h1>
+                <p className="text-blue-200 text-xs hidden sm:block">Professional Ship Management Company</p>
+              </div>
+            </a>
+
+            <div className="hidden lg:flex items-center space-x-1">
+              {navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`px-3 py-2 rounded-lg font-medium transition-all duration-300 relative text-sm ${
+                    activeSection === item.id
+                      ? 'bg-blue-500 text-white'
+                      : 'text-blue-100 hover:bg-blue-800 hover:text-white'
+                  }`}
+                >
+                  {item.name}
+                  {activeSection === item.id && (
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-100 transition-transform"></span>
+                  )}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                className="ml-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all transform hover:scale-105 font-semibold shadow-lg"
+              >
+                Get Quote
+              </a>
+            </div>
+            <button
+              className="lg:hidden text-white p-2 hover:bg-blue-800 rounded-lg transition-all duration-300"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6 transform rotate-90 transition-transform duration-300" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
+          <div className={`lg:hidden overflow-hidden transition-all duration-500 ${mobileMenuOpen ? 'max-h-96 mt-4' : 'max-h-0'}`}>
+            <div className="pb-4 space-y-2">
+              {navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`block px-4 py-3 rounded-lg font-medium transition-all ${
+                    activeSection === item.id
+                      ? 'bg-blue-500 text-white'
+                      : 'text-blue-100 hover:bg-blue-800'
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                className="block px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all font-semibold text-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Get Quote
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section
+        id="home"
+        ref={el => sectionRefs.current['home'] = el}
+        className={`relative pt-24 pb-20 md:pt-32 md:pb-32 bg-gradient-to-br from-[#0A2540] via-[#1a3a5a] to-[#0A2540] overflow-hidden ${visibleSections['home'] ? 'animate-in' : ''}`}
+      >
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 pulse-slow" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E")`,
+            backgroundSize: '40px 40px'
+          }}></div>
+        </div>
+        <div className="absolute top-20 right-10 opacity-5 float-animation">
+          <Ship className="h-64 w-64 text-white" />
+        </div>
+        <div className="absolute bottom-10 left-10 opacity-5 float-animation" style={{animationDelay: '2s'}}>
+          <Anchor className="h-48 w-48 text-white" />
+        </div>
+        <div className="absolute top-1/2 left-1/4 opacity-5 wave-animation">
+          <Waves className="h-56 w-56 text-white" />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center ${visibleSections['home'] ? 'slide-in-bottom' : 'opacity-0'}`}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              PT Kamandanu Jaya Samudera
+              <span className="block text-xl sm:text-2xl md:text-3xl mt-4 text-blue-300 font-normal">
+                Professional Ship Management & Maritime Services Company in Indonesia
+              </span>
+            </h1>
+
+            <p className="text-lg md:text-xl lg:text-2xl text-blue-100 mb-8 max-w-4xl mx-auto leading-relaxed">
+              Leading provider of comprehensive shipping solutions including ship management, crew manning, vessel operations, and seafarer documentation services. Serving commercial vessels across Southeast Asia and international waters with ISO-certified operations.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 mb-10 max-w-3xl mx-auto">
+              {['Ship Management', 'Crew Manning', 'Vessel Operations', 'Maritime Services', 'STCW Certified'].map((tag, idx) => (
+                <span
+                  key={idx}
+                  className={`px-4 py-2 bg-blue-500/20 border border-blue-400 text-blue-200 rounded-full text-sm font-medium backdrop-blur-sm ${visibleSections['home'] ? 'scale-in' : 'opacity-0'} stagger-${idx + 1}`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#contact"
+                className={`inline-flex items-center justify-center px-8 py-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all transform hover:scale-105 shadow-xl font-semibold text-lg group ${visibleSections['home'] ? 'slide-in-bottom' : 'opacity-0'} stagger-2`}
+              >
+                Request Quote <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="#services"
+                className={`inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-[#0A2540] transition-all font-semibold text-lg ${visibleSections['home'] ? 'slide-in-bottom' : 'opacity-0'} stagger-3`}
+              >
+                Explore Services
+              </a>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <div
+                  key={index}
+                  className={`text-center bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-500 hover:scale-105 ${visibleSections['home'] ? 'slide-in-bottom' : 'opacity-0'} stagger-${index + 1}`}
+                >
+                  <Icon className="h-8 w-8 text-blue-300 mx-auto mb-3" />
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                    {countedStats[`value_${index}`] !== undefined ?
+                      (stat.number.includes('%') ? `${countedStats[`value_${index}`]}%` : `${countedStats[`value_${index}`]}+`) :
+                      stat.number
+                    }
+                  </div>
+                  <div className="text-blue-200 font-medium text-sm">{stat.label}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-16 fill-gray-50">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+          </svg>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section
+        id="about"
+        ref={el => sectionRefs.current['about'] = el}
+        className={`py-20 bg-gray-50 ${visibleSections['about'] ? 'animate-in' : ''}`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 ${visibleSections['about'] ? 'slide-in-bottom' : 'opacity-0'}`}>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0A2540] mb-4">
+              About PT Kamandanu Jaya Samudera - Leading Shipping Company in Indonesia
+            </h2>
+            <div className="w-24 h-1 bg-blue-500 mx-auto mb-4 transform origin-left transition-transform duration-1000 scale-x-0"
+                 style={visibleSections['about'] ? {transform: 'scaleX(1)'} : {}}></div>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Your trusted partner in maritime excellence since 2008
+            </p>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            <div className={`${visibleSections['about'] ? 'slide-in-left' : 'opacity-0'}`}>
+              <h3 className="text-2xl md:text-3xl font-bold text-[#0A2540] mb-6">
+                Premier Ship Management and Maritime Services Provider
+              </h3>
+              <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                PT Kamandanu Jaya Samudera is a leading ship management and maritime services company based in Jakarta, Indonesia. With over 15 years of industry expertise, we provide comprehensive shipping solutions to vessel owners, operators, and charterers across Southeast Asia and international waters.
+              </p>
+              <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                Our services encompass complete vessel management, professional crew manning with STCW-certified seafarers, maritime documentation processing, and full operational support for commercial vessels including cargo ships, tankers, bulk carriers, and container vessels.
+              </p>
+              <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                We are committed to delivering excellence through ISO-certified operations, adherence to international maritime regulations including ISM Code and SOLAS, and our dedication to safety, environmental protection, and operational efficiency.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4 mt-8">
+                {whyChooseUs.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <div
+                      key={idx}
+                      className={`flex items-start space-x-3 bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 hover:scale-105 ${visibleSections['about'] ? 'scale-in' : 'opacity-0'} stagger-${idx + 1}`}
+                    >
+                      <Icon className="h-6 w-6 text-blue-500 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-[#0A2540] mb-1">{item.title}</h4>
+                        <p className="text-gray-600 text-sm">{item.description}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className={`space-y-6 ${visibleSections['about'] ? 'slide-in-right' : 'opacity-0'}`}>
+              <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-blue-500 hover:shadow-xl transition-all duration-500 hover:scale-105">
+                <h4 className="text-2xl font-bold text-[#0A2540] mb-4 flex items-center">
+                  <Award className="h-6 w-6 mr-3 text-blue-500" />
+                  Our Vision
+                </h4>
+                <p className="text-gray-700 leading-relaxed">
+                  To be recognized as the most trusted and innovative ship management company in Indonesia and Southeast Asia, setting industry standards for maritime excellence, safety, and sustainable shipping practices.
+                </p>
+              </div>
+
+              <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-blue-500 hover:shadow-xl transition-all duration-500 hover:scale-105">
+                <h4 className="text-2xl font-bold text-[#0A2540] mb-4 flex items-center">
+                  <Globe className="h-6 w-6 mr-3 text-blue-500" />
+                  Our Mission
+                </h4>
+                <p className="text-gray-700 leading-relaxed">
+                  Delivering world-class maritime services through professional vessel management, highly trained and certified crew, unwavering commitment to safety and environmental stewardship, and operational excellence that exceeds client expectations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section
+        id="services"
+        ref={el => sectionRefs.current['services'] = el}
+        className={`py-20 bg-white ${visibleSections['services'] ? 'animate-in' : ''}`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 ${visibleSections['services'] ? 'slide-in-bottom' : 'opacity-0'}`}>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0A2540] mb-4">
+              Comprehensive Maritime Services for Commercial Vessels
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-2">
+              Professional shipping solutions tailored to meet the demands of modern maritime operations
+            </p>
+            <div className="w-24 h-1 bg-blue-500 mx-auto mt-4 transform origin-left transition-transform duration-1000 scale-x-0"
+                 style={visibleSections['services'] ? {transform: 'scaleX(1)'} : {}}></div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <article
+                  key={index}
+                  className={`bg-gradient-to-br from-gray-50 to-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-blue-300 group hover:scale-105 ${visibleSections['services'] ? 'scale-in' : 'opacity-0'} stagger-${index + 1}`}
+                >
+                  <div className="flex items-start mb-6">
+                    <div className="bg-blue-500 p-4 rounded-xl group-hover:bg-[#0A2540] transition-all duration-500 shadow-md group-hover:rotate-12 transform">
+                      <Icon className="h-10 w-10 text-white" />
+                    </div>
+                    <div className="ml-6 flex-1">
+                      <h3 className="text-2xl font-bold text-[#0A2540] mb-3">{service.title}</h3>
+                      <p className="text-sm text-blue-600 font-medium italic mb-3">{service.keywords}</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed mb-6">{service.description}</p>
+                  <div className="grid grid-cols-2 gap-3">
+                    {service.features.map((feature, idx) => (
+                      <div
+                        key={idx}
+                        className={`flex items-center space-x-2 ${visibleSections['services'] ? 'slide-in-bottom' : 'opacity-0'} stagger-${idx + 1}`}
+                      >
+                        <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-600 text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <button className="mt-6 text-blue-500 hover:text-blue-700 font-semibold flex items-center group-hover:translate-x-2 transition-all duration-300">
+                    Learn More <ChevronRight className="h-4 w-4 ml-1" />
+                  </button>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Fleet Section */}
+      <section
+        id="fleet"
+        ref={el => sectionRefs.current['fleet'] = el}
+        className={`py-20 bg-gray-50 ${visibleSections['fleet'] ? 'animate-in' : ''}`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 ${visibleSections['fleet'] ? 'slide-in-bottom' : 'opacity-0'}`}>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0A2540] mb-4">
+              Our Fleet - Modern Commercial Vessels
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Well-maintained vessels equipped for diverse maritime cargo operations across international routes
+            </p>
+            <div className="w-24 h-1 bg-blue-500 mx-auto mt-4 transform origin-left transition-transform duration-1000 scale-x-0"
+                 style={visibleSections['fleet'] ? {transform: 'scaleX(1)'} : {}}></div>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {fleet.map((vessel, index) => (
+              <article
+                key={index}
+                className={`bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-200 ${visibleSections['fleet'] ? 'scale-in' : 'opacity-0'} stagger-${index + 1}`}
+              >
+                <div className="h-56 bg-gradient-to-br from-[#0A2540] to-blue-900 flex items-center justify-center relative overflow-hidden group">
+                  <Ship className="h-32 w-32 text-white opacity-20 absolute group-hover:opacity-30 transition-opacity" />
+                  <Waves className="h-full w-full text-white opacity-10 absolute bottom-0 wave-animation" />
+                  <div className="relative z-10 text-center text-white">
+                    <Ship className="h-20 w-20 mx-auto mb-3 group-hover:rotate-12 transition-transform duration-500" />
+                    <p className="text-sm font-semibold bg-blue-500 px-4 py-1 rounded-full inline-block group-hover:bg-blue-600 transition-colors">
+                      {vessel.type}
+                    </p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-[#0A2540] mb-4">{vessel.name}</h3>
+                  <div className="space-y-3 text-gray-700">
+                    <div className="flex justify-between items-center pb-2 border-b border-gray-200">
+                      <span className="font-semibold">Vessel Type:</span>
+                      <span>{vessel.type}</span>
+                    </div>
+                    <div className="flex justify-between items-center pb-2 border-b border-gray-200">
+                      <span className="font-semibold">DWT:</span>
+                      <span className="text-blue-600 font-bold">{vessel.dwt}</span>
+                    </div>
+                    <div className="flex justify-between items-center pb-2 border-b border-gray-200">
+                      <span className="font-semibold">Year Built:</span>
+                      <span>{vessel.year}</span>
+                    </div>
+                    <div className="pt-2">
+                      <p className="text-sm text-gray-600">{vessel.specs}</p>
+                    </div>
+                  </div>
+                  <button className="mt-6 w-full text-blue-500 hover:text-white hover:bg-blue-500 border-2 border-blue-500 py-2 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center group">
+                    View Specifications
+                    <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Onboard Crew Section */}
+      <section
+        id="team"
+        ref={el => sectionRefs.current['team'] = el}
+        className={`py-20 bg-white ${visibleSections['team'] ? 'animate-in' : ''}`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 ${visibleSections['team'] ? 'slide-in-bottom' : 'opacity-0'}`}>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0A2540] mb-4">
+              Our Professional Team & Onboard Crew
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Meet our experienced maritime professionals and certified seafarers serving our fleet
+            </p>
+            <div className="w-24 h-1 bg-blue-500 mx-auto mt-4 transform origin-left transition-transform duration-1000 scale-x-0"
+                 style={visibleSections['team'] ? {transform: 'scaleX(1)'} : {}}></div>
+          </div>
+          {/* Onboard Crew */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-[#0A2540] mb-8 flex items-center">
+              <Navigation className="h-8 w-8 mr-3 text-blue-500" />
+              Currently Onboard Crew
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {onboardCrew.map((crew, index) => (
+                <div
+                  key={index}
+                  className={`bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 overflow-hidden ${visibleSections['team'] ? 'scale-in' : 'opacity-0'} stagger-${index + 1}`}
+                >
+                  <div className="relative">
+                    <div className="h-32 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                      <UserCheck className="h-16 w-16 text-white opacity-50" />
+                    </div>
+                    <div className="absolute top-2 right-2">
+                      <span className="px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded-full flex items-center">
+                        <div className="w-2 h-2 bg-white rounded-full mr-1 animate-pulse"></div>
+                        {crew.status}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-bold text-lg text-[#0A2540] mb-1">{crew.name}</h4>
+                    <p className="text-blue-600 font-semibold text-sm mb-2">{crew.position}</p>
+                    <div className="space-y-1 text-sm text-gray-600">
+                      <p className="flex items-center">
+                        <Ship className="h-3 w-3 mr-2 text-gray-400" />
+                        {crew.vessel}
+                      </p>
+                      <p className="flex items-center">
+                        <Compass className="h-3 w-3 mr-2 text-gray-400" />
+                        Next: {crew.nextPort}
+                      </p>
+                      <p className="flex items-center">
+                        <Clock className="h-3 w-3 mr-2 text-gray-400" />
+                        Exp: {crew.contractEnd}
+                      </p>
+                    </div>
+                    <div className="mt-3 pt-3 border-t border-gray-100">
+                      <p className="text-xs text-gray-500">
+                        <span className="font-semibold">Certification:</span> {crew.certification}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Office Team */}
+          <div>
+            <h3 className="text-2xl font-bold text-[#0A2540] mb-8 flex items-center">
+              <Building className="h-8 w-8 mr-3 text-blue-500" />
+              Office Team & Management
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {teamMembers.map((member, index) => (
+                <div
+                  key={index}
+                  className={`bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 p-6 ${visibleSections['team'] ? 'scale-in' : 'opacity-0'} stagger-${index + 1}`}
+                >
+                  <div className="flex items-start space-x-4">
+                    <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Briefcase className="h-10 w-10 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-lg text-[#0A2540] mb-1">{member.name}</h4>
+                      <p className="text-blue-600 font-semibold text-sm mb-1">{member.position}</p>
+                      <p className="text-gray-500 text-xs mb-2">{member.department}</p>
+                      <p className="text-gray-600 text-sm mb-3">{member.expertise}</p>
+                      <div className="flex items-center space-x-3 text-xs">
+                        <a href={`mailto:${member.email}`} className="text-blue-500 hover:text-blue-700 flex items-center">
+                          <Mail className="h-3 w-3 mr-1" />
+                          Email
+                        </a>
+                        <a href={member.linkedin} className="text-blue-500 hover:text-blue-700 flex items-center">
+                          <Globe className="h-3 w-3 mr-1" />
+                          LinkedIn
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-gray-100">
+                    <p className="text-xs text-gray-500">
+                      <span className="font-semibold">Experience:</span> {member.experience}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Office Facilities Section */}
+      <section
+        id="facilities"
+        ref={el => sectionRefs.current['facilities'] = el}
+        className={`py-20 bg-gray-50 ${visibleSections['facilities'] ? 'animate-in' : ''}`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 ${visibleSections['facilities'] ? 'slide-in-bottom' : 'opacity-0'}`}>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0A2540] mb-4">
+              Our Office Facilities
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              State-of-the-art facilities designed to support our maritime operations and crew welfare
+            </p>
+            <div className="w-24 h-1 bg-blue-500 mx-auto mt-4 transform origin-left transition-transform duration-1000 scale-x-0"
+                 style={visibleSections['facilities'] ? {transform: 'scaleX(1)'} : {}}></div>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {officeFacilities.map((facility, index) => {
+              const Icon = facility.icon;
+              return (
+                <div
+                  key={index}
+                  className={`bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group cursor-pointer ${visibleSections['facilities'] ? 'scale-in' : 'opacity-0'} stagger-${index + 1}`}
+                  onClick={() => setSelectedFacility(facility)}
+                >
+                  <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Icon className="h-24 w-24 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <Camera className="h-5 w-5 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-[#0A2540] mb-2">{facility.name}</h3>
+                    <p className="text-gray-600 text-sm mb-4">{facility.description}</p>
+                    <div className="space-y-2">
+                      {facility.features.slice(0, 3).map((feature, idx) => (
+                        <div key={idx} className="flex items-center text-sm text-gray-600">
+                          <CheckCircle className="h-3 w-3 mr-2 text-green-500 flex-shrink-0" />
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+                    <button className="mt-4 text-blue-500 hover:text-blue-700 font-semibold text-sm flex items-center group">
+                      View Details <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications Section */}
+      <section
+        id="certifications"
+        ref={el => sectionRefs.current['certifications'] = el}
+        className={`py-20 bg-white ${visibleSections['certifications'] ? 'animate-in' : ''}`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 ${visibleSections['certifications'] ? 'slide-in-bottom' : 'opacity-0'}`}>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0A2540] mb-4">
+              Our Certifications & Compliance
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Internationally recognized certifications demonstrating our commitment to excellence
+            </p>
+            <div className="w-24 h-1 bg-blue-500 mx-auto mt-4 transform origin-left transition-transform duration-1000 scale-x-0"
+                 style={visibleSections['certifications'] ? {transform: 'scaleX(1)'} : {}}></div>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {certifications.map((cert, index) => (
+              <div
+                key={index}
+                className={`bg-white border-2 border-gray-200 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 overflow-hidden group cursor-pointer ${visibleSections['certifications'] ? 'scale-in' : 'opacity-0'} stagger-${index + 1}`}
+                onClick={() => setSelectedCertificate(cert)}
+              >
+                <div className="h-48 bg-gradient-to-br from-blue-50 to-blue-100 relative overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Award className="h-24 w-24 text-blue-300 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <div className="absolute top-4 right-4">
+                    <span className="px-3 py-1 bg-blue-500 text-white text-xs font-semibold rounded-full">
+                      {cert.category}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-[#0A2540] mb-2">{cert.name}</h3>
+                  <p className="text-gray-600 text-sm mb-4">{cert.description}</p>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Issuer:</span>
+                      <span className="font-semibold text-gray-700">{cert.issuer}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Valid Until:</span>
+                      <span className="font-semibold text-gray-700">{cert.validUntil}</span>
+                    </div>
+                  </div>
+                  <button className="mt-4 w-full text-blue-500 hover:text-white hover:bg-blue-500 border-2 border-blue-500 py-2 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center group">
+                    <Camera className="h-4 w-4 mr-2" />
+                    View Certificate
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section
+        id="contact"
+        ref={el => sectionRefs.current['contact'] = el}
+        className={`py-20 bg-gradient-to-br from-[#0A2540] via-blue-900 to-[#0A2540] relative overflow-hidden ${visibleSections['contact'] ? 'animate-in' : ''}`}
+      >
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 pulse-slow" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E")`,
+            backgroundSize: '30px 30px'
+          }}></div>
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 ${visibleSections['contact'] ? 'slide-in-bottom' : 'opacity-0'}`}>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Contact PT Kamandanu Jaya Samudera
+            </h2>
+            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+              Get in touch for ship management services, crew manning solutions, and maritime inquiries
+            </p>
+            <div className="w-24 h-1 bg-blue-400 mx-auto mt-4 transform origin-left transition-transform duration-1000 scale-x-0"
+                 style={visibleSections['contact'] ? {transform: 'scaleX(1)'} : {}}></div>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div className={`bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 ${visibleSections['contact'] ? 'slide-in-left' : 'opacity-0'}`}>
+              <h3 className="text-2xl font-bold text-white mb-6">Send Us a Message</h3>
+              {formSubmitted ? (
+                <div className="text-center py-12">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500 rounded-full mb-4">
+                    <CheckCircle className="h-8 w-8 text-white" />
+                  </div>
+                  <h4 className="text-xl font-semibold text-white mb-2">Thank You!</h4>
+                  <p className="text-blue-100">Your message has been sent successfully. We'll get back to you soon.</p>
+                </div>
+              ) : (
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  <div>
+                    <label className="block text-blue-100 mb-2 font-medium">Full Name *</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/90 transition-all duration-300 focus:bg-white"
+                      placeholder="Your full name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-blue-100 mb-2 font-medium">Email Address *</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/90 transition-all duration-300 focus:bg-white"
+                      placeholder="your@email.com"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-blue-100 mb-2 font-medium">Company Name</label>
+                    <input
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/90 transition-all duration-300 focus:bg-white"
+                      placeholder="Your company name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-blue-100 mb-2 font-medium">Service Interest</label>
+                    <select
+                      name="service"
+                      value={formData.service}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/90 transition-all duration-300 focus:bg-white"
+                    >
+                      <option value="">Select a service</option>
+                      <option value="ship-management">Ship Management</option>
+                      <option value="crew-manning">Crew Manning</option>
+                      <option value="seafarer-doc">Seafarer Documentation</option>
+                      <option value="vessel-ops">Vessel Operations</option>
+                      <option value="general">General Inquiry</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-blue-100 mb-2 font-medium">Message *</label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      rows={4}
+                      className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/90 transition-all duration-300 focus:bg-white"
+                      placeholder="Tell us about your requirements..."
+                      required
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-blue-500 text-white py-4 rounded-lg hover:bg-blue-600 transition-all font-semibold text-lg shadow-lg transform hover:scale-105 flex items-center justify-center group"
+                  >
+                    Send Message <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </form>
+              )}
+            </div>
+            <div className={`space-y-6 ${visibleSections['contact'] ? 'slide-in-right' : 'opacity-0'}`}>
+              <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500">
+                <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4 group">
+                    <div className="bg-blue-500 p-3 rounded-lg flex-shrink-0 group-hover:bg-blue-400 transition-colors">
+                      <MapPin className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold mb-1 text-lg">Head Office</h4>
+                      <p className="text-blue-100">Jakarta, Indonesia</p>
+                      <p className="text-blue-100">Maritime Business District</p>
+                      <p className="text-blue-100 text-sm mt-1">Serving Indonesia & International Waters</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4 group">
+                    <div className="bg-blue-500 p-3 rounded-lg flex-shrink-0 group-hover:bg-blue-400 transition-colors">
+                      <Phone className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold mb-1 text-lg">Phone & WhatsApp</h4>
+                      <p className="text-blue-100">Office: +62 21 XXXX XXXX</p>
+                      <p className="text-blue-100">WhatsApp: +62 8XX XXXX XXXX</p>
+                      <p className="text-blue-100 text-sm mt-1">24/7 Emergency Hotline Available</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4 group">
+                    <div className="bg-blue-500 p-3 rounded-lg flex-shrink-0 group-hover:bg-blue-400 transition-colors">
+                      <Mail className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold mb-1 text-lg">Email</h4>
+                      <p className="text-blue-100">General: info@kamandanujayasamudera.com</p>
+                      <p className="text-blue-100">Operations: operations@kamandanujayasamudera.com</p>
+                      <p className="text-blue-100">Crew Manning: crew@kamandanujayasamudera.com</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#0A2540] text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div className="md:col-span-2">
+              <div className="flex items-center mb-4">
+                <Ship className="h-10 w-10 text-blue-400 hover:text-blue-300 transition-colors" />
+                <div className="ml-3">
+                  <h3 className="font-bold text-xl">PT KAMANDANU JAYA SAMUDERA</h3>
+                  <p className="text-blue-300 text-sm">Ship Management Company</p>
+                </div>
+              </div>
+              <p className="text-blue-200 text-sm leading-relaxed mb-4">
+                Professional ship management and maritime services company based in Indonesia. We provide comprehensive shipping solutions including vessel operations, crew manning, seafarer documentation, and technical management for commercial vessels across Southeast Asia and international waters.
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-4 text-lg">Quick Links</h4>
+              <ul className="space-y-2 text-blue-200 text-sm">
+                <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
+                <li><a href="#team" className="hover:text-white transition-colors">Our Team</a></li>
+                <li><a href="#facilities" className="hover:text-white transition-colors">Facilities</a></li>
+                <li><a href="#certifications" className="hover:text-white transition-colors">Certifications</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-4 text-lg">Contact</h4>
+              <ul className="space-y-2 text-blue-200 text-sm">
+                <li><a href="#contact" className="hover:text-white transition-colors">Get in Touch</a></li>
+                <li><a href="tel:+6221XXXXXXX" className="hover:text-white transition-colors">+62 21 XXXX XXXX</a></li>
+                <li><a href="mailto:info@kamandanujayasamudera.com" className="hover:text-white transition-colors">Email Us</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-blue-800 pt-8 text-center">
+            <p className="text-blue-200 text-sm">
+              &copy; 2026 PT Kamandanu Jaya Samudera. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+
+      {/* Certificate Modal */}
+      {selectedCertificate && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={() => setSelectedCertificate(null)}>
+          <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-2xl font-bold text-[#0A2540] mb-2">{selectedCertificate.name}</h3>
+                  <p className="text-gray-600">{selectedCertificate.category} Certificate</p>
+                </div>
+                <button
+                  onClick={() => setSelectedCertificate(null)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+              <div className="h-96 bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
+                <Award className="h-32 w-32 text-gray-400" />
+              </div>
+              <p className="text-gray-700 mb-4">{selectedCertificate.description}</p>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span className="font-semibold">Issuer:</span> {selectedCertificate.issuer}
+                </div>
+                <div>
+                  <span className="font-semibold">Issue Date:</span> {selectedCertificate.date}
+                </div>
+                <div>
+                  <span className="font-semibold">Valid Until:</span> {selectedCertificate.validUntil}
+                </div>
+                <div>
+                  <span className="font-semibold">Category:</span> {selectedCertificate.category}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Facility Modal */}
+      {selectedFacility && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={() => setSelectedFacility(null)}>
+          <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-2xl font-bold text-[#0A2540] mb-2">{selectedFacility.name}</h3>
+                  <p className="text-gray-600">Office Facility</p>
+                </div>
+                <button
+                  onClick={() => setSelectedFacility(null)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+              <div className="h-96 bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
+                <Building className="h-32 w-32 text-gray-400" />
+              </div>
+              <p className="text-gray-700 mb-4">{selectedFacility.description}</p>
+              <div className="space-y-2">
+                <h4 className="font-semibold text-lg mb-2">Features:</h4>
+                {selectedFacility.features.map((feature, idx) => (
+                  <div key={idx} className="flex items-center text-gray-700">
+                    <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
+                    {feature}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* WhatsApp Float Button */}
+      <a
+        href="https://wa.me/628XXXXXXXXXX?text=Hello,%20I%20would%20like%20to%20inquire%20about%20your%20ship%20management%20services"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition-all duration-300 transform hover:scale-110 z-50 animate-pulse hover:animate-none"
+        aria-label="Contact via WhatsApp"
+      >
+        <Phone className="h-6 w-6" />
+      </a>
+
+      {/* Scroll to Top Button */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className={`fixed bottom-24 right-6 bg-blue-500 text-white p-3 rounded-full shadow-xl hover:bg-blue-600 transition-all duration-300 transform hover:scale-110 z-50 ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        aria-label="Scroll to top"
+      >
+        <ChevronRight className="h-5 w-5 transform -rotate-90" />
+      </button>
     </div>
   );
-}
+};
 
 export default App;
