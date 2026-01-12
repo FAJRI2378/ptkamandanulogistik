@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import logo from './img/logo.png';
 import './App.css';
 import { Ship, Anchor, Users, FileCheck, Award, Globe, Phone, Mail, MapPin, Menu, X, ChevronRight, CheckCircle, Waves, TrendingUp, Building, Briefcase, GraduationCap, Shield, Camera, Wifi, Car, Coffee, Monitor, Clock, UserCheck, Navigation, Compass } from 'lucide-react';
 
@@ -117,7 +118,7 @@ const App = () => {
     { name: 'Home', href: '#home', id: 'home' },
     { name: 'About', href: '#about', id: 'about' },
     { name: 'Services', href: '#services', id: 'services' },
-    { name: 'Fleet', href: '#fleet', id: 'fleet' },
+    // { name: 'Fleet', href: '#fleet', id: 'fleet' },
     { name: 'Team', href: '#team', id: 'team' },
     { name: 'Facilities', href: '#facilities', id: 'facilities' },
     { name: 'Certifications', href: '#certifications', id: 'certifications' },
@@ -578,9 +579,16 @@ const App = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <a href="#home" className="flex items-center space-x-3 group">
-              <div className="bg-blue-500 p-2 rounded-lg group-hover:bg-blue-600 transition-all duration-300 transform group-hover:rotate-12">
-                <Ship className="h-8 w-8 text-white" />
-              </div>
+             <img
+  src={logo}
+  alt="Logo PT Kamandanu Jaya Samudera"
+  className="
+    h-10 w-auto
+    transition-transform duration-300
+    group-hover:scale-110
+  "
+/>
+
               <div>
                 <h1 className="text-white font-bold text-lg md:text-xl leading-tight">
                   PT KAMANDANU JAYA SAMUDERA
@@ -872,7 +880,7 @@ const App = () => {
       </section>
 
       {/* Fleet Section */}
-      <section
+      {/* <section
         id="fleet"
         ref={el => sectionRefs.current['fleet'] = el}
         className={`py-20 bg-gray-50 ${visibleSections['fleet'] ? 'animate-in' : ''}`}
@@ -932,7 +940,7 @@ const App = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Onboard Crew Section */}
       <section
