@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import logo from './img/logo.png';
 import './App.css';
+import serti from "./img/serti.png";
+
+
 import { Ship, Anchor, Users, FileCheck, Award, Globe, Phone, Mail, MapPin, Menu, X, ChevronRight, CheckCircle, Waves, TrendingUp, Building, Briefcase, GraduationCap, Shield, Camera, Wifi, Car, Coffee, Monitor, Clock, UserCheck, Navigation, Compass } from 'lucide-react';
 
 const App = () => {
@@ -342,63 +345,17 @@ const App = () => {
     }
   ];
 
-  const certifications = [
-    {
-      name: 'ISO 9001:2015',
-      issuer: 'BSI Group',
-      date: '2023-01-15',
-      validUntil: '2026-01-14',
-      category: 'Quality Management',
-      image: '/api/placeholder/600/400',
-      description: 'International standard for quality management systems ensuring consistent quality in ship management services'
-    },
-    {
-      name: 'ISO 14001:2015',
-      issuer: 'BSI Group',
-      date: '2023-01-15',
-      validUntil: '2026-01-14',
-      category: 'Environmental Management',
-      image: '/api/placeholder/600/400',
-      description: 'Environmental management system certification demonstrating commitment to sustainable maritime operations'
-    },
-    {
-      name: 'ISM Code Certificate',
-      issuer: 'ClassNK',
-      date: '2023-03-20',
-      validUntil: '2028-03-19',
-      category: 'Safety Management',
-      image: '/api/placeholder/600/400',
-      description: 'International Safety Management Code certification for safe operation of ships and pollution prevention'
-    },
-    {
-      name: 'MLC 2006 Compliance',
-      issuer: 'Directorate General of Sea Transportation',
-      date: '2023-02-10',
-      validUntil: '2026-02-09',
-      category: 'Maritime Labour',
-      image: '/api/placeholder/600/400',
-      description: 'Maritime Labour Convention compliance ensuring decent working conditions for seafarers'
-    },
-    {
-      name: 'DOC Certificate',
-      issuer: 'Republic of Indonesia',
-      date: '2023-01-01',
-      validUntil: '2028-01-01',
-      category: 'Safety Management',
-      image: '/api/placeholder/600/400',
-      description: 'Document of Compliance confirming adherence to International Safety Management Code'
-    },
-    {
-      name: 'AEO Certificate',
-      issuer: 'Indonesian Customs',
-      date: '2023-06-15',
-      validUntil: '2026-06-14',
-      category: 'Trade Facilitation',
-      image: '/api/placeholder/600/400',
-      description: 'Authorized Economic Operator certification for secure and efficient supply chain operations'
-    }
-  ];
-
+ const certifications = [
+  {
+    name: "ISO 9001:2015",
+    issuer: "BSI Group",
+    validUntil: "2026-01-14",
+    category: "Quality Management",
+    image: serti,
+    description:
+      "International standard for quality management systems ensuring consistent quality in ship management services",
+  },
+];
   const testimonials = [
     {
       name: 'Global Maritime Solutions Ltd.',
@@ -596,159 +553,208 @@ const App = () => {
                 <p className="text-blue-200 text-xs hidden sm:block">Professional Ship Management Company</p>
               </div>
             </a>
-
+{/* disini */}
             <div className="hidden lg:flex items-center space-x-1">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={`px-3 py-2 rounded-lg font-medium transition-all duration-300 relative text-sm ${
-                    activeSection === item.id
-                      ? 'bg-blue-500 text-white'
-                      : 'text-blue-100 hover:bg-blue-800 hover:text-white'
-                  }`}
-                >
-                  {item.name}
-                  {activeSection === item.id && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-100 transition-transform"></span>
-                  )}
-                </a>
-              ))}
-              <a
-                href="#contact"
-                className="ml-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all transform hover:scale-105 font-semibold shadow-lg"
-              >
-                Get Quote
-              </a>
-            </div>
-            <button
-              className="lg:hidden text-white p-2 hover:bg-blue-800 rounded-lg transition-all duration-300"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? (
-                <X className="h-6 w-6 transform rotate-90 transition-transform duration-300" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
-          </div>
-          <div className={`lg:hidden overflow-hidden transition-all duration-500 ${mobileMenuOpen ? 'max-h-96 mt-4' : 'max-h-0'}`}>
-            <div className="pb-4 space-y-2">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={`block px-4 py-3 rounded-lg font-medium transition-all ${
-                    activeSection === item.id
-                      ? 'bg-blue-500 text-white'
-                      : 'text-blue-100 hover:bg-blue-800'
-                  }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
-              <a
-                href="#contact"
-                className="block px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all font-semibold text-center"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Get Quote
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
+  {navigation.map((item) => (
+    <a
+      key={item.name}
+      href={item.href}
+      className={`px-3 py-2 rounded-lg font-medium transition-all duration-300 relative text-sm ${
+        activeSection === item.id
+          ? 'bg-blue-500 text-white shadow-md'
+          : 'text-blue-100 hover:bg-blue-800 hover:text-white'
+      }`}
+      aria-current={activeSection === item.id ? 'page' : undefined}
+    >
+      {item.name}
+      {activeSection === item.id && (
+        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-100 transition-transform origin-center"></span>
+      )}
+    </a>
+  ))}
+  <a
+    href="#contact"
+    className="ml-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all transform hover:scale-105 font-semibold shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+  >
+    Get Quote
+  </a>
+</div>
+<button
+  className="lg:hidden text-white p-2 hover:bg-blue-800 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+  aria-label="Toggle menu"
+  aria-expanded={mobileMenuOpen}
+>
+  {mobileMenuOpen ? (
+    <X className="h-6 w-6 transform rotate-90 transition-transform duration-300" />
+  ) : (
+    <Menu className="h-6 w-6" />
+  )}
+</button>
+</div>
+<div className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${mobileMenuOpen ? 'max-h-96 mt-4' : 'max-h-0'}`}>
+<div className="pb-4 space-y-2">
+  {navigation.map((item) => (
+    <a
+      key={item.name}
+      href={item.href}
+      className={`block px-4 py-3 rounded-lg font-medium transition-all ${
+        activeSection === item.id
+          ? 'bg-blue-500 text-white shadow-md'
+          : 'text-blue-100 hover:bg-blue-800'
+      }`}
+      onClick={() => setMobileMenuOpen(false)}
+      aria-current={activeSection === item.id ? 'page' : undefined}
+    >
+      {item.name}
+    </a>
+  ))}
+  <a
+    href="#contact"
+    className="block px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all font-semibold text-center shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+    onClick={() => setMobileMenuOpen(false)}
+  >
+    Get Quote
+  </a>
+</div>
+</div>
+</div>
+</nav>
 
-      {/* Hero Section */}
-      <section
-        id="home"
-        ref={el => sectionRefs.current['home'] = el}
-        className={`relative pt-24 pb-20 md:pt-32 md:pb-32 bg-gradient-to-br from-[#0A2540] via-[#1a3a5a] to-[#0A2540] overflow-hidden ${visibleSections['home'] ? 'animate-in' : ''}`}
+{/* Hero Section */}
+<section
+id="home"
+ref={el => sectionRefs.current['home'] = el}
+className="relative pt-24 pb-20 md:pt-32 md:pb-32 overflow-hidden"
+aria-labelledby="hero-heading"
+>
+{/* ================= VIDEO BACKGROUND ================= */}
+<div className="absolute inset-0 w-full h-full bg-gradient-to-b from-blue-900 to-blue-700 z-0">
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="metadata"
+    className="absolute inset-0 w-full h-full object-cover opacity-70 z-0"
+    onError={(e) => {
+      // Fallback to gradient background if video fails to load
+      e.target.style.display = 'none';
+    }}
+  >
+    <source src="/video/hero.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+{/* ================= DECORATIONS ================= */}
+<div className="absolute inset-0 opacity-10 z-20 pointer-events-none">
+  <div
+    className="absolute inset-0 pulse-slow"
+    style={{
+      backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E")`,
+      backgroundSize: '40px 40px'
+    }}
+  />
+</div>
+
+<div className="absolute top-20 right-10 opacity-5 float-animation z-20">
+  <Ship className="h-64 w-64 text-white" />
+</div>
+
+<div
+  className="absolute bottom-10 left-10 opacity-5 float-animation z-20"
+  style={{ animationDelay: '2s' }}
+>
+  <Anchor className="h-48 w-48 text-white" />
+</div>
+
+<div className="absolute top-1/2 left-1/4 opacity-5 wave-animation z-20">
+  <Waves className="h-56 w-56 text-white" />
+</div>
+
+{/* ================= CONTENT ================= */}
+<div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div className={`text-center ${visibleSections['home'] ? 'slide-in-bottom' : 'opacity-0'}`}>
+    <h1 id="hero-heading" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+      PT Kamandanu Jaya Samudera
+      <span className="block text-xl sm:text-2xl md:text-3xl mt-4 text-blue-300 font-normal">
+        Professional Ship Management & Maritime Services Company in Indonesia
+      </span>
+    </h1>
+
+    <p className="text-lg md:text-xl lg:text-2xl text-blue-100 mb-8 max-w-4xl mx-auto leading-relaxed">
+      Leading provider of comprehensive shipping solutions including ship management,
+      crew manning, vessel operations, and seafarer documentation services.
+    </p>
+
+    <div className="flex flex-wrap justify-center gap-3 mb-10 max-w-3xl mx-auto">
+      {['Ship Management', 'Crew Manning', 'Vessel Operations', 'Maritime Services', 'STCW Certified'].map((tag, idx) => (
+        <span
+          key={idx}
+          className={`px-4 py-2 bg-blue-500/20 border border-blue-400 text-blue-200 rounded-full text-sm font-medium backdrop-blur-sm hover:bg-blue-500/30 transition-all
+            ${visibleSections['home'] ? 'scale-in' : 'opacity-0'} stagger-${idx + 1}`}
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="#contact"
+        className={`inline-flex items-center justify-center px-8 py-4 bg-blue-500 text-white rounded-lg
+          hover:bg-blue-600 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl font-semibold text-lg group focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50
+          ${visibleSections['home'] ? 'slide-in-bottom' : 'opacity-0'} stagger-2`}
       >
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 pulse-slow" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E")`,
-            backgroundSize: '40px 40px'
-          }}></div>
-        </div>
-        <div className="absolute top-20 right-10 opacity-5 float-animation">
-          <Ship className="h-64 w-64 text-white" />
-        </div>
-        <div className="absolute bottom-10 left-10 opacity-5 float-animation" style={{animationDelay: '2s'}}>
-          <Anchor className="h-48 w-48 text-white" />
-        </div>
-        <div className="absolute top-1/2 left-1/4 opacity-5 wave-animation">
-          <Waves className="h-56 w-56 text-white" />
-        </div>
+        Request Quote
+        <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+      </a>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center ${visibleSections['home'] ? 'slide-in-bottom' : 'opacity-0'}`}>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              PT Kamandanu Jaya Samudera
-              <span className="block text-xl sm:text-2xl md:text-3xl mt-4 text-blue-300 font-normal">
-                Professional Ship Management & Maritime Services Company in Indonesia
-              </span>
-            </h1>
+      <a
+        href="#services"
+        className={`inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-lg
+          hover:bg-white hover:text-[#0A2540] transition-all font-semibold text-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50
+          ${visibleSections['home'] ? 'slide-in-bottom' : 'opacity-0'} stagger-3`}
+      >
+        Explore Services
+      </a>
+    </div>
+  </div>
 
-            <p className="text-lg md:text-xl lg:text-2xl text-blue-100 mb-8 max-w-4xl mx-auto leading-relaxed">
-              Leading provider of comprehensive shipping solutions including ship management, crew manning, vessel operations, and seafarer documentation services. Serving commercial vessels across Southeast Asia and international waters with ISO-certified operations.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3 mb-10 max-w-3xl mx-auto">
-              {['Ship Management', 'Crew Manning', 'Vessel Operations', 'Maritime Services', 'STCW Certified'].map((tag, idx) => (
-                <span
-                  key={idx}
-                  className={`px-4 py-2 bg-blue-500/20 border border-blue-400 text-blue-200 rounded-full text-sm font-medium backdrop-blur-sm ${visibleSections['home'] ? 'scale-in' : 'opacity-0'} stagger-${idx + 1}`}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#contact"
-                className={`inline-flex items-center justify-center px-8 py-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all transform hover:scale-105 shadow-xl font-semibold text-lg group ${visibleSections['home'] ? 'slide-in-bottom' : 'opacity-0'} stagger-2`}
-              >
-                Request Quote <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="#services"
-                className={`inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-[#0A2540] transition-all font-semibold text-lg ${visibleSections['home'] ? 'slide-in-bottom' : 'opacity-0'} stagger-3`}
-              >
-                Explore Services
-              </a>
-            </div>
+  {/* ================= STATS ================= */}
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+    {stats.map((stat, index) => {
+      const Icon = stat.icon;
+      return (
+        <div
+          key={index}
+          className={`text-center bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20
+            hover:bg-white/20 transition-all duration-500 hover:scale-105 hover:shadow-xl
+            ${visibleSections['home'] ? 'slide-in-bottom' : 'opacity-0'} stagger-${index + 1}`}
+        >
+          <Icon className="h-8 w-8 text-blue-300 mx-auto mb-3" />
+          <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+            {countedStats[`value_${index}`] !== undefined
+              ? stat.number.includes('%')
+                ? `${countedStats[`value_${index}`]}%`
+                : `${countedStats[`value_${index}`]}+`
+              : stat.number}
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
-            {stats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <div
-                  key={index}
-                  className={`text-center bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-500 hover:scale-105 ${visibleSections['home'] ? 'slide-in-bottom' : 'opacity-0'} stagger-${index + 1}`}
-                >
-                  <Icon className="h-8 w-8 text-blue-300 mx-auto mb-3" />
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
-                    {countedStats[`value_${index}`] !== undefined ?
-                      (stat.number.includes('%') ? `${countedStats[`value_${index}`]}%` : `${countedStats[`value_${index}`]}+`) :
-                      stat.number
-                    }
-                  </div>
-                  <div className="text-blue-200 font-medium text-sm">{stat.label}</div>
-                </div>
-              );
-            })}
-          </div>
+          <div className="text-blue-200 font-medium text-sm">{stat.label}</div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-16 fill-gray-50">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-          </svg>
-        </div>
-      </section>
+      );
+    })}
+  </div>
+</div>
 
+{/* ================= BOTTOM WAVE ================= */}
+<div className="absolute bottom-0 left-0 right-0 z-30">
+  <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-16 fill-gray-50">
+    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" />
+  </svg>
+</div>
+</section>
       {/* About Section */}
       <section
         id="about"
@@ -823,63 +829,55 @@ const App = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section
-        id="services"
-        ref={el => sectionRefs.current['services'] = el}
-        className={`py-20 bg-white ${visibleSections['services'] ? 'animate-in' : ''}`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-16 ${visibleSections['services'] ? 'slide-in-bottom' : 'opacity-0'}`}>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0A2540] mb-4">
-              Comprehensive Maritime Services for Commercial Vessels
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-2">
-              Professional shipping solutions tailored to meet the demands of modern maritime operations
-            </p>
-            <div className="w-24 h-1 bg-blue-500 mx-auto mt-4 transform origin-left transition-transform duration-1000 scale-x-0"
-                 style={visibleSections['services'] ? {transform: 'scaleX(1)'} : {}}></div>
+{/* Services Section */}
+<section
+  id="services"
+  ref={el => sectionRefs.current['services'] = el}
+  className={`py-20 bg-white ${visibleSections['services'] ? 'animate-in' : ''}`}
+>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className={`text-center mb-16 ${visibleSections['services'] ? 'slide-in-bottom' : 'opacity-0'}`}>
+      <h2 className="text-3xl md:text-4xl font-bold text-[#0A2540] mb-4">
+        Our Maritime Services
+      </h2>
+      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        Comprehensive shipping solutions for vessel owners, operators, and charterers
+      </p>
+      <div className="w-24 h-1 bg-blue-500 mx-auto mt-4 transform origin-left transition-transform duration-1000 scale-x-0"
+           style={visibleSections['services'] ? {transform: 'scaleX(1)'} : {}}></div>
+    </div>
+    <div className="grid md:grid-cols-2 gap-8">
+      {services.map((service, index) => {
+        const Icon = service.icon;
+        return (
+          <div
+            key={index}
+            className={`bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 p-8 ${visibleSections['services'] ? 'scale-in' : 'opacity-0'} stagger-${index + 1}`}
+          >
+            <div className="flex items-start space-x-4">
+              <div className="bg-blue-500 p-4 rounded-lg flex-shrink-0">
+                <Icon className="h-8 w-8 text-white" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-[#0A2540] mb-2">{service.title}</h3>
+                <p className="text-gray-600 mb-4">{service.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {service.features.map((feature, idx) => (
+                    <span key={idx} className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm">
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <article
-                  key={index}
-                  className={`bg-gradient-to-br from-gray-50 to-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-blue-300 group hover:scale-105 ${visibleSections['services'] ? 'scale-in' : 'opacity-0'} stagger-${index + 1}`}
-                >
-                  <div className="flex items-start mb-6">
-                    <div className="bg-blue-500 p-4 rounded-xl group-hover:bg-[#0A2540] transition-all duration-500 shadow-md group-hover:rotate-12 transform">
-                      <Icon className="h-10 w-10 text-white" />
-                    </div>
-                    <div className="ml-6 flex-1">
-                      <h3 className="text-2xl font-bold text-[#0A2540] mb-3">{service.title}</h3>
-                      <p className="text-sm text-blue-600 font-medium italic mb-3">{service.keywords}</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 leading-relaxed mb-6">{service.description}</p>
-                  <div className="grid grid-cols-2 gap-3">
-                    {service.features.map((feature, idx) => (
-                      <div
-                        key={idx}
-                        className={`flex items-center space-x-2 ${visibleSections['services'] ? 'slide-in-bottom' : 'opacity-0'} stagger-${idx + 1}`}
-                      >
-                        <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                        <span className="text-gray-600 text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <button className="mt-6 text-blue-500 hover:text-blue-700 font-semibold flex items-center group-hover:translate-x-2 transition-all duration-300">
-                    Learn More <ChevronRight className="h-4 w-4 ml-1" />
-                  </button>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+        );
+      })}
+    </div>
+  </div>
+</section>
 
-      {/* Fleet Section */}
+{/* Fleet Section */}
       {/* <section
         id="fleet"
         ref={el => sectionRefs.current['fleet'] = el}
@@ -1111,62 +1109,106 @@ const App = () => {
       </section>
 
       {/* Certifications Section */}
-      <section
-        id="certifications"
-        ref={el => sectionRefs.current['certifications'] = el}
-        className={`py-20 bg-white ${visibleSections['certifications'] ? 'animate-in' : ''}`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-16 ${visibleSections['certifications'] ? 'slide-in-bottom' : 'opacity-0'}`}>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0A2540] mb-4">
-              Our Certifications & Compliance
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Internationally recognized certifications demonstrating our commitment to excellence
+    <section
+  id="certifications"
+  ref={el => (sectionRefs.current["certifications"] = el)}
+  className={`py-20 bg-white ${
+    visibleSections["certifications"] ? "animate-in" : ""
+  }`}
+>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* HEADER */}
+    <div
+      className={`text-center mb-16 ${
+        visibleSections["certifications"]
+          ? "slide-in-bottom"
+          : "opacity-0"
+      }`}
+    >
+      <h2 className="text-3xl md:text-4xl font-bold text-[#0A2540] mb-4">
+        Our Certifications & Compliance
+      </h2>
+      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        Internationally recognized certifications demonstrating our commitment
+        to excellence
+      </p>
+      <div
+        className="w-24 h-1 bg-blue-500 mx-auto mt-4 transform origin-left transition-transform duration-1000 scale-x-0"
+        style={
+          visibleSections["certifications"]
+            ? { transform: "scaleX(1)" }
+            : {}
+        }
+      ></div>
+    </div>
+
+    {/* CERTIFICATE GRID */}
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {certifications.map((cert, index) => (
+        <div
+          key={index}
+          onClick={() => setSelectedCertificate(cert)}
+          className={`bg-white border-2 border-gray-200 rounded-xl shadow-lg
+          hover:shadow-2xl transition-all duration-500 hover:scale-105
+          overflow-hidden group cursor-pointer
+          ${
+            visibleSections["certifications"]
+              ? "scale-in"
+              : "opacity-0"
+          } stagger-${index + 1}`}
+        >
+        
+          {/* IMAGE */}
+                 <div className="h-48 bg-gray-50 flex items-center justify-center overflow-hidden">
+  <img
+    src={cert.image}
+    alt={cert.name}
+    className="h-full w-full object-contain bg-white p-4 transition-transform duration-500 group-hover:scale-110"
+  />
+</div>
+
+
+          {/* CONTENT */}
+          <div className="p-6">
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="text-xl font-bold text-[#0A2540]">
+                {cert.name}
+              </h3>
+              <span className="px-3 py-1 bg-blue-500 text-white text-xs font-semibold rounded-full">
+                {cert.category}
+              </span>
+            </div>
+
+            <p className="text-gray-600 text-sm mb-4">
+              {cert.description}
             </p>
-            <div className="w-24 h-1 bg-blue-500 mx-auto mt-4 transform origin-left transition-transform duration-1000 scale-x-0"
-                 style={visibleSections['certifications'] ? {transform: 'scaleX(1)'} : {}}></div>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {certifications.map((cert, index) => (
-              <div
-                key={index}
-                className={`bg-white border-2 border-gray-200 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 overflow-hidden group cursor-pointer ${visibleSections['certifications'] ? 'scale-in' : 'opacity-0'} stagger-${index + 1}`}
-                onClick={() => setSelectedCertificate(cert)}
-              >
-                <div className="h-48 bg-gradient-to-br from-blue-50 to-blue-100 relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Award className="h-24 w-24 text-blue-300 group-hover:text-blue-500 transition-colors" />
-                  </div>
-                  <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-blue-500 text-white text-xs font-semibold rounded-full">
-                      {cert.category}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-[#0A2540] mb-2">{cert.name}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{cert.description}</p>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-gray-500">Issuer:</span>
-                      <span className="font-semibold text-gray-700">{cert.issuer}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-500">Valid Until:</span>
-                      <span className="font-semibold text-gray-700">{cert.validUntil}</span>
-                    </div>
-                  </div>
-                  <button className="mt-4 w-full text-blue-500 hover:text-white hover:bg-blue-500 border-2 border-blue-500 py-2 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center group">
-                    <Camera className="h-4 w-4 mr-2" />
-                    View Certificate
-                  </button>
-                </div>
+
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span className="text-gray-500">Issuer:</span>
+                <span className="font-semibold text-gray-700">
+                  {cert.issuer}
+                </span>
               </div>
-            ))}
+              <div className="flex justify-between">
+                <span className="text-gray-500">Valid Until:</span>
+                <span className="font-semibold text-gray-700">
+                  {cert.validUntil}
+                </span>
+              </div>
+            </div>
+
+            <button className="mt-5 w-full text-blue-500 hover:text-white hover:bg-blue-500 border-2 border-blue-500 py-2 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center">
+              <Camera className="h-4 w-4 mr-2" />
+              View Certificate
+            </button>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Contact Section */}
       <section
@@ -1384,9 +1426,14 @@ const App = () => {
                   <X className="h-6 w-6" />
                 </button>
               </div>
-              <div className="h-96 bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
-                <Award className="h-32 w-32 text-gray-400" />
-              </div>
+             <div className="h-96 bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+  <img
+    src={selectedCertificate.image}
+    alt={selectedCertificate.name}
+    className="max-h-full max-w-full object-contain"
+  />
+</div>
+
               <p className="text-gray-700 mb-4">{selectedCertificate.description}</p>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
