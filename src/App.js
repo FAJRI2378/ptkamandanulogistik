@@ -2,6 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import logo from "./img/logo.png";
 import "./App.css";
 import serti from "./img/serti.png";
+import onboard1 from "./img/onboard1.png";
+import onboard2 from "./img/onboard2.png";
+import onboard3 from "./img/onboard3.png";
+import onboard4 from "./img/onboard4.png";
+import onboard5 from "./img/onboard5.png";
+import onboard6 from "./img/onboard6.png";
 
 import {
   Ship,
@@ -251,52 +257,59 @@ const App = () => {
     { number: "98%", label: "Client Satisfaction", icon: TrendingUp },
   ];
 
-  const onboardCrew = [
-    {
-      name: "Captain Ahmad Wijaya",
-      position: "Master Mariner",
-      vessel: "MV Kamandanu 1",
-      experience: "15 years",
-      certification: "STCW II/2 Master",
-      avatar: "/api/placeholder/150/150",
-      status: "Onboard",
-      nextPort: "Singapore",
-      contractEnd: "2024-06-15",
-    },
-    {
-      name: "Chief Officer Budi Santoso",
-      position: "Chief Mate",
-      vessel: "MV Samudra Jaya",
-      experience: "12 years",
-      certification: "STCW II/1 Chief Mate",
-      avatar: "/api/placeholder/150/150",
-      status: "Onboard",
-      nextPort: "Jakarta",
-      contractEnd: "2024-05-30",
-    },
-    {
-      name: "Chief Engineer Surya Pratama",
-      position: "Chief Engineer",
-      vessel: "MV Pacific Star",
-      experience: "18 years",
-      certification: "STCW III/2 Chief Engineer",
-      avatar: "/api/placeholder/150/150",
-      status: "Onboard",
-      nextPort: "Surabaya",
-      contractEnd: "2024-07-20",
-    },
-    {
-      name: "2nd Engineer Ratna Dewi",
-      position: "Second Engineer",
-      vessel: "MV Kamandanu 1",
-      experience: "8 years",
-      certification: "STCW III/1 Second Engineer",
-      avatar: "/api/placeholder/150/150",
-      status: "Onboard",
-      nextPort: "Batam",
-      contractEnd: "2024-06-01",
-    },
-  ];
+
+
+ const onboardCrew = [
+  {
+    name: "Captain Ahmad Wijaya",
+    position: "AB",
+    vessel: "MV Kamandanu 1",
+    status: "Onboard",
+    nextPort: "CHINA",
+    avatar: onboard1,
+  },
+  {
+    name: "Chief Officer Budi Santoso",
+    position: "20",
+    vessel: "MV Kamandanu 2",
+    status: "Onboard",
+    nextPort: "CHINA",
+    avatar: onboard2,
+  },
+  {
+    name: "Chief Officer Budi Santoso",
+    position: "AB",
+    vessel: "MV Kamandanu 2",
+    status: "Onboard",
+    nextPort: "CHINA",
+    avatar: onboard3,
+  },
+  {
+    name: "Chief Officer Budi Santoso",
+    position: "30",
+    vessel: "MV Kamandanu 2",
+    status: "Onboard",
+    nextPort: "SINGAPORE",
+    avatar: onboard4,
+  },
+  {
+    name: "Chief Officer Budi Santoso",
+    position: "DECK CADET",
+    vessel: "MV Kamandanu 2",
+    status: "Onboard",
+    nextPort: "CHINA",
+    avatar: onboard5,
+  },
+  {
+    name: "Chief Officer Budi Santoso",
+    position: "AB & OILER",
+    vessel: "MV Kamandanu 2",
+    status: "Onboard",
+    nextPort: "CHINA",
+    avatar: onboard6,
+  },
+];
+
 
   const teamMembers = [
     {
@@ -594,7 +607,7 @@ const App = () => {
           url: "https://kamandanujayasamudera.com",
           logo: "https://kamandanujayasamudera.com/logo.png",
           image: "https://kamandanujayasamudera.com/og-image.jpg",
-          telephone: "+62-21-xxxx-xxxx",
+          telephone: "+62-813-1192-2417",
           email: "info@kamandanujayasamudera.com",
           address: {
             "@type": "PostalAddress",
@@ -604,7 +617,7 @@ const App = () => {
           },
           contactPoint: {
             "@type": "ContactPoint",
-            telephone: "+62-21-xxxx-xxxx",
+            telephone: "+62-813-1192-2417",
             contactType: "Customer Service",
             areaServed: ["ID", "SG", "MY", "TH", "PH"],
             availableLanguage: ["English", "Indonesian"],
@@ -1133,60 +1146,65 @@ const App = () => {
             ></div>
           </div>
           {/* Onboard Crew */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-[#0A2540] mb-8 flex items-center">
-              <Navigation className="h-8 w-8 mr-3 text-blue-500" />
-              Currently Onboard Crew
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {onboardCrew.map((crew, index) => (
-                <div
-                  key={index}
-                  className={`bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 overflow-hidden ${visibleSections["team"] ? "scale-in" : "opacity-0"} stagger-${index + 1}`}
-                >
-                  <div className="relative">
-                    <div className="h-32 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
-                      <UserCheck className="h-16 w-16 text-white opacity-50" />
-                    </div>
-                    <div className="absolute top-2 right-2">
-                      <span className="px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded-full flex items-center">
-                        <div className="w-2 h-2 bg-white rounded-full mr-1 animate-pulse"></div>
-                        {crew.status}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <h4 className="font-bold text-lg text-[#0A2540] mb-1">
-                      {crew.name}
-                    </h4>
-                    <p className="text-blue-600 font-semibold text-sm mb-2">
-                      {crew.position}
-                    </p>
-                    <div className="space-y-1 text-sm text-gray-600">
-                      <p className="flex items-center">
-                        <Ship className="h-3 w-3 mr-2 text-gray-400" />
-                        {crew.vessel}
-                      </p>
-                      <p className="flex items-center">
-                        <Compass className="h-3 w-3 mr-2 text-gray-400" />
-                        Next: {crew.nextPort}
-                      </p>
-                      <p className="flex items-center">
-                        <Clock className="h-3 w-3 mr-2 text-gray-400" />
-                        Exp: {crew.contractEnd}
-                      </p>
-                    </div>
-                    <div className="mt-3 pt-3 border-t border-gray-100">
-                      <p className="text-xs text-gray-500">
-                        <span className="font-semibold">Certification:</span>{" "}
-                        {crew.certification}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+         <div className="mb-16">
+  <h3 className="text-2xl font-bold text-[#0A2540] mb-8 flex items-center">
+    <Navigation className="h-8 w-8 mr-3 text-blue-500" />
+    Currently Onboard Crew
+  </h3>
+
+  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    {onboardCrew.map((crew, index) => (
+      <div
+  key={index}
+  className={`bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 overflow-hidden ${
+    visibleSections["team"] ? "scale-in" : "opacity-0"
+  } stagger-${index + 1}`}
+>
+  {/* IMAGE */}
+  <div className="relative">
+    <div className="w-full aspect-square overflow-hidden">
+      <img
+        src={crew.avatar}
+        alt={crew.name}
+        className="w-full h-full object-cover"
+      />
+    </div>
+
+    <div className="absolute top-3 right-3">
+      <span className="px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded-full flex items-center shadow">
+        <span className="w-2 h-2 bg-white rounded-full mr-1 animate-pulse"></span>
+        {crew.status}
+      </span>
+    </div>
+  </div>
+
+  {/* CONTENT */}
+  <div className="p-4">
+    <h4 className="font-bold text-lg text-[#0A2540] mb-1">
+      {crew.name}
+    </h4>
+
+    <p className="text-blue-600 font-semibold text-sm mb-2">
+      {crew.position}
+    </p>
+
+    <div className="space-y-1 text-sm text-gray-600">
+      <p className="flex items-center">
+        <Ship className="h-3 w-3 mr-2 text-gray-400" />
+        {crew.vessel}
+      </p>
+      <p className="flex items-center">
+        <Compass className="h-3 w-3 mr-2 text-gray-400" />
+        Next: {crew.nextPort}
+      </p>
+    </div>
+  </div>
+</div>
+
+    ))}
+  </div>
+</div>
+
           {/* Office Team */}
           <div>
             <h3 className="text-2xl font-bold text-[#0A2540] mb-8 flex items-center">
@@ -1419,8 +1437,11 @@ const App = () => {
       <section
         id="contact"
         ref={(el) => (sectionRefs.current["contact"] = el)}
-        className={`py-20 bg-gradient-to-br from-[#0A2540] via-blue-900 to-[#0A2540] relative overflow-hidden ${visibleSections["contact"] ? "animate-in" : ""}`}
+        className={`py-20 bg-gradient-to-br from-[#0A2540] via-blue-900 to-[#0A2540] relative overflow-hidden ${
+          visibleSections["contact"] ? "animate-in" : ""
+        }`}
       >
+        {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div
             className="absolute inset-0 pulse-slow"
@@ -1428,147 +1449,73 @@ const App = () => {
               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E")`,
               backgroundSize: "30px 30px",
             }}
-          ></div>
+          />
         </div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Title */}
           <div
-            className={`text-center mb-16 ${visibleSections["contact"] ? "slide-in-bottom" : "opacity-0"}`}
+            className={`text-center mb-16 ${
+              visibleSections["contact"] ? "slide-in-bottom" : "opacity-0"
+            }`}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Contact PT Kamandanu Jaya Samudera
             </h2>
             <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-              Get in touch for ship management services, crew manning solutions,
-              and maritime inquiries
+              Visit our office location and get in touch for maritime services
             </p>
             <div
               className="w-24 h-1 bg-blue-400 mx-auto mt-4 transform origin-left transition-transform duration-1000 scale-x-0"
               style={
                 visibleSections["contact"] ? { transform: "scaleX(1)" } : {}
               }
-            ></div>
+            />
           </div>
+
           <div className="grid lg:grid-cols-2 gap-12">
+            {/* GOOGLE MAPS */}
             <div
-              className={`bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 ${visibleSections["contact"] ? "slide-in-left" : "opacity-0"}`}
+              className={`bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 ${
+                visibleSections["contact"] ? "slide-in-left" : "opacity-0"
+              }`}
             >
-              <h3 className="text-2xl font-bold text-white mb-6">
-                Send Us a Message
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Office Location
               </h3>
-              {formSubmitted ? (
-                <div className="text-center py-12">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500 rounded-full mb-4">
-                    <CheckCircle className="h-8 w-8 text-white" />
-                  </div>
-                  <h4 className="text-xl font-semibold text-white mb-2">
-                    Thank You!
-                  </h4>
-                  <p className="text-blue-100">
-                    Your message has been sent successfully. We'll get back to
-                    you soon.
-                  </p>
-                </div>
-              ) : (
-                <form className="space-y-4" onSubmit={handleSubmit}>
-                  <div>
-                    <label className="block text-blue-100 mb-2 font-medium">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/90 transition-all duration-300 focus:bg-white"
-                      placeholder="Your full name"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-blue-100 mb-2 font-medium">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/90 transition-all duration-300 focus:bg-white"
-                      placeholder="your@email.com"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-blue-100 mb-2 font-medium">
-                      Company Name
-                    </label>
-                    <input
-                      type="text"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/90 transition-all duration-300 focus:bg-white"
-                      placeholder="Your company name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-blue-100 mb-2 font-medium">
-                      Service Interest
-                    </label>
-                    <select
-                      name="service"
-                      value={formData.service}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/90 transition-all duration-300 focus:bg-white"
-                    >
-                      <option value="">Select a service</option>
-                      <option value="ship-management">Ship Management</option>
-                      <option value="crew-manning">Crew Manning</option>
-                      <option value="seafarer-doc">
-                        Seafarer Documentation
-                      </option>
-                      <option value="vessel-ops">Vessel Operations</option>
-                      <option value="general">General Inquiry</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-blue-100 mb-2 font-medium">
-                      Message *
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      rows={4}
-                      className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/90 transition-all duration-300 focus:bg-white"
-                      placeholder="Tell us about your requirements..."
-                      required
-                    ></textarea>
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full bg-blue-500 text-white py-4 rounded-lg hover:bg-blue-600 transition-all font-semibold text-lg shadow-lg transform hover:scale-105 flex items-center justify-center group"
-                  >
-                    Send Message{" "}
-                    <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </form>
-              )}
+
+              <div className="rounded-xl overflow-hidden border border-white/20">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3967.087314341997!2d106.87599327498948!3d-6.118948593867709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMDcnMDguMiJTIDEwNsKwNTInNDIuOSJF!5e0!3m2!1sen!2sid!4v1768891106036!5m2!1sen!2sid"
+                  width="100%"
+                  height="450"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
             </div>
+
+            {/* CONTACT INFO */}
             <div
-              className={`space-y-6 ${visibleSections["contact"] ? "slide-in-right" : "opacity-0"}`}
+              className={`space-y-6 ${
+                visibleSections["contact"] ? "slide-in-right" : "opacity-0"
+              }`}
             >
               <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500">
                 <h3 className="text-2xl font-bold text-white mb-6">
                   Contact Information
                 </h3>
+
                 <div className="space-y-6">
+                  {/* Address */}
                   <div className="flex items-start space-x-4 group">
-                    <div className="bg-blue-500 p-3 rounded-lg flex-shrink-0 group-hover:bg-blue-400 transition-colors">
+                    <div className="bg-blue-500 p-3 rounded-lg group-hover:bg-blue-400 transition-colors">
                       <MapPin className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-white font-semibold mb-1 text-lg">
+                      <h4 className="text-white font-semibold text-lg mb-1">
                         Head Office
                       </h4>
                       <p className="text-blue-100">Jakarta, Indonesia</p>
@@ -1581,17 +1528,18 @@ const App = () => {
                     </div>
                   </div>
 
+                  {/* Phone */}
                   <div className="flex items-start space-x-4 group">
-                    <div className="bg-blue-500 p-3 rounded-lg flex-shrink-0 group-hover:bg-blue-400 transition-colors">
+                    <div className="bg-blue-500 p-3 rounded-lg group-hover:bg-blue-400 transition-colors">
                       <Phone className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-white font-semibold mb-1 text-lg">
+                      <h4 className="text-white font-semibold text-lg mb-1">
                         Phone & WhatsApp
                       </h4>
-                      <p className="text-blue-100">Office: +62 21 XXXX XXXX</p>
+                      <p className="text-blue-100">Office: +62 813 1192 2417</p>
                       <p className="text-blue-100">
-                        WhatsApp: +62 8XX XXXX XXXX
+                        WhatsApp: +62 813 1192 2417
                       </p>
                       <p className="text-blue-100 text-sm mt-1">
                         24/7 Emergency Hotline Available
@@ -1599,22 +1547,23 @@ const App = () => {
                     </div>
                   </div>
 
+                  {/* Email */}
                   <div className="flex items-start space-x-4 group">
-                    <div className="bg-blue-500 p-3 rounded-lg flex-shrink-0 group-hover:bg-blue-400 transition-colors">
+                    <div className="bg-blue-500 p-3 rounded-lg group-hover:bg-blue-400 transition-colors">
                       <Mail className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-white font-semibold mb-1 text-lg">
+                      <h4 className="text-white font-semibold text-lg mb-1">
                         Email
                       </h4>
                       <p className="text-blue-100">
-                        General: info@kamandanujayasamudera.com
+                        info@kamandanujayasamudera.com
                       </p>
                       <p className="text-blue-100">
-                        Operations: operations@kamandanujayasamudera.com
+                        operations@kamandanujayasamudera.com
                       </p>
                       <p className="text-blue-100">
-                        Crew Manning: crew@kamandanujayasamudera.com
+                        crew@kamandanujayasamudera.com
                       </p>
                     </div>
                   </div>
@@ -1701,10 +1650,10 @@ const App = () => {
                 </li>
                 <li>
                   <a
-                    href="tel:+6221XXXXXXX"
+                    href="tel:+6281311922417"
                     className="hover:text-white transition-colors"
                   >
-                    +62 21 XXXX XXXX
+                    +62 813-1192-2417
                   </a>
                 </li>
                 <li>
@@ -1835,7 +1784,7 @@ const App = () => {
 
       {/* WhatsApp Float Button */}
       <a
-        href="https://wa.me/628XXXXXXXXXX?text=Hello,%20I%20would%20like%20to%20inquire%20about%20your%20ship%20management%20services"
+        href="https://wa.me/6281311922417?text=Hello,%20I%20would%20like%20to%20inquire%20about%20your%20ship%20management%20services"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition-all duration-300 transform hover:scale-110 z-50 animate-pulse hover:animate-none"
