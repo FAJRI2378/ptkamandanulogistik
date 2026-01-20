@@ -159,12 +159,11 @@ const App = () => {
       });
     }, 3000);
   };
-  // halo
+
   const navigation = [
     { name: "Home", href: "#home", id: "home" },
     { name: "About", href: "#about", id: "about" },
     { name: "Services", href: "#services", id: "services" },
-    // { name: 'Fleet', href: '#fleet', id: 'fleet' },
     { name: "Team", href: "#team", id: "team" },
     { name: "Facilities", href: "#facilities", id: "facilities" },
     { name: "Certifications", href: "#certifications", id: "certifications" },
@@ -257,59 +256,56 @@ const App = () => {
     { number: "98%", label: "Client Satisfaction", icon: TrendingUp },
   ];
 
-
-
- const onboardCrew = [
-  {
-    name: "Captain Ahmad Wijaya",
-    position: "AB",
-    vessel: "MV Kamandanu 1",
-    status: "Onboard",
-    nextPort: "CHINA",
-    avatar: onboard1,
-  },
-  {
-    name: "Chief Officer Budi Santoso",
-    position: "20",
-    vessel: "MV Kamandanu 2",
-    status: "Onboard",
-    nextPort: "CHINA",
-    avatar: onboard2,
-  },
-  {
-    name: "Chief Officer Budi Santoso",
-    position: "AB",
-    vessel: "MV Kamandanu 2",
-    status: "Onboard",
-    nextPort: "CHINA",
-    avatar: onboard3,
-  },
-  {
-    name: "Chief Officer Budi Santoso",
-    position: "30",
-    vessel: "MV Kamandanu 2",
-    status: "Onboard",
-    nextPort: "SINGAPORE",
-    avatar: onboard4,
-  },
-  {
-    name: "Chief Officer Budi Santoso",
-    position: "DECK CADET",
-    vessel: "MV Kamandanu 2",
-    status: "Onboard",
-    nextPort: "CHINA",
-    avatar: onboard5,
-  },
-  {
-    name: "Chief Officer Budi Santoso",
-    position: "AB & OILER",
-    vessel: "MV Kamandanu 2",
-    status: "Onboard",
-    nextPort: "CHINA",
-    avatar: onboard6,
-  },
-];
-
+  const onboardCrew = [
+    {
+      name: "Captain Ahmad Wijaya",
+      position: "AB",
+      vessel: "MV Kamandanu 1",
+      status: "Onboard",
+      nextPort: "CHINA",
+      avatar: onboard1,
+    },
+    {
+      name: "Chief Officer Budi Santoso",
+      position: "20",
+      vessel: "MV Kamandanu 2",
+      status: "Onboard",
+      nextPort: "CHINA",
+      avatar: onboard2,
+    },
+    {
+      name: "Chief Officer Budi Santoso",
+      position: "AB",
+      vessel: "MV Kamandanu 2",
+      status: "Onboard",
+      nextPort: "CHINA",
+      avatar: onboard3,
+    },
+    {
+      name: "Chief Officer Budi Santoso",
+      position: "30",
+      vessel: "MV Kamandanu 2",
+      status: "Onboard",
+      nextPort: "SINGAPORE",
+      avatar: onboard4,
+    },
+    {
+      name: "Chief Officer Budi Santoso",
+      position: "DECK CADET",
+      vessel: "MV Kamandanu 2",
+      status: "Onboard",
+      nextPort: "CHINA",
+      avatar: onboard5,
+    },
+    {
+      name: "Chief Officer Budi Santoso",
+      position: "AB & OILER",
+      vessel: "MV Kamandanu 2",
+      status: "Onboard",
+      nextPort: "CHINA",
+      avatar: onboard6,
+    },
+  ];
 
   const teamMembers = [
     {
@@ -465,6 +461,7 @@ const App = () => {
         "International standard for quality management systems ensuring consistent quality in ship management services",
     },
   ];
+
   const testimonials = [
     {
       name: "Global Maritime Solutions Ltd.",
@@ -508,6 +505,96 @@ const App = () => {
         "Over 15 years of excellence in ship management and maritime services",
     },
   ];
+
+  // Update document title and meta tags for SEO
+  useEffect(() => {
+    document.title = "PT Kamandanu Jaya Samudera - Professional Ship Management & Maritime Services in Indonesia";
+    
+    // Update or create meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.name = 'description';
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.content = "PT Kamandanu Jaya Samudera is a leading ship management and maritime services company in Indonesia, providing comprehensive shipping solutions including vessel management, crew manning, and maritime documentation.";
+    
+    // Update or create meta keywords
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.name = 'keywords';
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.content = "ship management Indonesia, maritime services, crew manning, vessel operations, seafarer documentation, shipping company Indonesia";
+    
+    // Update or create canonical link
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.rel = 'canonical';
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.href = window.location.href;
+    
+    // Update or create Open Graph meta tags
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    if (!ogTitle) {
+      ogTitle = document.createElement('meta');
+      ogTitle.property = 'og:title';
+      document.head.appendChild(ogTitle);
+    }
+    ogTitle.content = "PT Kamandanu Jaya Samudera - Professional Ship Management & Maritime Services";
+    
+    let ogDescription = document.querySelector('meta[property="og:description"]');
+    if (!ogDescription) {
+      ogDescription = document.createElement('meta');
+      ogDescription.property = 'og:description';
+      document.head.appendChild(ogDescription);
+    }
+    ogDescription.content = "Leading ship management and maritime services company in Indonesia providing comprehensive shipping solutions.";
+    
+    let ogImage = document.querySelector('meta[property="og:image"]');
+    if (!ogImage) {
+      ogImage = document.createElement('meta');
+      ogImage.property = 'og:image';
+      document.head.appendChild(ogImage);
+    }
+    ogImage.content = window.location.origin + "/img/logo.png";
+    
+    // Update or create Twitter Card meta tags
+    let twitterCard = document.querySelector('meta[name="twitter:card"]');
+    if (!twitterCard) {
+      twitterCard = document.createElement('meta');
+      twitterCard.name = 'twitter:card';
+      document.head.appendChild(twitterCard);
+    }
+    twitterCard.content = "summary_large_image";
+    
+    let twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    if (!twitterTitle) {
+      twitterTitle = document.createElement('meta');
+      twitterTitle.name = 'twitter:title';
+      document.head.appendChild(twitterTitle);
+    }
+    twitterTitle.content = "PT Kamandanu Jaya Samudera - Professional Ship Management & Maritime Services";
+    
+    let twitterDescription = document.querySelector('meta[name="twitter:description"]');
+    if (!twitterDescription) {
+      twitterDescription = document.createElement('meta');
+      twitterDescription.name = 'twitter:description';
+      document.head.appendChild(twitterDescription);
+    }
+    twitterDescription.content = "Leading ship management and maritime services company in Indonesia providing comprehensive shipping solutions.";
+    
+    let twitterImage = document.querySelector('meta[name="twitter:image"]');
+    if (!twitterImage) {
+      twitterImage = document.createElement('meta');
+      twitterImage.name = 'twitter:image';
+      document.head.appendChild(twitterImage);
+    }
+    twitterImage.content = window.location.origin + "/img/logo.png";
+  }, []);
 
   return (
     <div
@@ -671,7 +758,6 @@ const App = () => {
                 </p>
               </div>
             </a>
-            {/* disini */}
             <div className="hidden lg:flex items-center space-x-1">
               {navigation.map((item) => (
                 <a
@@ -1034,69 +1120,6 @@ const App = () => {
           </div>
         </div>
       </section>
-
-      {/* Fleet Section */}
-      {/* <section
-        id="fleet"
-        ref={el => sectionRefs.current['fleet'] = el}
-        className={`py-20 bg-gray-50 ${visibleSections['fleet'] ? 'animate-in' : ''}`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-16 ${visibleSections['fleet'] ? 'slide-in-bottom' : 'opacity-0'}`}>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0A2540] mb-4">
-              Our Fleet - Modern Commercial Vessels
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Well-maintained vessels equipped for diverse maritime cargo operations across international routes
-            </p>
-            <div className="w-24 h-1 bg-blue-500 mx-auto mt-4 transform origin-left transition-transform duration-1000 scale-x-0"
-                 style={visibleSections['fleet'] ? {transform: 'scaleX(1)'} : {}}></div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {fleet.map((vessel, index) => (
-              <article
-                key={index}
-                className={`bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-200 ${visibleSections['fleet'] ? 'scale-in' : 'opacity-0'} stagger-${index + 1}`}
-              >
-                <div className="h-56 bg-gradient-to-br from-[#0A2540] to-blue-900 flex items-center justify-center relative overflow-hidden group">
-                  <Ship className="h-32 w-32 text-white opacity-20 absolute group-hover:opacity-30 transition-opacity" />
-                  <Waves className="h-full w-full text-white opacity-10 absolute bottom-0 wave-animation" />
-                  <div className="relative z-10 text-center text-white">
-                    <Ship className="h-20 w-20 mx-auto mb-3 group-hover:rotate-12 transition-transform duration-500" />
-                    <p className="text-sm font-semibold bg-blue-500 px-4 py-1 rounded-full inline-block group-hover:bg-blue-600 transition-colors">
-                      {vessel.type}
-                    </p>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-[#0A2540] mb-4">{vessel.name}</h3>
-                  <div className="space-y-3 text-gray-700">
-                    <div className="flex justify-between items-center pb-2 border-b border-gray-200">
-                      <span className="font-semibold">Vessel Type:</span>
-                      <span>{vessel.type}</span>
-                    </div>
-                    <div className="flex justify-between items-center pb-2 border-b border-gray-200">
-                      <span className="font-semibold">DWT:</span>
-                      <span className="text-blue-600 font-bold">{vessel.dwt}</span>
-                    </div>
-                    <div className="flex justify-between items-center pb-2 border-b border-gray-200">
-                      <span className="font-semibold">Year Built:</span>
-                      <span>{vessel.year}</span>
-                    </div>
-                    <div className="pt-2">
-                      <p className="text-sm text-gray-600">{vessel.specs}</p>
-                    </div>
-                  </div>
-                  <button className="mt-6 w-full text-blue-500 hover:text-white hover:bg-blue-500 border-2 border-blue-500 py-2 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center group">
-                    View Specifications
-                    <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* Onboard Crew Section */}
       <section
@@ -1469,6 +1492,7 @@ const App = () => {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen
+            title="PT Kamandanu Jaya Samudera Office Location"
           />
         </div>
       </div>
@@ -1714,6 +1738,7 @@ const App = () => {
                 <button
                   onClick={() => setSelectedCertificate(null)}
                   className="text-gray-500 hover:text-gray-700"
+                  aria-label="Close certificate modal"
                 >
                   <X className="h-6 w-6" />
                 </button>
@@ -1773,6 +1798,7 @@ const App = () => {
                 <button
                   onClick={() => setSelectedFacility(null)}
                   className="text-gray-500 hover:text-gray-700"
+                  aria-label="Close facility modal"
                 >
                   <X className="h-6 w-6" />
                 </button>
