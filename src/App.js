@@ -776,12 +776,7 @@ const App = () => {
                   )}
                 </a>
               ))}
-              <a
-                href="#contact"
-                className="ml-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all transform hover:scale-105 font-semibold shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
-              >
-                Get Quote
-              </a>
+            
             </div>
             <button
               className="lg:hidden text-white p-2 hover:bg-blue-800 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
@@ -894,16 +889,17 @@ const App = () => {
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="#contact"
-          className={`inline-flex items-center justify-center px-8 py-4 bg-blue-500 text-white rounded-lg
-          hover:bg-blue-600 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl font-semibold text-lg group focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50
-          ${visibleSections["home"] ? "slide-in-bottom" : "opacity-0"} stagger-2`}
-        >
-          Request Quote
-          <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-        </a>
-
+      <a
+  href="https://wa.me/6281311922417?text=Hello%20Kamandanu%20Shipping,%20I%20would%20like%20to%20request%20a%20quote."
+  target="_blank"
+  rel="noopener noreferrer"
+  className={`inline-flex items-center justify-center px-8 py-4 bg-blue-500 text-white rounded-lg
+  hover:bg-blue-600 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl font-semibold text-lg group focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50
+  ${visibleSections["home"] ? "slide-in-bottom" : "opacity-0"} stagger-2`}
+>
+  Request Quote
+  <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+</a>
         <a
           href="#services"
           className={`inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-lg
