@@ -822,115 +822,72 @@ const App = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-     <section
+   {/* Hero Section */}
+{/* Hero Section */}
+<section
   id="home"
   ref={(el) => (sectionRefs.current["home"] = el)}
-  className="relative pt-24 pb-20 md:pt-32 md:pb-32 overflow-hidden"
+  className="relative min-h-screen flex flex-col justify-center bg-[#0A2540] overflow-hidden" 
   aria-labelledby="hero-heading"
 >
-  {/* ================= VIDEO BACKGROUND ================= */}
-  <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 z-0">
+  {/* Video Background - Full Width dari Kanan ke Kiri */}
+  <div className="absolute inset-0 w-full h-full z-0 overflow-hidden rounded-b-[30px] md:rounded-b-[60px]">
     <video
       autoPlay
       muted
       loop
       playsInline
-      preload="metadata"
-      className="absolute inset-0 w-full h-full opacity-40 z-0 mix-blend-overlay"
-      style={{
-        objectFit: 'cover',
-        objectPosition: 'center center',
-        minWidth: '100%',
-        minHeight: '100%',
-      }}
-      onError={(e) => {
-        // Fallback to gradient background if video fails to load
-        e.target.style.display = "none";
-      }}
+      className="absolute inset-0 w-full h-full object-cover opacity-60 z-0"
     >
       <source src="/video/hero.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
     </video>
-    {/* Subtle overlay for better text readability */}
-    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30 z-10" />
+    {/* Overlay Biru Gradasi Gelap (Gaya Figma) agar teks putih terbaca jelas */}
+    <div className="absolute inset-0 bg-gradient-to-r from-[#0A2540] via-[#0A2540]/40 to-transparent z-10" />
   </div>
 
-  {/* ================= DECORATIONS - Minimal & Clean ================= */}
-  <div className="absolute inset-0 opacity-5 z-20 pointer-events-none">
-    <div
-      className="absolute inset-0"
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1'%3E%3Cpath d='M0 40h80M40 0v80'/%3E%3C/g%3E%3C/svg%3E")`,
-        backgroundSize: "80px 80px",
-      }}
-    />
-  </div>
-  {/* ================= CONTENT ================= */}
-  <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div
-      className={`text-center ${visibleSections["home"] ? "slide-in-bottom" : "opacity-0"}`}
-    >
+  {/* Content Container */}
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full pt-32 pb-12">
+    <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-3xl">
       <h1
         id="hero-heading"
-        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
+        className={`text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight ${visibleSections["home"] ? "slide-in-left" : "opacity-0"}`}
       >
         PT Kamandanu Jaya Samudera
-        <span className="block text-xl sm:text-2xl md:text-3xl mt-4 text-blue-300 font-normal">
-          Professional Ship Management & Maritime Services Company in
-          Indonesia
+        <span className="block text-xl sm:text-2xl md:text-4xl mt-4 text-blue-300 font-normal tracking-wide">
+          CREWING AGENCY & SHIP MANAGEMENT
         </span>
       </h1>
 
-      <p className="text-lg md:text-xl text-blue-50/90 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
-        Leading provider of comprehensive shipping solutions including
-        ship management, crew manning, vessel operations, and seafarer
-        documentation services.
+      <p className={`text-base md:text-xl text-blue-100 mb-10 max-w-2xl font-light leading-relaxed ${visibleSections["home"] ? "slide-in-left" : "opacity-0"} stagger-1`}>
+        The easiest way to get hired. Provide the best crew members who embrace where safety isn't just a priority, but a core value.
       </p>
 
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-      <a
-  href="https://wa.me/6281311922417?text=Hello%20Kamandanu%20Shipping,%20I%20would%20like%20to%20request%20a%20quote."
-  target="_blank"
-  rel="noopener noreferrer"
-  className={`inline-flex items-center justify-center px-8 py-4 bg-blue-500 text-white rounded-lg
-  hover:bg-blue-600 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl font-semibold text-lg group focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50
-  ${visibleSections["home"] ? "slide-in-bottom" : "opacity-0"} stagger-2`}
->
-  Request Quote
-  <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-</a>
+      <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
         <a
-          href="#services"
-          className={`inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-lg
-          hover:bg-white hover:text-[#0A2540] transition-all font-semibold text-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50
-          ${visibleSections["home"] ? "slide-in-bottom" : "opacity-0"} stagger-3`}
+          href="#about"
+          className={`inline-flex items-center justify-center px-12 py-4 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all font-bold shadow-lg transform hover:scale-105 ${visibleSections["home"] ? "scale-in" : "opacity-0"} stagger-2`}
         >
-          Explore Services
+          Get Started
         </a>
       </div>
     </div>
 
-    {/* ================= STATS - Cleaner Design ================= */}
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-16 md:mt-20">
+    {/* Stats Grid diletakkan di bawah content, tetap menggunakan backdrop blur agar elegan di atas video */}
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-20">
       {stats.map((stat, index) => {
         const Icon = stat.icon;
         return (
           <div
             key={index}
-            className={`text-center bg-white/5 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/10
-            hover:bg-white/10 hover:border-white/20 transition-all duration-500 hover:scale-105 hover:shadow-2xl group
-            ${visibleSections["home"] ? "slide-in-bottom" : "opacity-0"} stagger-${index + 1}`}
+            className={`text-center bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl transition-all duration-500 hover:bg-white/20 ${visibleSections["home"] ? "slide-in-bottom" : "opacity-0"} stagger-${index + 1}`}
           >
-            <Icon className="h-10 w-10 text-blue-400 mx-auto mb-4 group-hover:text-blue-300 transition-colors" />
-            <div className="text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight">
+            <Icon className="h-8 w-8 text-blue-400 mx-auto mb-3" />
+            <div className="text-2xl md:text-3xl font-bold text-white mb-1">
               {countedStats[`value_${index}`] !== undefined
-                ? stat.number.includes("%")
-                  ? `${countedStats[`value_${index}`]}%`
-                  : `${countedStats[`value_${index}`]}+`
+                ? stat.number.includes("%") ? `${countedStats[`value_${index}`]}%` : `${countedStats[`value_${index}`]}+`
                 : stat.number}
             </div>
-            <div className="text-blue-100/80 font-medium text-sm uppercase tracking-wide">
+            <div className="text-blue-200 text-xs uppercase tracking-widest font-semibold">
               {stat.label}
             </div>
           </div>
@@ -938,19 +895,7 @@ const App = () => {
       })}
     </div>
   </div>
-
-  {/* ================= BOTTOM WAVE ================= */}
-  <div className="absolute bottom-0 left-0 right-0 z-30">
-    <svg
-      viewBox="0 0 1200 120"
-      preserveAspectRatio="none"
-      className="w-full h-16 fill-gray-50"
-    >
-      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" />
-    </svg>
-  </div>
 </section>
-
       {/* About Section */}
       <section
         id="about"
@@ -1594,7 +1539,7 @@ const App = () => {
             >
               <Phone className="h-4 w-4 md:h-5 md:w-5" />
               <span className="hidden sm:inline">WhatsApp</span>
-              <span className="sm:hidden">WA</span>
+              <span className="sm:hidden">WhatsApp</span>
             </a>
             <a
               href="mailto:info@kamandanujayasamudera.com"
