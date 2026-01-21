@@ -1103,10 +1103,10 @@ const App = () => {
   <div className="relative">
     <div className="w-full aspect-square overflow-hidden">
       <img
-        src={crew.avatar}
-        alt={crew.name}
-        className="w-full h-full object-cover"
-      />
+  src={crew.avatar}
+  alt={`${crew.name} - ${crew.position} onboard at PT Kamandanu Jaya Samudera`}
+  className="w-full h-full object-cover"
+/>
     </div>
 
     <div className="absolute top-3 right-3">
@@ -1324,11 +1324,11 @@ const App = () => {
               >
                 {/* IMAGE */}
                 <div className="h-48 bg-gray-50 flex items-center justify-center overflow-hidden">
-                  <img
-                    src={cert.image}
-                    alt={cert.name}
-                    className="h-full w-full object-contain bg-white p-4 transition-transform duration-500 group-hover:scale-110"
-                  />
+                 <img
+                  src={cert.image}
+                  alt={`Maritime Certificate ${cert.name} - PT Kamandanu Jaya Samudera`}
+                  className="h-full w-full object-contain bg-white p-4 transition-transform duration-500 group-hover:scale-110"
+                />
                 </div>
 
                 {/* CONTENT */}
@@ -1685,11 +1685,11 @@ const App = () => {
                 </button>
               </div>
               <div className="h-96 bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-                <img
-                  src={selectedCertificate.image}
-                  alt={selectedCertificate.name}
-                  className="max-h-full max-w-full object-contain"
-                />
+               <img
+                src={selectedCertificate.image}
+                alt={`Official Document ${selectedCertificate.name} of PT Kamandanu Jaya Samudera`}
+                className="max-h-full max-w-full object-contain"
+              />
               </div>
 
               <p className="text-gray-700 mb-4">
