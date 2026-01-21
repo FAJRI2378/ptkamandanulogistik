@@ -43,20 +43,10 @@ const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [visibleSections, setVisibleSections] = useState({});
   const [countedStats, setCountedStats] = useState({});
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    service: "",
-    message: "",
-  });
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [selectedFacility, setSelectedFacility] = useState(null);
 
   const sectionRefs = useRef({});
-  const statsRefs = useRef({});
 
   useEffect(() => {
     setTimeout(() => setIsLoaded(true), 100);
@@ -101,15 +91,13 @@ const App = () => {
     window.addEventListener("scroll", handleScroll);
     handleScroll();
 
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      clearInterval(interval);
+    
     };
-  }, [visibleSections]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [visibleSections]);
 
   const animateStats = () => {
     stats.forEach((stat, index) => {
@@ -136,25 +124,7 @@ const App = () => {
     });
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => {
-      setFormSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        service: "",
-        message: "",
-      });
-    }, 3000);
-  };
 
   const navigation = [
     { name: "Home", href: "#home", id: "home" },
@@ -221,29 +191,7 @@ const App = () => {
     },
   ];
 
-  const fleet = [
-    {
-      name: "MV Kamandanu 1",
-      type: "General Cargo Vessel",
-      dwt: "5,000 DWT",
-      year: "2018",
-      specs: "LOA: 95m, Beam: 16m, Draft: 6.5m",
-    },
-    {
-      name: "MV Samudra Jaya",
-      type: "Container Ship",
-      dwt: "8,500 DWT",
-      year: "2020",
-      specs: "LOA: 120m, Beam: 20m, TEU: 400",
-    },
-    {
-      name: "MV Pacific Star",
-      type: "Bulk Carrier",
-      dwt: "12,000 DWT",
-      year: "2019",
-      specs: "LOA: 140m, Beam: 22m, Draft: 8.5m",
-    },
-  ];
+
 
   const stats = [
     { number: "15+", label: "Years of Excellence", icon: Award },
@@ -458,22 +406,6 @@ const App = () => {
     },
   ];
 
-  const testimonials = [
-    {
-      name: "Global Maritime Solutions Ltd.",
-      role: "International Shipping Company",
-      text: "PT Kamandanu Jaya Samudera has been our trusted partner for ship management services for over 5 years. Their professional crew and technical expertise ensure our vessels operate safely and efficiently across Asia-Pacific routes.",
-      rating: 5,
-      country: "Singapore",
-    },
-    {
-      name: "Pacific Cargo Lines",
-      role: "Vessel Owner",
-      text: "Outstanding crew manning services with highly qualified seafarers. The documentation process is seamless and their 24/7 support ensures our operations run smoothly. Highly recommend for any shipping company.",
-      rating: 5,
-      country: "Indonesia",
-    },
-  ];
 
   const whyChooseUs = [
     {
