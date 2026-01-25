@@ -212,6 +212,39 @@ const Team = () => {
       level: "Staff",
     },
   ];
+  const clients = [
+  {
+    name: "PT Pelni (Persero)",
+    type: "Shipping Company",
+    logo: "/clients/pelni.png",
+  },
+  {
+    name: "PT Pertamina Trans Kontinental",
+    type: "Offshore & Marine Services",
+    logo: "/clients/pertamina.png",
+  },
+  {
+    name: "Maersk Line",
+    type: "Global Container Shipping",
+    logo: "/clients/maersk.png",
+  },
+  {
+    name: "COSCO Shipping",
+    type: "International Shipping",
+    logo: "/clients/cosco.png",
+  },
+  {
+    name: "Evergreen Marine",
+    type: "Container Transportation",
+    logo: "/clients/evergreen.png",
+  },
+  {
+    name: "NYK Line",
+    type: "Logistics & Shipping",
+    logo: "/clients/nyk.png",
+  },
+];
+
 
   return (
     <section className="py-20 bg-white min-h-screen pt-32">
@@ -334,10 +367,10 @@ const Team = () => {
                         Contact
                       </a>
                       <span className="text-purple-300">|</span>
-                      <a href="#" className="text-purple-600 hover:text-purple-800 flex items-center font-semibold transition-colors">
+                      <button className="text-purple-600 hover:text-purple-800 flex items-center font-semibold transition-colors bg-none border-none cursor-pointer p-0">
                         <Globe className="h-4 w-4 mr-1" />
                         LinkedIn
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -395,10 +428,10 @@ const Team = () => {
                         Contact
                       </a>
                       <span className="text-amber-300">|</span>
-                      <a href="#" className="text-amber-600 hover:text-amber-800 flex items-center font-semibold transition-colors">
+                      <button className="text-amber-600 hover:text-amber-800 flex items-center font-semibold transition-colors bg-none border-none cursor-pointer p-0">
                         <Globe className="h-4 w-4 mr-1" />
                         LinkedIn
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -459,10 +492,10 @@ const Team = () => {
                         Email
                       </a>
                       <span className="text-gray-300">|</span>
-                      <a href="#" className="text-blue-600 hover:text-blue-800 flex items-center font-semibold transition-colors">
+                      <button className="text-blue-600 hover:text-blue-800 flex items-center font-semibold transition-colors bg-none border-none cursor-pointer p-0">
                         <Globe className="h-3 w-3 mr-1" />
                         LinkedIn
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -523,16 +556,54 @@ const Team = () => {
                         Email
                       </a>
                       <span className="text-gray-300">|</span>
-                      <a href="#" className="text-green-600 hover:text-green-800 flex items-center font-semibold transition-colors">
+                      <button className="text-green-600 hover:text-green-800 flex items-center font-semibold transition-colors bg-none border-none cursor-pointer p-0">
                         <Globe className="h-3 w-3 mr-1" />
                         LinkedIn
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
+
+          {/* OUR CLIENTS */}
+<div className="mb-20">
+  <h3 className="text-2xl font-bold text-[#0A2540] mb-2 flex items-center">
+    <Users className="h-8 w-8 mr-3 text-blue-500" />
+    Our Valued Clients
+  </h3>
+  <p className="text-gray-600 mb-12 ml-11">
+    Trusted by national and international maritime partners
+  </p>
+
+  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+    {clients.map((client, index) => (
+      <div
+        key={index}
+        className={`bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl transition-all duration-500 hover:scale-105 p-6 flex flex-col items-center justify-center text-center ${
+          isVisible ? "scale-in" : "opacity-0"
+        } stagger-${index + 1}`}
+      >
+        <div className="w-full h-20 flex items-center justify-center mb-4">
+          <img
+            src={client.logo}
+            alt={client.name}
+            className="max-h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300"
+          />
+        </div>
+
+        <h4 className="font-semibold text-sm text-[#0A2540]">
+          {client.name}
+        </h4>
+        <p className="text-xs text-gray-500 mt-1">
+          {client.type}
+        </p>
+      </div>
+    ))}
+  </div>
+</div>
+
 
           {/* Organization Info */}
           <div className={`mt-12 bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-8 border-2 border-blue-200 ${isVisible ? "slide-in-bottom" : "opacity-0"} stagger-4`}>
