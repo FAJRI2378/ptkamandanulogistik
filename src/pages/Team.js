@@ -10,6 +10,8 @@ import capt from "../img/capt.png";
 import client1 from "../img/client1.png";
 import client2 from "../img/client2.png";
 import client3 from "../img/client3.png";
+import onboard7 from "../img/onboard7.jpg";
+import onboard8 from "../img/onboard8.jpg";
 
 const Team = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -47,7 +49,7 @@ const Team = () => {
     {
       name: "Captain Ahmad Wijaya",
       position: "AB",
-      vessel: "MV Kamandanu 1",
+      vessel: "TANKER",
       status: "Onboard",
       nextPort: "CHINA",
       avatar: onboard1,
@@ -55,7 +57,7 @@ const Team = () => {
     {
       name: "Chief Officer Budi Santoso",
       position: "20",
-      vessel: "MV Kamandanu 2",
+      vessel: "LCT",
       status: "Onboard",
       nextPort: "CHINA",
       avatar: onboard2,
@@ -63,7 +65,7 @@ const Team = () => {
     {
       name: "Chief Officer Budi Santoso",
       position: "AB",
-      vessel: "MV Kamandanu 2",
+      vessel: "BULK CARRIER",
       status: "Onboard",
       nextPort: "CHINA",
       avatar: onboard3,
@@ -71,7 +73,7 @@ const Team = () => {
     {
       name: "Chief Officer Budi Santoso",
       position: "30",
-      vessel: "MV Kamandanu 2",
+      vessel: "VLCC",
       status: "Onboard",
       nextPort: "SINGAPORE",
       avatar: onboard4,
@@ -79,7 +81,7 @@ const Team = () => {
     {
       name: "Chief Officer Budi Santoso",
       position: "DECK CADET",
-      vessel: "MV Kamandanu 2",
+      vessel: "OIL TANKER",
       status: "Onboard",
       nextPort: "CHINA",
       avatar: onboard5,
@@ -87,11 +89,27 @@ const Team = () => {
     {
       name: "Chief Officer Budi Santoso",
       position: "AB & OILER",
-      vessel: "MV Kamandanu 2",
+      vessel: "LCT",
       status: "Onboard",
       nextPort: "CHINA",
       avatar: onboard6,
     },
+  {
+    name: "Chief Officer Budi Santoso",
+    position: "AB",
+    vessel: "GENERAL CARGO",
+    status: "Onboard",
+    nextPort: "CHINA",
+    avatar: onboard7,
+  },
+  {
+    name: "Chief Officer Budi Santoso",
+    position: "AB",
+    vessel: "VLCC",
+    status: "Onboard",
+    nextPort: "CHINA",
+    avatar: onboard8,
+  },
   ];
 
   const owner = [
