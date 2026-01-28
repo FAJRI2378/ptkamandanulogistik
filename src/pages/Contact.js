@@ -101,7 +101,7 @@ const Contact = () => {
                       href="tel:+6281311922417"
                       className="text-blue-100 text-sm md:text-base hover:text-blue-200 transition-colors block"
                     >
-                      Office: +62 813 1192 2417
+                      Office: (021) 43938505 
                     </a>
                     <a
                       href="https://wa.me/6281311922417"
