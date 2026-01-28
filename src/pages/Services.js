@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Ship, Users, FileCheck, Anchor } from "lucide-react";
+import {
+  Ship,
+  Users,
+  FileCheck,
+  Anchor,
+  Wrench,
+  Plane,
+} from "lucide-react";
 import Seo from "../components/Seo";
 
 const Services = () => {
@@ -11,77 +18,101 @@ const Services = () => {
 
   const services = [
     {
-      icon: Ship,
-      title: "Ship Management Services",
+      icon: Users,
+      title: "Crew Manning Services",
       description:
-        "Comprehensive vessel management including technical operations, maintenance planning, regulatory compliance, and crew management. We ensure vessels operate efficiently in full compliance with international maritime regulations such as ISM Code and SOLAS.",
+        "The main objective of PT Kamandanu Jaya Samudera is to provide quality assured crew manning services by supplying qualified, capable, and experienced seafarers of all ranks, from officers and engineers to ratings. Our experienced crew managers are able to fulfill individual crew requests or provide complete vessel manning.",
       features: [
-        "Technical Management",
-        "Crew Management",
-        "Safety & Compliance",
-        "Maintenance Planning",
+        "Officers & Engineers",
+        "Ratings & Support Crew",
+        "Complete Vessel Manning",
+        "Experienced Crew Managers",
       ],
     },
     {
-      icon: Users,
-      title: "Crew Manning Solutions",
+      icon: Ship,
+      title: "Vessel Types We Serve",
       description:
-        "Professional crew manning services including recruitment, training, and deployment of STCW-certified seafarers. We provide complete crew management solutions with global deployment and 24/7 operational support.",
+        "We provide officers and ratings for a wide range of vessels managed or owned by our clients, covering commercial shipping, tanker fleets, offshore vessels, and specialized marine units.",
       features: [
-        "STCW Certified Crew",
-        "Global Deployment",
-        "Training Programs",
-        "24/7 Crew Support",
+        "Bulk, Container & General Cargo",
+        "Tankers (Crude, Product, Chem-Oil, LPG)",
+        "FPSO & Offshore Fleets",
+        "Cruise & Specialized Vessels",
+      ],
+    },
+    {
+      icon: Wrench,
+      title: "Repair & Maintenance Teams",
+      description:
+        "We supply highly qualified and experienced repair teams consisting of certified technical personnel for ship repair, maintenance, and offshore projects. All personnel hold valid STCW certificates, valid visas, and are available for short-notice deployment.",
+      features: [
+        "Welders, Fitters & Platers",
+        "Engine & Electrical Fitters",
+        "Painters, Blasters & Insulators",
+        "Certified & Travel-Ready Personnel",
       ],
     },
     {
       icon: FileCheck,
-      title: "Maritime Documentation",
+      title: "Documentation & Flag State Services",
       description:
-        "End-to-end maritime documentation services covering seafarer certification, licensing, visa processing, and flag state compliance to ensure smooth and lawful vessel operations.",
+        "We assist our clients in obtaining all required maritime documents and certifications. As affiliated agents of several maritime administrations, we ensure full compliance with international regulations.",
       features: [
-        "Certificate Processing",
-        "Visa Services",
-        "License Renewal",
-        "Flag State Compliance",
+        "Flag State Documents",
+        "Seaman Books & Certificates",
+        "Marlins Testing",
+        "STCW Compliance",
+      ],
+    },
+    {
+      icon: Plane,
+      title: "Travel & Visa Assistance",
+      description:
+        "Our company provides complete travel and visa assistance services to ensure smooth crew mobilization and demobilization worldwide.",
+      features: [
+        "US C1/D & Transit Visas",
+        "Flight Booking",
+        "Travel Documentation",
+        "Short-Notice Deployment",
       ],
     },
     {
       icon: Anchor,
-      title: "Vessel Operations Support",
+      title: "Training & Additional Services",
       description:
-        "Operational support services including voyage planning, port operations, bunker procurement, and logistics coordination to ensure safe, efficient, and cost-effective maritime operations worldwide.",
+        "We support continuous improvement of seafarer competence through training programs and advisory services tailored to industry requirements.",
       features: [
-        "Voyage Planning",
-        "Port Operations",
-        "Bunker Management",
-        "Logistics Support",
+        "English & Mandarin Short Courses",
+        "Seafarer Training Programs",
+        "Juridical Assistance",
+        "Seafarer Advisory Services",
       ],
     },
   ];
 
   return (
     <>
-      {/* SEO */}
+      {/* ✅ SEO */}
       <Seo
-        title="Our Services - PT Kamandanu Jaya Samudera | Crew Manning Agency"
-        description="Explore our professional maritime services including crew manning solutions, ship management, vessel operations, and maritime documentation. PT Kamandanu Jaya Samudera is a trusted crew manning agency in Indonesia."
+        title="Our Services | PT Kamandanu Jaya Samudera - Crew Manning Agency"
+        description="PT Kamandanu Jaya Samudera provides quality assured crew manning services, vessel staffing, repair teams, maritime documentation, visa assistance, and seafarer training for global maritime operations."
         url="/services"
       />
 
       <section className="py-20 bg-white min-h-screen pt-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-6">
           <div
             className={`text-center mb-16 ${
               isVisible ? "slide-in-bottom" : "opacity-0"
             }`}
           >
             <h1 className="text-3xl md:text-4xl font-bold text-[#0A2540] mb-4">
-              Our Maritime Services
+              Our Services
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Professional crew manning, ship management, and vessel support
-              services for global maritime operations
+              Quality assured crew manning and maritime support services for
+              commercial, offshore, and specialized vessels worldwide
             </p>
             <div className="w-24 h-1 bg-blue-500 mx-auto mt-4" />
           </div>
@@ -101,10 +132,10 @@ const Services = () => {
                       <Icon className="h-8 w-8 text-white" />
                     </div>
                     <div>
-                      <h2 className="text-xl font-bold text-[#0A2540] mb-2">
+                      <h2 className="text-xl font-bold text-[#0A2540] mb-3">
                         {service.title}
                       </h2>
-                      <p className="text-gray-600 mb-4">
+                      <p className="text-gray-600 mb-4 leading-relaxed">
                         {service.description}
                       </p>
                       <div className="flex flex-wrap gap-2">
@@ -125,6 +156,7 @@ const Services = () => {
           </div>
         </div>
 
+        {/* Animations */}
         <style>
           {`
             @keyframes slide-in-bottom {
@@ -145,6 +177,8 @@ const Services = () => {
             .stagger-2 { animation-delay: 0.2s; }
             .stagger-3 { animation-delay: 0.3s; }
             .stagger-4 { animation-delay: 0.4s; }
+            .stagger-5 { animation-delay: 0.5s; }
+            .stagger-6 { animation-delay: 0.6s; }
           `}
         </style>
       </section>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail,Clock } from "lucide-react";
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -80,10 +80,7 @@ const Contact = () => {
                     </h4>
                     <p className="text-blue-100 text-sm md:text-base">Jakarta, Indonesia</p>
                     <p className="text-blue-100 text-sm md:text-base">
-                      Maritime Business District
-                    </p>
-                    <p className="text-blue-100 text-xs md:text-sm mt-1">
-                      Serving Indonesia & International Waters
+                     	Jl. Warakas 3 No.23 RT 010 RW 004 2nd floor North Jakarta, Indonesia
                     </p>
                   </div>
                 </div>
@@ -111,9 +108,6 @@ const Contact = () => {
                     >
                       WhatsApp: +62 813 1192 2417
                     </a>
-                    <p className="text-blue-100 text-xs md:text-sm mt-1">
-                      24/7 Emergency Hotline Available
-                    </p>
                   </div>
                 </div>
 
@@ -130,21 +124,25 @@ const Contact = () => {
                     >
                       info@kamandanujayasamudera.com
                     </a>
-                    <a
-                      href="mailto:operations@kamandanujayasamudera.com"
-                      className="text-blue-100 text-sm md:text-base hover:text-blue-200 transition-colors block break-all"
-                    >
-                      operations@kamandanujayasamudera.com
-                    </a>
-                    <a
-                      href="mailto:crew@kamandanujayasamudera.com"
-                      className="text-blue-100 text-sm md:text-base hover:text-blue-200 transition-colors block break-all"
-                    >
-                      crew@kamandanujayasamudera.com
-                    </a>
                   </div>
                 </div>
               </div>
+
+              {/* Business Hours */}
+<div className="flex items-start space-x-3 md:space-x-4 group">
+  <div className="bg-blue-500 p-2.5 md:p-3 rounded-lg group-hover:bg-blue-400 transition-colors flex-shrink-0">
+    <Clock className="h-5 w-5 md:h-6 md:w-6 text-white" />
+  </div>
+  <div className="flex-1 min-w-0">
+    <h4 className="text-white font-semibold text-base md:text-lg mb-1">
+      Business Hours
+    </h4>
+    <p className="text-blue-100 text-sm md:text-base">
+     	Monday – Saturday 9:00-17:00 Sunday we closed
+    </p>
+  </div>
+</div>
+
 
               {/* Quick Contact Buttons */}
               <div className="grid grid-cols-2 gap-3 mt-6 md:mt-8">
