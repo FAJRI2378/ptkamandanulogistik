@@ -15,7 +15,6 @@ import onboard8 from "../img/onboard8.jpg";
 
 const Team = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeTab, setActiveTab] = useState('all');
 
   useEffect(() => {
     // SEO Meta Tags
