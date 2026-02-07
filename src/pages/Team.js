@@ -7,9 +7,6 @@ import onboard4 from "../img/onboard4.png";
 import onboard5 from "../img/onboard5.png";
 import onboard6 from "../img/onboard6.png";
 import capt from "../img/capt.png";
-import client1 from "../img/client1.png";
-import client2 from "../img/client2.png";
-import client3 from "../img/client3.png";
 import onboard7 from "../img/onboard7.jpg";
 import onboard8 from "../img/onboard8.jpg";
 
@@ -157,24 +154,6 @@ const Team = () => {
       level: "Owner & Founder",
       avatar: capt,
       bio: "Leading PT Kamandanu Jaya Samudera with over three decades of maritime expertise, Mr. Makkama Patontonan has established the company as a trusted name in Indonesian shipping and crewing services.",
-    },
-  ];
-
-  const clients = [
-    {
-      name: "PT Pelni (Persero)",
-      type: "National Shipping Company",
-      logo: client1,
-    },
-    {
-      name: "PT Pertamina Trans Kontinental",
-      type: "Offshore & Marine Services",
-      logo: client2,
-    },
-    {
-      name: "Maersk Line",
-      type: "Global Container Shipping",
-      logo: client3,
     },
   ];
 
@@ -524,59 +503,6 @@ const Team = () => {
                       </button>
                     </div>
                   </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* CLIENTS SECTION */}
-        <section className="mb-24">
-          <header className="text-center mb-16">
-            <div className="inline-flex items-center justify-center gap-3 mb-4">
-              <div className="p-3 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl shadow-lg">
-                <Users className="h-7 w-7 text-white" aria-hidden="true" />
-              </div>
-              <h2 className="text-4xl font-bold text-[#0A2540]">
-                Our Valued Clients & Partners
-              </h2>
-            </div>
-            <p className="text-gray-600 text-lg mt-3">
-              Trusted by leading national and international maritime companies
-            </p>
-            <div className="w-32 h-1.5 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 mx-auto mt-6 rounded-full shadow-lg" aria-hidden="true" />
-          </header>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {clients.map((client, index) => (
-              <article
-                key={index}
-                className={`group bg-white border-2 border-gray-200 rounded-3xl shadow-lg hover:shadow-2xl hover:border-blue-400 transition-all duration-700 hover:-translate-y-3 p-10 flex flex-col items-center justify-center text-center relative overflow-hidden ${
-                  isVisible ? "scale-in" : "opacity-0"
-                } stagger-${index + 1}`}
-                itemScope
-                itemType="https://schema.org/Organization"
-              >
-                {/* Hover Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true"></div>
-                
-                <div className="relative z-10 w-full">
-                  <div className="w-full h-36 flex items-center justify-center mb-8 overflow-hidden">
-                    <img
-                      src={client.logo}
-                      alt={`${client.name} - Maritime Partner of PT Kamandanu Jaya Samudera`}
-                      className="max-h-32 max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
-                      loading="lazy"
-                      itemProp="logo"
-                    />
-                  </div>
-
-                  <h3 className="font-bold text-lg text-[#0A2540] mb-3 group-hover:text-blue-600 transition-colors" itemProp="name">
-                    {client.name}
-                  </h3>
-                  <p className="text-sm text-gray-500 font-semibold" itemProp="description">
-                    {client.type}
-                  </p>
                 </div>
               </article>
             ))}

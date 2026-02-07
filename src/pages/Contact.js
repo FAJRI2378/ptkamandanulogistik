@@ -147,7 +147,7 @@ const Contact = () => {
               {/* Quick Contact Buttons */}
               <div className="grid grid-cols-2 gap-3 mt-6 md:mt-8">
                 <a
-                  href="https://wa.me/6281311922417"
+                 href="https://wa.me/6281311922417?text=Selamat%20___%2C%20Pak%2FBu.%0APerkenalkan%2C%20saya%20___.%0A%0ABerikut%20saya%20kirimkan%20CV%20saya%20dengan%20data%20sebagai%20berikut%3A%0A-%20Minat%20kapal%3A%0A-%20Rank%3A%0A-%20Last%20salary%3A%0A-%20Kemampuan%20bahasa%20Inggris%20(10-100%25)%3A%0A-%20Ekspektasi%20salary%3A%0A%0ATerima%20kasih."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg text-sm md:text-base font-semibold"

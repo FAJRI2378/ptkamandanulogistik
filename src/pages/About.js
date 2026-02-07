@@ -129,8 +129,7 @@ const About = () => {
                 Our Vision
               </h3>
               <p className="text-gray-700 leading-relaxed">
-                To become a trusted and reliable crewing and manning agency
-                recognized for professionalism, compliance, and service quality.
+               We strive to be the most successful maritime manning agency, delivering excellence in seaman recruitment and professional crew management services worldwide.
               </p>
             </div>
 
@@ -140,10 +139,12 @@ const About = () => {
                 Our Mission
               </h3>
               <p className="text-gray-700 leading-relaxed">
-                To deliver comprehensive crew management solutions by supplying
-                competent seafarers and maintaining the highest standards of
-                safety, compliance, and operational excellence.
-              </p>
+• Continuously deliver high-quality products and services that meet and exceed customer needs through a rigorous and professional selection process.</p>
+
+<p>• Develop competent and skilled employees by creating a positive and supportive working environment that encourages performance excellence and ensures customer satisfaction.</p>
+
+<p>• Provide the best customer service by valuing individuals, fostering strong cooperation, and consistently striving to achieve the highest standards of service quality.</p>
+              
             </div>
           </div>
         </div>
