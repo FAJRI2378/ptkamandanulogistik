@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import AnimatedCounter from "../components/AnimatedCounter"
+import AnimatedCounter from "../components/AnimatedCounter";
 import {
   Award,
   Ship,
@@ -8,29 +8,22 @@ import {
   TrendingUp,
   ShieldCheck,
   Anchor,
-  Globe,
   CheckCircle,
-  Clock,
   Star,
-  ArrowRight,
   MapPin,
   Phone,
   Mail,
   ChevronRight,
-  BarChart3,
   FileText,
-  Heart,
   Database,
 } from "lucide-react";
 import Seo from "../components/Seo";
 import foto from "../img/foto.jpeg";
 
 const Home = () => {
-  const [statsValue, setStatsValue] = useState({});
   const [animated, setAnimated] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-
 
   const stats = [
     {
@@ -53,13 +46,13 @@ const Home = () => {
     },
     {
       icon: Database,
-      number: 2000,
+      number: 10000,
       suffix: "+",
       label: "Crews in Database",
     },
     {
       icon: Ship,
-      number: 131,
+      number: 8000,
       suffix: "",
       label: "Vessels Served",
     },
@@ -92,42 +85,42 @@ const Home = () => {
     },
   ];
 
-  // Schema.org Structured Data for SEO
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "PT Kamandanu Jaya Samudera",
-    alternateName: "Kamandanu Jaya Samudera Crew Manning Agency",
-    description:
-      "Professional crew manning agency specializing in recruitment, deployment, and management of qualified seafarers for domestic and international vessels",
-    foundingDate: "2020-10-23",
-    url: "https://kamandanujayasamudera.com",
-    logo: "https://kamandanujayasamudera.com/logo.png",
-    sameAs: [
-      "https://www.linkedin.com/company/pt-kamandanu-jaya-samudera",
-      "https://www.facebook.com/kamandanujayasamudera",
-    ],
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "ID",
-      addressLocality: "Jakarta",
-    },
-    areaServed: "Worldwide",
-    serviceType: [
-      "Crew Manning Services",
-      "Seafarer Recruitment",
-      "Maritime Personnel Management",
-      "Vessel Crew Supply",
-    ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "127",
-    },
-  };
-
   useEffect(() => {
     setTimeout(() => setIsVisible(true), 100);
+
+    // Schema.org Structured Data for SEO
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "PT Kamandanu Jaya Samudera",
+      alternateName: "Kamandanu Jaya Samudera Crew Manning Agency",
+      description:
+        "Professional crew manning agency specializing in recruitment, deployment, and management of qualified seafarers for domestic and international vessels",
+      foundingDate: "2020-10-23",
+      url: "https://kamandanujayasamudera.com",
+      logo: "https://kamandanujayasamudera.com/logo.png",
+      sameAs: [
+        "https://www.linkedin.com/company/pt-kamandanu-jaya-samudera",
+        "https://www.facebook.com/kamandanujayasamudera",
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "ID",
+        addressLocality: "Jakarta",
+      },
+      areaServed: "Worldwide",
+      serviceType: [
+        "Crew Manning Services",
+        "Seafarer Recruitment",
+        "Maritime Personnel Management",
+        "Vessel Crew Supply",
+      ],
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "127",
+      },
+    };
 
     // Add structured data to page
     const script = document.createElement("script");
@@ -141,23 +134,8 @@ const Home = () => {
   }, []);
 
   const animateStats = useCallback(() => {
-    stats.forEach((stat, index) => {
-      let current = 0;
-      const increment = stat.number / 60;
-
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= stat.number) {
-          current = stat.number;
-          clearInterval(timer);
-        }
-        setStatsValue((prev) => ({
-          ...prev,
-          [index]: Math.floor(current),
-        }));
-      }, 16);
-    });
-  }, [stats]);
+    // Animation is handled by AnimatedCounter component
+  }, []);
 
   useEffect(() => {
     if (isVisible && !animated) {
@@ -246,34 +224,33 @@ const Home = () => {
             </div>
 
             {/* ================= KEY STATISTICS ================= */}
-           <aside
-  className="grid grid-cols-2 md:grid-cols-5 gap-6 mt-20"
-  aria-label="Company statistics"
->
-  {stats.map((stat, index) => {
-    const Icon = stat.icon;
-    return (
-      <div
-        key={index}
-        className="bg-white/10 backdrop-blur-md p-6 rounded-2xl text-center transform hover:scale-105 transition-all hover:bg-white/20"
-      >
-        <Icon
-          className="mx-auto mb-3 text-blue-400 w-8 h-8"
-          aria-hidden="true"
-        />
+            <aside
+              className="grid grid-cols-2 md:grid-cols-5 gap-6 mt-20"
+              aria-label="Company statistics"
+            >
+              {stats.map((stat, index) => {
+                const Icon = stat.icon;
+                return (
+                  <div
+                    key={index}
+                    className="bg-white/10 backdrop-blur-md p-6 rounded-2xl text-center transform hover:scale-105 transition-all hover:bg-white/20"
+                  >
+                    <Icon
+                      className="mx-auto mb-3 text-blue-400 w-8 h-8"
+                      aria-hidden="true"
+                    />
 
-     <div className="text-3xl font-bold text-white">
-  <AnimatedCounter value={stat.number} id={index} />
-  {stat.suffix}
-</div>
-        <div className="text-blue-200 text-xs uppercase tracking-widest">
-          {stat.label}
-        </div>
-      </div>
-    );
-  })}
-</aside>
-
+                    <div className="text-3xl font-bold text-white">
+                      <AnimatedCounter value={stat.number} id={index} />
+                      {stat.suffix}
+                    </div>
+                    <div className="text-blue-200 text-xs uppercase tracking-widest">
+                      {stat.label}
+                    </div>
+                  </div>
+                );
+              })}
+            </aside>
           </div>
 
           {/* Scroll Indicator */}
