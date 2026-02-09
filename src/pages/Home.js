@@ -163,149 +163,142 @@ const Home = () => {
       />
 
       <div className="min-h-screen bg-white">
-        {/* ================= HERO SECTION ================= */}
-        <header className="relative min-h-screen flex flex-col justify-center bg-gradient-to-br from-[#0A2540] to-[#0E3A6A] overflow-hidden">
-          {/* Background Video */}
-          <div className="absolute inset-0">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover opacity-60"
-              aria-hidden="true"
-            >
-              <source src="/video/hero.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0A2540] via-[#0A2540]/70 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent opacity-10"></div>
-          </div>
+     {/* ================= HERO SECTION ================= */}
+<header className="relative min-h-screen flex flex-col justify-center bg-gradient-to-br from-[#0A2540] to-[#0E3A6A] overflow-hidden">
+  {/* Background Video Wrapper */}
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {/* Video + Aspect Ratio Wrapper */}
+    <div className="relative w-full h-full pb-[56.25%]"> {/* 16:9 aspect ratio */}
+      <iframe
+        className="
+          absolute inset-0 w-full h-full
+          object-cover
+          scale-[1.00]              /* mobile portrait: no zoom → crop minimal */
+          sm:scale-[1.02]           /* small screens */
+          md:scale-[1.05]           /* medium */
+          lg:scale-[1.12]           /* large: mulai terlihat dramatis */
+          xl:scale-[1.18]           /* extra large */
+          opacity-50 md:opacity-60   /* lebih transparan di mobile agar teks jelas */
+          transition-transform duration-1000 ease-out
+        "
+        src="https://www.youtube.com/embed/b_q0Tb2y_qI?autoplay=1&mute=1&loop=1&playlist=b_q0Tb2y_qI&controls=0&showinfo=0&rel=0&modestbranding=1"
+        title="Maritime Background Video"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        aria-hidden="true"
+        loading="lazy"
+      />
+    </div>
 
-          <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
-            {/* Main Heading - H1 with Rich Keywords */}
-            <h1
-              className={`text-5xl lg:text-7xl font-bold text-white ${
-                isVisible && "slide-in-left"
-              }`}
-            >
-              PT Kamandanu Jaya Samudera
-              <span className="block text-2xl mt-4 text-blue-300 font-normal">
-                Professional Crew Manning & Seafarer Recruitment Agency
-                Indonesia
-              </span>
-            </h1>
+    {/* Layered Overlays untuk readability */}
+    <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40 pointer-events-none" />
+    <div className="absolute inset-0 bg-gradient-to-r from-[#0A2540]/70 via-[#0A2540]/40 to-[#0E3A6A]/60 pointer-events-none" />
+    <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0A2540]/80 to-transparent pointer-events-none" />
+  </div>
 
-            {/* Value Proposition - Semantic Paragraph */}
-            <p className="mt-6 text-xl text-blue-100 max-w-2xl leading-relaxed">
-              <strong>Leading Indonesian crew manning agency</strong>{" "}
-              established in 2020, specializing in recruitment, deployment, and
-              management of <strong>qualified, certified seafarers</strong> for
-              domestic and international shipping companies. ISO-certified
-              maritime personnel solutions with proven track record serving{" "}
-              <strong>global maritime industry</strong>.
-            </p>
+  {/* Content Layer */}
+  <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-28 sm:pt-36 lg:pt-40 pb-24 lg:pb-32">
+    {/* Heading */}
+    <h1
+      className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-white tracking-tight ${
+        isVisible ? "animate-slide-in-left" : "opacity-0"
+      }`}
+    >
+      PT Kamandanu Jaya Samudera
+      <span className="block mt-3 sm:mt-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl text-blue-200/90 font-medium">
+        Professional Crew Manning & Seafarer Recruitment Agency Indonesia
+      </span>
+    </h1>
 
-            {/* Call to Action */}
-            <div className="flex flex-wrap gap-4 mt-10">
-              <Link
-                to="/about"
-                className="inline-block px-10 py-4 bg-blue-500 text-white rounded-full font-bold hover:bg-blue-600 transition transform hover:scale-105 shadow-lg"
-                aria-label="Learn more about PT Kamandanu Jaya Samudera services"
-              >
-                Explore Our Services
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-block px-10 py-4 bg-transparent text-white border-2 border-white rounded-full font-bold hover:bg-white hover:text-[#0A2540] transition transform hover:scale-105"
-                aria-label="Contact PT Kamandanu Jaya Samudera"
-              >
-                Get a Quote
-              </Link>
+    {/* Subtext */}
+    <p className="mt-6 sm:mt-8 text-lg sm:text-xl md:text-2xl text-blue-100/90 max-w-3xl leading-relaxed font-light">
+      Leading Indonesian crew manning agency established in 2020, delivering <span className="font-semibold text-white">qualified, STCW-certified seafarers</span> for domestic and international maritime operations.
+    </p>
+
+    {/* CTA Buttons */}
+    <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6">
+      <Link
+        to="/about"
+        className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow-lg shadow-blue-900/30 transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-lg"
+      >
+        Explore Services
+      </Link>
+      <Link
+        to="/contact"
+        className="inline-flex items-center justify-center px-8 py-4 border-2 border-white/70 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 transform hover:scale-105 text-lg"
+      >
+        Get a Quote
+      </Link>
+    </div>
+
+    {/* Stats */}
+    <aside className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 mt-12 sm:mt-16 lg:mt-20">
+      {stats.map((stat, index) => {
+        const Icon = stat.icon;
+        return (
+          <div
+            key={index}
+            className="bg-white/10 backdrop-blur-lg p-4 sm:p-6 rounded-2xl text-center border border-white/10 hover:border-white/30 transition-all duration-300 hover:scale-105"
+          >
+            <Icon className="mx-auto mb-3 text-blue-400 w-7 h-7 sm:w-9 sm:h-9" />
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
+              <AnimatedCounter value={stat.number} id={index} />
+              {stat.suffix}
             </div>
-
-            {/* ================= KEY STATISTICS ================= */}
-            <aside
-              className="grid grid-cols-2 md:grid-cols-5 gap-6 mt-20"
-              aria-label="Company statistics"
-            >
-              {stats.map((stat, index) => {
-                const Icon = stat.icon;
-                return (
-                  <div
-                    key={index}
-                    className="bg-white/10 backdrop-blur-md p-6 rounded-2xl text-center transform hover:scale-105 transition-all hover:bg-white/20"
-                  >
-                    <Icon
-                      className="mx-auto mb-3 text-blue-400 w-8 h-8"
-                      aria-hidden="true"
-                    />
-
-                    <div className="text-3xl font-bold text-white">
-                      <AnimatedCounter value={stat.number} id={index} />
-                      {stat.suffix}
-                    </div>
-                    <div className="text-blue-200 text-xs uppercase tracking-widest">
-                      {stat.label}
-                    </div>
-                  </div>
-                );
-              })}
-            </aside>
+            <div className="text-blue-200/80 text-xs sm:text-sm mt-1 uppercase tracking-wide font-medium">
+              {stat.label}
+            </div>
           </div>
+        );
+      })}
+    </aside>
+  </div>
 
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-            <svg
-              width="30"
-              height="30"
-              viewBox="0 0 30 30"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15 20L8 13L9.4 11.6L15 17.2L20.6 11.6L22 13L15 20Z"
-                fill="white"
-              />
-            </svg>
-          </div>
-        </header>
+  {/* Scroll Indicator */}
+  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white animate-bounce z-10">
+    <svg className="w-10 h-10 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</header>
 
-        {/* ================= QUICK INFO BAR ================= */}
-        <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-4 text-white">
-          <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center">
-            <div className="flex items-center gap-2">
+        {/* ================= QUICK INFO BAR ================= - Mobile Optimized */}
+        <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-3 sm:py-4 text-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
+            <div className="flex items-center gap-2 py-1">
               <MapPin className="w-4 h-4" />
               <span className="text-sm">Jakarta, Indonesia</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 py-1">
               <Phone className="w-4 h-4" />
               <span className="text-sm"> ( 021 ) 43938505</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 py-1">
               <Mail className="w-4 h-4" />
               <span className="text-sm">info@kamandanujayasamudera.com</span>
             </div>
           </div>
         </section>
 
-        {/* ================= COMPANY PROFILE SECTION ================= */}
+        {/* ================= COMPANY PROFILE SECTION ================= - Mobile Optimized */}
         <section
-          className="py-24 bg-gray-50 overflow-hidden"
+          className="py-16 sm:py-24 bg-gray-50 overflow-hidden"
           aria-labelledby="company-profile-heading"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-16 items-start">
-              {/* LEFT SECTION: SEO-Optimized Content */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+              {/* LEFT SECTION: SEO-Optimized Content - Mobile Optimized */}
               <article className="order-2 lg:order-1">
                 <h2
                   id="company-profile-heading"
-                  className="text-4xl md:text-5xl font-extrabold text-[#0A2540] mb-8 tracking-tight"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0A2540] mb-6 sm:mb-8 tracking-tight"
                 >
                   Company Profile: Leading Crew Manning Agency Indonesia
                 </h2>
 
-                <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-                  {/* Introduction with Rich Keywords */}
+                <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-gray-700 leading-relaxed">
+                  {/* Introduction with Rich Keywords - Mobile Optimized */}
                   <p>
                     <strong className="text-[#0A2540]">
                       PT Kamandanu Jaya Samudera
@@ -328,9 +321,9 @@ const Home = () => {
                     operations, and maritime support businesses.
                   </p>
 
-                  {/* Core Services - H3 for Structure */}
-                  <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
-                    <h3 className="text-xl font-bold text-[#0A2540] mb-3 flex items-center gap-2">
+                  {/* Core Services - H3 for Structure - Mobile Optimized */}
+                  <div className="bg-blue-50 border-l-4 border-blue-600 p-4 sm:p-6 rounded-r-lg">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#0A2540] mb-3 flex items-center gap-2">
                       <Anchor className="w-5 h-5 text-blue-600" />
                       Our Maritime Recruitment Services
                     </h3>
@@ -358,7 +351,7 @@ const Home = () => {
                     </ul>
                   </div>
 
-                  {/* Industry Expertise */}
+                  {/* Industry Expertise - Mobile Optimized */}
                   <p>
                     Established in{" "}
                     <time datetime="2020-10-23">October 2020</time>, we operate
@@ -373,7 +366,7 @@ const Home = () => {
                     specialized maritime operations worldwide.
                   </p>
 
-                  {/* Competitive Advantages */}
+                  {/* Competitive Advantages - Mobile Optimized */}
                   <p>
                     Our <strong>manning agency</strong> stands out through:
                   </p>
@@ -408,7 +401,7 @@ const Home = () => {
                     </li>
                   </ul>
 
-                  {/* Regulatory Compliance */}
+                  {/* Regulatory Compliance - Mobile Optimized */}
                   <p>
                     We collaborate with <strong>maritime consultants</strong>{" "}
                     and industry experts to ensure full compliance with{" "}
@@ -424,7 +417,7 @@ const Home = () => {
                     .
                   </p>
 
-                  {/* Technology & Efficiency */}
+                  {/* Technology & Efficiency - Mobile Optimized */}
                   <p>
                     PT Kamandanu Jaya Samudera utilizes advanced{" "}
                     <strong>crew management software</strong> and digital
@@ -434,7 +427,7 @@ const Home = () => {
                     transparency and efficiency.
                   </p>
 
-                  {/* Service Commitment */}
+                  {/* Service Commitment - Mobile Optimized */}
                   <p>
                     Our commitment extends beyond recruitment. We provide
                     comprehensive <strong>crew welfare support</strong>,
@@ -443,7 +436,7 @@ const Home = () => {
                     while maintaining safety and operational excellence.
                   </p>
 
-                  {/* Quality Guarantee */}
+                  {/* Quality Guarantee - Mobile Optimized */}
                   <p>
                     We guarantee the provision of{" "}
                     <strong>
@@ -454,13 +447,13 @@ const Home = () => {
                     aboard vessels of all types and sizes.
                   </p>
 
-                  {/* Trust Statement - Featured Quote */}
-                  <blockquote className="border-l-4 border-blue-600 bg-blue-50 pl-6 py-4 italic font-medium text-gray-800 rounded-r-lg">
-                    <p className="text-xl mb-2">
+                  {/* Trust Statement - Featured Quote - Mobile Optimized */}
+                  <blockquote className="border-l-4 border-blue-600 bg-blue-50 pl-4 sm:pl-6 py-4 italic font-medium text-gray-800 rounded-r-lg">
+                    <p className="text-lg sm:text-xl mb-2">
                       "Trust, integrity, and responsibility define our
                       operations."
                     </p>
-                    <p className="text-base not-italic text-gray-700">
+                    <p className="text-sm sm:text-base not-italic text-gray-700">
                       All <strong>crew manning services</strong> are executed in
                       strict accordance with Indonesian maritime regulations,
                       international conventions, and industry best practices,
@@ -469,9 +462,9 @@ const Home = () => {
                     </p>
                   </blockquote>
 
-                  {/* Industry Keywords Footer */}
-                  <div className="mt-8 pt-6 border-t border-gray-200">
-                    <p className="text-sm text-gray-600">
+                  {/* Industry Keywords Footer - Mobile Optimized */}
+                  <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-200">
+                    <p className="text-xs sm:text-sm text-gray-600">
                       <strong>Keywords:</strong> Crew Manning Agency Jakarta |
                       Seafarer Recruitment Indonesia | Maritime Personnel
                       Services | Ship Crew Supply | Indonesian Manning Agency |
@@ -482,26 +475,25 @@ const Home = () => {
                 </div>
               </article>
 
-              {/* RIGHT SECTION: Visual Elements & Trust Signals */}
-              <aside className="order-1 lg:order-2 lg:sticky lg:top-32">
+              {/* RIGHT SECTION: Visual Elements & Trust Signals - Mobile Optimized */}
+              <aside className="order-1 lg:order-2">
                 <div className="relative">
-                  {/* Decorative Background Animation */}
+                  {/* Decorative Background Animation - Mobile Optimized */}
                   <div
-                    className="absolute -top-10 -right-10 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"
+                    className="hidden sm:block absolute -top-10 -right-10 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"
                     aria-hidden="true"
                   ></div>
                   <div
-                    className="absolute -bottom-10 -left-10 w-64 h-64 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"
+                    className="hidden sm:block absolute -bottom-10 -left-10 w-64 h-64 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"
                     aria-hidden="true"
                   ></div>
 
-                  {/* Featured Image with Caption */}
-
-                  <figure className="relative rounded-2xl overflow-hidden shadow-2xl mb-8 group">
+                  {/* Featured Image with Caption - Mobile Optimized */}
+                  <figure className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl mb-6 sm:mb-8 group">
                     <img
                       src={foto}
                       alt="Professional seafarer crew on vessel deck - PT Kamandanu Jaya Samudera Indonesian Crewing Agency and Manning Agency Indonesia"
-                      className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-[250px] sm:h-[400px] object-cover transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"
                       width="800"
                       height="400"
@@ -509,36 +501,36 @@ const Home = () => {
 
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A2540]/80 to-transparent"></div>
 
-                    <figcaption className="absolute bottom-6 left-6 text-white">
-                      <p className="text-sm font-medium uppercase tracking-widest opacity-80">
+                    <figcaption className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 text-white">
+                      <p className="text-xs sm:text-sm font-medium uppercase tracking-widest opacity-80">
                         Trusted Maritime Partner
                       </p>
-                      <h3 className="text-xl font-bold">
+                      <h3 className="text-lg sm:text-xl font-bold">
                         Professional Crew Manning Solutions
                       </h3>
                     </figcaption>
                   </figure>
 
-                  {/* Trust Indicators Grid */}
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+                  {/* Trust Indicators Grid - Mobile Optimized */}
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
+                    <div className="bg-white p-4 sm:p-6 rounded-lg sm:rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
                       <ShieldCheck
-                        className="w-8 h-8 text-blue-600 mb-2"
+                        className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600 mb-2"
                         aria-hidden="true"
                       />
-                      <span className="text-2xl font-bold text-[#0A2540]">
+                      <span className="text-xl sm:text-2xl font-bold text-[#0A2540]">
                         100%
                       </span>
                       <p className="text-xs text-gray-500 uppercase tracking-wider">
                         MLC Compliance
                       </p>
                     </div>
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+                    <div className="bg-white p-4 sm:p-6 rounded-lg sm:rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
                       <Users
-                        className="w-8 h-8 text-blue-600 mb-2"
+                        className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600 mb-2"
                         aria-hidden="true"
                       />
-                      <span className="text-2xl font-bold text-[#0A2540]">
+                      <span className="text-xl sm:text-2xl font-bold text-[#0A2540]">
                         Global
                       </span>
                       <p className="text-xs text-gray-500 uppercase tracking-wider">
@@ -547,18 +539,18 @@ const Home = () => {
                     </div>
                   </div>
 
-                  {/* Certifications Badge */}
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-5 mb-6">
+                  {/* Certifications Badge - Mobile Optimized */}
+                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg sm:rounded-xl p-4 sm:p-5 mb-6">
                     <div className="flex items-center gap-3 mb-2">
                       <Award
-                        className="w-6 h-6 text-green-700"
+                        className="w-5 h-5 sm:w-6 sm:h-6 text-green-700"
                         aria-hidden="true"
                       />
-                      <h4 className="font-bold text-green-900">
+                      <h4 className="font-bold text-green-900 text-sm sm:text-base">
                         Certified & Verified
                       </h4>
                     </div>
-                    <ul className="text-sm text-green-800 space-y-1">
+                    <ul className="text-xs sm:text-sm text-green-800 space-y-1">
                       <li>✓ ISO 9001:2015 Certified</li>
                       <li>✓ STCW Convention Compliant</li>
                       <li>✓ MLC 2006 Approved</li>
@@ -566,19 +558,19 @@ const Home = () => {
                     </ul>
                   </div>
 
-                  {/* CTA Card */}
-                  <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-6 text-white flex items-center justify-between shadow-lg shadow-blue-200 hover:shadow-xl transition-shadow">
-                    <div>
+                  {/* CTA Card - Mobile Optimized */}
+                  <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg sm:rounded-xl p-4 sm:p-6 text-white flex flex-col sm:flex-row items-center justify-between shadow-lg shadow-blue-200 hover:shadow-xl transition-shadow gap-4">
+                    <div className="text-center sm:text-left">
                       <p className="text-sm opacity-90">
                         Ready to collaborate?
                       </p>
-                      <p className="text-lg font-semibold">
+                      <p className="text-base sm:text-lg font-semibold">
                         Contact Our Manning Experts
                       </p>
                     </div>
                     <Link
                       to="/contact"
-                      className="bg-white text-blue-600 px-5 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors transform hover:scale-105"
+                      className="bg-white text-blue-600 px-5 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors transform hover:scale-105 w-full sm:w-auto text-center"
                       aria-label="Contact PT Kamandanu Jaya Samudera for crew manning services"
                     >
                       Get Quote
@@ -590,85 +582,85 @@ const Home = () => {
           </div>
         </section>
 
-        {/* ================= SERVICES PREVIEW (Additional SEO Content) ================= */}
-        <section className="py-16 bg-white" aria-labelledby="services-heading">
-          <div className="max-w-7xl mx-auto px-6">
+        {/* ================= SERVICES PREVIEW (Additional SEO Content) ================= - Mobile Optimized */}
+        <section className="py-12 sm:py-16 bg-white" aria-labelledby="services-heading">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2
               id="services-heading"
-              className="text-3xl font-bold text-center text-[#0A2540] mb-12"
+              className="text-2xl sm:text-3xl font-bold text-center text-[#0A2540] mb-8 sm:mb-12"
             >
               Comprehensive Crew Manning Services Indonesia
             </h2>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Service 1 */}
-              <div className="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-all hover:-translate-y-1 group">
-                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
-                  <Ship className="w-8 h-8 text-blue-600" />
+            <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+              {/* Service 1 - Mobile Optimized */}
+              <div className="bg-gray-50 p-4 sm:p-6 rounded-xl hover:shadow-lg transition-all hover:-translate-y-1 group">
+                <div className="bg-blue-100 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors mx-auto">
+                  <Ship className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-bold text-[#0A2540] mb-3">
+                <h3 className="text-lg sm:text-xl font-bold text-[#0A2540] mb-3 text-center sm:text-left">
                   Vessel Crew Supply
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 text-sm sm:text-base">
                   Complete manning solutions for bulk carriers, tankers,
                   container ships, and offshore vessels with STCW-certified
                   officers and ratings.
                 </p>
                 <Link
                   to="/services"
-                  className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700"
+                  className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 justify-center sm:justify-start"
                 >
                   Learn more <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
               </div>
 
-              {/* Service 2 */}
-              <div className="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-all hover:-translate-y-1 group">
-                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
-                  <Users className="w-8 h-8 text-blue-600" />
+              {/* Service 2 - Mobile Optimized */}
+              <div className="bg-gray-50 p-4 sm:p-6 rounded-xl hover:shadow-lg transition-all hover:-translate-y-1 group">
+                <div className="bg-blue-100 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors mx-auto">
+                  <Users className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-bold text-[#0A2540] mb-3">
+                <h3 className="text-lg sm:text-xl font-bold text-[#0A2540] mb-3 text-center sm:text-left">
                   Seafarer Recruitment
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 text-sm sm:text-base">
                   Professional recruitment and screening of qualified maritime
                   personnel from Indonesia's extensive pool of skilled
                   seafarers.
                 </p>
                 <Link
                   to="/services"
-                  className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700"
+                  className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 justify-center sm:justify-start"
                 >
                   Learn more <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
               </div>
 
-              {/* Service 3 */}
-              <div className="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-all hover:-translate-y-1 group">
-                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
-                  <TrendingUp className="w-8 h-8 text-blue-600" />
+              {/* Service 3 - Mobile Optimized */}
+              <div className="bg-gray-50 p-4 sm:p-6 rounded-xl hover:shadow-lg transition-all hover:-translate-y-1 group">
+                <div className="bg-blue-100 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors mx-auto">
+                  <TrendingUp className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-bold text-[#0A2540] mb-3">
+                <h3 className="text-lg sm:text-xl font-bold text-[#0A2540] mb-3 text-center sm:text-left">
                   Crew Management
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 text-sm sm:text-base">
                   End-to-end crew management including documentation, medical
                   examinations, travel arrangements, and continuous welfare
                   support.
                 </p>
                 <Link
                   to="/services"
-                  className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700"
+                  className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 justify-center sm:justify-start"
                 >
                   Learn more <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
               </div>
             </div>
 
-            <div className="text-center mt-10">
+            <div className="text-center mt-8 sm:mt-10">
               <Link
                 to="/services"
-                className="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 shadow-lg"
+                className="inline-block px-6 sm:px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 shadow-lg text-sm sm:text-base"
                 aria-label="View all crew manning services"
               >
                 View All Services →
@@ -677,83 +669,83 @@ const Home = () => {
           </div>
         </section>
 
-        {/* ================= PROCESS SECTION ================= */}
+        {/* ================= PROCESS SECTION ================= - Mobile Optimized */}
         <section
-          className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50"
+          className="py-12 sm:py-16 bg-gradient-to-br from-blue-50 to-indigo-50"
           aria-labelledby="process-heading"
         >
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2
               id="process-heading"
-              className="text-3xl font-bold text-center text-[#0A2540] mb-12"
+              className="text-2xl sm:text-3xl font-bold text-center text-[#0A2540] mb-8 sm:mb-12"
             >
               Our Simple & Efficient Process
             </h2>
 
-            <div className="grid md:grid-cols-4 gap-6">
-              {/* Step 1 */}
-              <div className="bg-white p-6 rounded-xl shadow-md relative">
-                <div className="absolute -top-4 -right-4 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              {/* Step 1 - Mobile Optimized */}
+              <div className="bg-white p-4 sm:p-6 rounded-xl shadow-md relative">
+                <div className="absolute -top-4 -right-4 bg-blue-600 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">
                   1
                 </div>
-                <div className="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mb-4">
-                  <FileText className="w-7 h-7 text-blue-600" />
+                <div className="bg-blue-100 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <FileText className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600" />
                 </div>
-                <h3 className="text-lg font-bold text-[#0A2540] mb-2">
+                <h3 className="text-base sm:text-lg font-bold text-[#0A2540] mb-2 text-center">
                   Submit Requirements
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 text-sm text-center">
                   Provide your crew requirements and vessel specifications
                   through our online form.
                 </p>
               </div>
 
-              {/* Step 2 */}
-              <div className="bg-white p-6 rounded-xl shadow-md relative">
-                <div className="absolute -top-4 -right-4 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold">
+              {/* Step 2 - Mobile Optimized */}
+              <div className="bg-white p-4 sm:p-6 rounded-xl shadow-md relative">
+                <div className="absolute -top-4 -right-4 bg-blue-600 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">
                   2
                 </div>
-                <div className="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mb-4">
-                  <Users className="w-7 h-7 text-blue-600" />
+                <div className="bg-blue-100 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <Users className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600" />
                 </div>
-                <h3 className="text-lg font-bold text-[#0A2540] mb-2">
+                <h3 className="text-base sm:text-lg font-bold text-[#0A2540] mb-2 text-center">
                   Candidate Selection
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 text-sm text-center">
                   We screen and select the most qualified seafarers from our
                   extensive database.
                 </p>
               </div>
 
-              {/* Step 3 */}
-              <div className="bg-white p-6 rounded-xl shadow-md relative">
-                <div className="absolute -top-4 -right-4 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold">
+              {/* Step 3 - Mobile Optimized */}
+              <div className="bg-white p-4 sm:p-6 rounded-xl shadow-md relative">
+                <div className="absolute -top-4 -right-4 bg-blue-600 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">
                   3
                 </div>
-                <div className="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mb-4">
-                  <CheckCircle className="w-7 h-7 text-blue-600" />
+                <div className="bg-blue-100 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <CheckCircle className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600" />
                 </div>
-                <h3 className="text-lg font-bold text-[#0A2540] mb-2">
+                <h3 className="text-base sm:text-lg font-bold text-[#0A2540] mb-2 text-center">
                   Interview & Approval
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 text-sm text-center">
                   Conduct interviews and final approval of selected candidates
                   by your team.
                 </p>
               </div>
 
-              {/* Step 4 */}
-              <div className="bg-white p-6 rounded-xl shadow-md relative">
-                <div className="absolute -top-4 -right-4 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold">
+              {/* Step 4 - Mobile Optimized */}
+              <div className="bg-white p-4 sm:p-6 rounded-xl shadow-md relative">
+                <div className="absolute -top-4 -right-4 bg-blue-600 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">
                   4
                 </div>
-                <div className="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mb-4">
-                  <Ship className="w-7 h-7 text-blue-600" />
+                <div className="bg-blue-100 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <Ship className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600" />
                 </div>
-                <h3 className="text-lg font-bold text-[#0A2540] mb-2">
+                <h3 className="text-base sm:text-lg font-bold text-[#0A2540] mb-2 text-center">
                   Deployment
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 text-sm text-center">
                   Complete documentation processing and deployment of crew to
                   your vessels.
                 </p>
@@ -762,22 +754,22 @@ const Home = () => {
           </div>
         </section>
 
-        {/* ================= TESTIMONIALS SECTION ================= */}
+        {/* ================= TESTIMONIALS SECTION ================= - Mobile Optimized */}
         <section
-          className="py-16 bg-white"
+          className="py-12 sm:py-16 bg-white"
           aria-labelledby="testimonials-heading"
         >
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2
               id="testimonials-heading"
-              className="text-3xl font-bold text-center text-[#0A2540] mb-12"
+              className="text-2xl sm:text-3xl font-bold text-center text-[#0A2540] mb-8 sm:mb-12"
             >
               What Our Clients Say
             </h2>
 
             <div className="max-w-4xl mx-auto">
-              <div className="bg-gray-50 p-8 rounded-2xl shadow-lg">
-                <div className="flex mb-4">
+              <div className="bg-gray-50 p-6 sm:p-8 rounded-2xl shadow-lg">
+                <div className="flex mb-4 justify-center">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
@@ -785,17 +777,17 @@ const Home = () => {
                     />
                   ))}
                 </div>
-                <p className="text-lg text-gray-700 italic mb-6">
+                <p className="text-base sm:text-lg text-gray-700 italic mb-6 text-center">
                   "{testimonials[activeTestimonial].content}"
                 </p>
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                <div className="flex flex-col sm:flex-row items-center">
+                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mb-4 sm:mb-0 sm:mr-4">
                     {testimonials[activeTestimonial].name
                       .split(" ")
                       .map((n) => n[0])
                       .join("")}
                   </div>
-                  <div>
+                  <div className="text-center sm:text-left">
                     <p className="font-bold text-[#0A2540]">
                       {testimonials[activeTestimonial].name}
                     </p>
@@ -821,27 +813,27 @@ const Home = () => {
           </div>
         </section>
 
-        {/* ================= CTA SECTION ================= */}
-        <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-4">
+        {/* ================= CTA SECTION ================= - Mobile Optimized */}
+        <section className="py-12 sm:py-16 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
               Ready to Partner With Us?
             </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
+            <p className="text-base sm:text-xl mb-6 sm:mb-8 max-w-2xl mx-auto">
               Join the growing list of satisfied shipping companies who trust PT
               Kamandanu Jaya Samudera for their crew manning needs.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
               <Link
                 to="/contact"
-                className="inline-block px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105 shadow-lg"
+                className="inline-block px-6 sm:px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105 shadow-lg text-sm sm:text-base"
                 aria-label="Contact PT Kamandanu Jaya Samudera"
               >
                 Contact Us Today
               </Link>
               <Link
                 to="/services"
-                className="inline-block px-8 py-3 bg-transparent text-white border-2 border-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition transform hover:scale-105"
+                className="inline-block px-6 sm:px-8 py-3 bg-transparent text-white border-2 border-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition transform hover:scale-105 text-sm sm:text-base"
                 aria-label="View all services"
               >
                 Our Services
@@ -851,7 +843,7 @@ const Home = () => {
         </section>
       </div>
 
-      {/* Additional CSS for animations */}
+      {/* Additional CSS for animations - Mobile Optimized */}
       <style jsx>{`
         @keyframes blob {
           0%,

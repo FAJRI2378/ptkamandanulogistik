@@ -19,59 +19,59 @@ import {
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  // Schema.org LocalBusiness structured data for SEO
-  const localBusinessSchema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://kamandanujayasamudera.com/#organization",
-    name: "PT Kamandanu Jaya Samudera",
-    alternateName: "Kamandanu Jaya Samudera",
-    description:
-      "Professional crew manning agency and ship management services in Indonesia, providing qualified seafarers for international vessels",
-    url: "https://kamandanujayasamudera.com",
-    telephone: "+6281311922417",
-    email: "info@kamandanujayasamudera.com",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress:
-        "	Jl. Warakas 3 No.23 RT 010 RW 004 2nd floor North Jakarta, Indonesia",
-      addressLocality: "Jakarta",
-      addressCountry: "ID",
-      postalCode: "12345",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "-6.200000",
-      longitude: "106.816666",
-    },
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "08:00",
-      closes: "17:00",
-    },
-    sameAs: [
-      "https://www.facebook.com/kamandanujayasamudera",
-      "https://twitter.com/kamandanujaya",
-      "https://www.linkedin.com/company/pt-kamandanu-jaya-samudera",
-      "https://www.instagram.com/kamandanujayasamudera",
-      "https://youtu.be/b_q0Tb2y_qI?si=dwp9ijasppw7_WQH",
-    ],
-    priceRange: "$$",
-    paymentAccepted: "Cash, Bank Transfer",
-    serviceArea: {
-      "@type": "GeoCircle",
-      geoMidpoint: {
+  // Inject structured data
+  React.useEffect(() => {
+    // Schema.org LocalBusiness structured data for SEO
+    const localBusinessSchema = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://kamandanujayasamudera.com/#organization",
+      name: "PT Kamandanu Jaya Samudera",
+      alternateName: "Kamandanu Jaya Samudera",
+      description:
+        "Professional crew manning agency and ship management services in Indonesia, providing qualified seafarers for international vessels",
+      url: "https://kamandanujayasamudera.com",
+      telephone: "+6281311922417",
+      email: "info@kamandanujayasamudera.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress:
+          "	Jl. Warakas 3 No.23 RT 010 RW 004 2nd floor North Jakarta, Indonesia",
+        addressLocality: "Jakarta",
+        addressCountry: "ID",
+        postalCode: "12345",
+      },
+      geo: {
         "@type": "GeoCoordinates",
         latitude: "-6.200000",
         longitude: "106.816666",
       },
-      geoRadius: "10000000",
-    },
-  };
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "08:00",
+        closes: "17:00",
+      },
+      sameAs: [
+        "https://www.facebook.com/kamandanujayasamudera",
+        "https://twitter.com/kamandanujaya",
+        "https://www.linkedin.com/company/pt-kamandanu-jaya-samudera",
+        "https://www.instagram.com/kamandanujayasamudera",
+        "https://youtu.be/b_q0Tb2y_qI?si=dwp9ijasppw7_WQH",
+      ],
+      priceRange: "$$",
+      paymentAccepted: "Cash, Bank Transfer",
+      serviceArea: {
+        "@type": "GeoCircle",
+        geoMidpoint: {
+          "@type": "GeoCoordinates",
+          latitude: "-6.200000",
+          longitude: "106.816666",
+        },
+        geoRadius: "10000000",
+      },
+    };
 
-  // Inject structured data
-  React.useEffect(() => {
     const script = document.createElement("script");
     script.type = "application/ld+json";
     script.text = JSON.stringify(localBusinessSchema);

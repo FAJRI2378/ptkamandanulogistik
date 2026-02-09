@@ -1,5 +1,6 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import ReactGA from "react-ga4"; // Import GA4
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
@@ -13,9 +14,27 @@ import Contact from "./pages/Contact";
 import Client from "./pages/Client";
 import "./App.css";
 
+// Inisialisasi GA4 dengan ID kamu
+ReactGA.initialize("G-VCQTGVHG5J");
+
+// Komponen pembantu untuk melacak perpindahan halaman
+const AnalyticsTracker = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    ReactGA.send({ 
+      hitType: "pageview", 
+      page: location.pathname + location.search 
+    });
+  }, [location]);
+
+  return null;
+};
+
 const App = () => {
   return (
     <Router>
+      <AnalyticsTracker /> {/* Pelacak ditaruh di dalam Router */}
       <div className="min-h-screen bg-white">
         <Navbar />
         <Routes>
