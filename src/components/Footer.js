@@ -5,10 +5,8 @@ import {
   Phone,
   Mail,
   Facebook,
-  Twitter,
   Linkedin,
   Instagram,
-  Youtube,
   ChevronRight,
   Clock,
   Globe,
@@ -56,8 +54,7 @@ const Footer = () => {
         "https://www.facebook.com/kamandanujayasamudera",
         "https://twitter.com/kamandanujaya",
         "https://www.linkedin.com/company/pt-kamandanu-jaya-samudera",
-        "https://www.instagram.com/kamandanujayasamudera",
-        "https://youtu.be/b_q0Tb2y_qI?si=dwp9ijasppw7_WQH",
+        "https://www.instagram.com/kamandanujayasamudera_",
       ],
       priceRange: "$$",
       paymentAccepted: "Cash, Bank Transfer",
@@ -151,17 +148,7 @@ const Footer = () => {
                   <Facebook size={18} />
                 </a>
                 <a
-                  href="https://twitter.com/kamandanujaya"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-blue-400 hover:bg-blue-500 p-2.5 rounded-full transition-all transform hover:scale-110"
-                  aria-label="Follow PT Kamandanu Jaya Samudera on Twitter"
-                  title="Twitter"
-                >
-                  <Twitter size={18} />
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/pt-kamandanu-jaya-samudera"
+                  href="https://www.linkedin.com/in/pt-kamandanu-jaya-samudera-8951a5275?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-blue-700 hover:bg-blue-800 p-2.5 rounded-full transition-all transform hover:scale-110"
@@ -171,7 +158,7 @@ const Footer = () => {
                   <Linkedin size={18} />
                 </a>
                 <a
-                  href="https://www.instagram.com/kamandanujayasamudera"
+                  href="https://www.instagram.com/kamandanujayasamudera_"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-pink-600 hover:bg-pink-700 p-2.5 rounded-full transition-all transform hover:scale-110"
@@ -180,16 +167,7 @@ const Footer = () => {
                 >
                   <Instagram size={18} />
                 </a>
-                <a
-                  href="https://www.youtube.com/channel/kamandanujayasamudera"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-red-600 hover:bg-red-700 p-2.5 rounded-full transition-all transform hover:scale-110"
-                  aria-label="Subscribe to PT Kamandanu Jaya Samudera on YouTube"
-                  title="YouTube"
-                >
-                  <Youtube size={18} />
-                </a>
+               
               </div>
             </nav>
           </div>
