@@ -21,7 +21,7 @@ const Services = () => {
       icon: Users,
       title: "Crew Manning Services",
       description:
-        "Kami menyediakan seafarers berkualitas tinggi untuk semua rank — dari deck & engine officers hingga ratings. Tim crew manager berpengalaman siap memenuhi kebutuhan spesifik kapal Anda.",
+        "We provide high-quality seafarers for all ranks — from deck & engine officers to ratings. Our experienced crew management team is ready to meet your specific vessel requirements.",
       features: [
         "Officers & Engineers",
         "Ratings & Support Crew",
@@ -33,7 +33,7 @@ const Services = () => {
       icon: Ship,
       title: "Vessel Types We Serve",
       description:
-        "Kami melayani berbagai jenis kapal komersial, tanker, offshore, dan kapal khusus dengan personel yang sesuai regulasi internasional.",
+        "We serve various types of commercial vessels, tankers, offshore fleets, and specialized ships with personnel compliant with international maritime regulations.",
       features: [
         "Bulk, Container & General Cargo",
         "Tankers (Crude, Product, Chem-Oil, LPG)",
@@ -45,7 +45,7 @@ const Services = () => {
       icon: Wrench,
       title: "Repair & Maintenance Teams",
       description:
-        "Tim teknisi bersertifikat siap dikerahkan cepat untuk perbaikan kapal, maintenance, dan proyek offshore — welders, fitters, painters, dll.",
+        "Our certified technical teams are ready for rapid deployment for ship repairs, maintenance, and offshore projects — including welders, fitters, and painters.",
       features: [
         "Welders, Fitters & Platers",
         "Engine & Electrical Fitters",
@@ -57,7 +57,7 @@ const Services = () => {
       icon: FileCheck,
       title: "Documentation & Flag State Services",
       description:
-        "Kami membantu proses dokumen maritim, sertifikat, dan kepatuhan regulasi internasional melalui afiliasi dengan beberapa administrasi maritim.",
+        "We assist with maritime documentation, certifications, and international regulatory compliance through our affiliations with various maritime administrations.",
       features: [
         "Flag State Documents",
         "Seaman Books & Certificates",
@@ -69,7 +69,7 @@ const Services = () => {
       icon: Plane,
       title: "Travel & Visa Assistance",
       description:
-        "Layanan lengkap pengurusan visa, tiket pesawat, dan logistik perjalanan crew untuk mobilisasi & demobilisasi di seluruh dunia.",
+        "Comprehensive services for visa processing, flight ticketing, and crew travel logistics to ensure smooth mobilization and demobilization worldwide.",
       features: [
         "US C1/D & Transit Visas",
         "Flight Booking",
@@ -81,7 +81,7 @@ const Services = () => {
       icon: Anchor,
       title: "Training & Additional Services",
       description:
-        "Kami mendukung peningkatan kompetensi seafarer melalui pelatihan khusus dan layanan pendukung lainnya sesuai kebutuhan industri.",
+        "We support seafarer competency through specialized training programs and other support services tailored to the needs of the maritime industry.",
       features: [
         "English & Mandarin Short Courses",
         "Seafarer Training Programs",
@@ -95,22 +95,25 @@ const Services = () => {
     <>
       <Seo
         title="Our Services | PT Kamandanu Jaya Samudera - Crew Manning Agency"
-        description="Layanan crew manning berkualitas, penyediaan tim perbaikan kapal, pengurusan dokumen maritim, visa & travel crew, serta pelatihan seafarer untuk operasi global."
+        description="Quality crew manning services, ship repair teams, maritime documentation, crew visa & travel, and seafarer training for global operations."
         url="/services"
       />
 
-   <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white min-h-screen pt-28 sm:pt-32 md:pt-36">
-  <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-    {/* Header */}
-    <div className={`text-center mb-12 md:mb-16 ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0A2540] tracking-tight">
-        Layanan Kami
-      </h1>
-      <p className="mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        Solusi crew manning dan dukungan maritim terpercaya untuk kapal komersial, tanker, offshore, dan kapal khusus di seluruh dunia
-      </p>
-      <div className="w-20 h-1 bg-blue-600 mx-auto mt-6 rounded-full" />
-    </div>
+         <section
+  className="min-h-screen pt-36 sm:pt-40 md:pt-48 lg:pt-56 py-12 md:py-24 bg-gradient-to-br from-slate-50 to-blue-50"
+  aria-labelledby="licenses-heading"
+>
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className={`text-center mb-12 md:mb-16 ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0A2540] tracking-tight">
+              Our Services
+            </h1>
+            <p className="mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Reliable crew manning solutions and maritime support for commercial, tanker, offshore, and specialized vessels worldwide.
+            </p>
+            <div className="w-20 h-1 bg-blue-600 mx-auto mt-6 rounded-full" />
+          </div>
 
           {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">

@@ -164,7 +164,9 @@ const Home = () => {
 
       <div className="min-h-screen bg-white">
      {/* ================= HERO SECTION ================= */}
-<header className="relative min-h-screen flex flex-col justify-center bg-gradient-to-br from-[#0A2540] to-[#0E3A6A] overflow-hidden">
+<header className="relative min-h-screen flex flex-col justify-center pt-24 pb-12 bg-gradient-to-br from-[#0A2540] to-[#0E3A6A] overflow-hidden">
+  {/* Konten akan turun karena pt-24 */}
+
   {/* Background Video Wrapper */}
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
     {/* Video + Aspect Ratio Wrapper */}

@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 
 const Seo = ({ title, description, url }) => {
   const siteName = "PT Kamandanu Jaya Samudera";
-  const baseUrl = "https://ptkamandanujayasamudera.online";
+  const baseUrl = "https://ptkamandanujayasamudera.com";
   const fullUrl = url ? `${baseUrl}${url}` : baseUrl;
 
   return (

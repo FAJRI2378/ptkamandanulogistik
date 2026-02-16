@@ -47,8 +47,8 @@ const Footer = () => {
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "08:00",
-        closes: "17:00",
+        opens: "08:30",
+        closes: "17:30",
       },
       sameAs: [
         "https://www.facebook.com/kamandanujayasamudera",
@@ -123,7 +123,7 @@ const Footer = () => {
             <div className="grid grid-cols-2 gap-3 mb-6">
               <div className="bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg flex items-center text-xs">
                 <Shield className="w-4 h-4 text-green-400 mr-2" />
-                <span>ISO 9001 Certified</span>
+                <span>ISO 9001:2015 </span>
               </div>
               <div className="bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg flex items-center text-xs">
                 <Award className="w-4 h-4 text-blue-400 mr-2" />
@@ -212,6 +212,20 @@ const Footer = () => {
                   About Us
                 </Link>
               </li>
+                 <li>
+                <Link
+                  to="/licenses"
+                  className="hover:text-white hover:translate-x-1 transition-all inline-flex items-center group"
+                  aria-label="Meet our team"
+                >
+                  <ChevronRight
+                    size={14}
+                    className="mr-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                  />
+                  Licenses
+                </Link>
+              </li>
+
               <li>
                 <Link
                   to="/services"
@@ -235,7 +249,7 @@ const Footer = () => {
                     size={14}
                     className="mr-1 opacity-0 group-hover:opacity-100 transition-opacity"
                   />
-                  Our Team
+                  Team
                 </Link>
               </li>
               <li>
@@ -248,7 +262,7 @@ const Footer = () => {
                     size={14}
                     className="mr-1 opacity-0 group-hover:opacity-100 transition-opacity"
                   />
-                  Clients'
+                  Partners & Clients
                 </Link>
               </li>
               <li>
@@ -261,7 +275,20 @@ const Footer = () => {
                     size={14}
                     className="mr-1 opacity-0 group-hover:opacity-100 transition-opacity"
                   />
-                  Contact Us
+                  Contact
+                </Link>
+              </li>
+                 <li>
+                <Link
+                  to="/gallery"
+                  className="hover:text-white hover:translate-x-1 transition-all inline-flex items-center group"
+                  aria-label="Meet our team"
+                >
+                  <ChevronRight
+                    size={14}
+                    className="mr-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                  />
+                  Gallery
                 </Link>
               </li>
             </ul>
@@ -347,7 +374,7 @@ const Footer = () => {
                   aria-label="Visit our website"
                 >
                   www.kamandanujayasamudera.com
-                  <p>www.kamandanujayasamudera.online</p>
+                  <p>www.kamandanujayasamudera.com</p>
                 </a>
               </li>
               <li className="flex items-center">
@@ -376,13 +403,7 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Business Registration Info for Trust */}
-        <div className="mt-6 text-center text-xs text-blue-400">
-          <p>
-            Registered Business License No: XXX-XXXX-XXXXX | Maritime Authority
-            Certified | Member of Indonesian Shipowners Association (INSA)
-          </p>
-        </div>
+  
       </div>
     </footer>
   );

@@ -219,21 +219,21 @@ const Team = () => {
         })}
       </script>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Enhanced Header Section - MOBILE OPTIMIZED */}
-       {/* Enhanced Header Section - MOBILE OPTIMIZED */}
-<header className={`text-center mb-16 sm:mb-20 md:mb-24 relative ${isVisible ? "slide-in-bottom" : "opacity-0"}`}>
-  {/* Decorative Background Elements - Smaller on mobile */}
-  <div className="absolute top-0 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 bg-blue-200/30 rounded-full blur-3xl -z-10 animate-float" aria-hidden="true"></div>
-  <div className="absolute top-12 sm:top-20 right-1/4 w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-cyan-200/20 rounded-full blur-3xl -z-10 animate-float-delayed" aria-hidden="true"></div>
-  
-  {/* Badge - Full width on mobile to prevent overflow */}
-  <div className="mb-4 sm:mb-6 px-4">
-    <span className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-bold shadow-lg border border-blue-400/20 max-w-full">
-      <Anchor className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" aria-hidden="true" />
-      <span className="text-center">Meet Our Professional Maritime Team</span>
-    </span>
-  </div>
+   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  {/* Tambahkan pt-12 (mobile) sampai pt-24 (desktop) untuk mendorong konten turun */}
+  <header className={`text-center pt-12 sm:pt-16 md:pt-24 mb-16 sm:mb-20 md:mb-24 relative ${isVisible ? "slide-in-bottom" : "opacity-0"}`}>
+    
+    {/* Decorative Background Elements - Disesuaikan posisinya mengikuti padding baru */}
+    <div className="absolute top-12 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 bg-blue-200/30 rounded-full blur-3xl -z-10 animate-float" aria-hidden="true"></div>
+    <div className="absolute top-24 sm:top-32 right-1/4 w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-cyan-200/20 rounded-full blur-3xl -z-10 animate-float-delayed" aria-hidden="true"></div>
+    
+    {/* Badge */}
+    <div className="mb-4 sm:mb-6 px-4">
+      <span className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-bold shadow-lg border border-blue-400/20 max-w-full">
+        <Anchor className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" aria-hidden="true" />
+        <span className="text-center">Meet Our Professional Maritime Team</span>
+      </span>
+    </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0A2540] mb-4 sm:mb-6 leading-tight px-4">
             Professional Maritime Team &

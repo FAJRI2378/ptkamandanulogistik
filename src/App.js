@@ -6,6 +6,8 @@ import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
+import Licenses from "./pages/Licenses";
+import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Team from "./pages/Team";
@@ -40,11 +42,13 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/licenses" element={<Licenses />} />
           <Route path="/services" element={<Services />} />
           <Route path="/team" element={<Team />} />
           <Route path="/client" element={<Client/>} />
           <Route path="/certifications" element={<Certifications />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/gallery" element={<Gallery />} />
         </Routes>
         <Footer />
         <WhatsAppButton />

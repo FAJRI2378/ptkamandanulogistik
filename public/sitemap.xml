@@ -1,38 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
-    <loc>https://ptkamandanujayasamudera.online/</loc>
+    <loc>https://ptkamandanujayasamudera.com/</loc>
     <lastmod>2026-01-23</lastmod>
     <priority>1.0</priority>
   </url>
+
   <url>
-    <loc>https://ptkamandanujayasamudera.online/about</loc>
+    <loc>https://ptkamandanujayasamudera.com/about</loc>
     <lastmod>2026-01-23</lastmod>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://ptkamandanujayasamudera.online/services</loc>
-    <lastmod>2026-01-23</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://ptkamandanujayasamudera.online/team</loc>
-    <lastmod>2026-01-23</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ptkamandanujayasamudera.online/facilities</loc>
-    <lastmod>2026-01-23</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ptkamandanujayasamudera.online/certifications</loc>
+    <loc>https://ptkamandanujayasamudera.com/licenses</loc>
     <lastmod>2026-01-23</lastmod>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://ptkamandanujayasamudera.online/contact</loc>
+    <loc>https://ptkamandanujayasamudera.com/services</loc>
     <lastmod>2026-01-23</lastmod>
     <priority>0.9</priority>
   </url>
+
+  <url>
+    <loc>https://ptkamandanujayasamudera.com/team</loc>
+    <lastmod>2026-01-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ptkamandanujayasamudera.com/client</loc>
+    <lastmod>2026-01-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ptkamandanujayasamudera.com/gallery</loc>
+    <lastmod>2026-01-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ptkamandanujayasamudera.com/contact</loc>
+    <lastmod>2026-01-23</lastmod>
+    <priority>0.9</priority>
+  </url>
+
 </urlset>
