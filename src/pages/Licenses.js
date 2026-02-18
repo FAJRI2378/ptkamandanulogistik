@@ -1,9 +1,10 @@
 // src/pages/Licenses.jsx
 
 import React, { useEffect, useState } from "react";
-import { Shield, FileText, ExternalLink } from "lucide-react";
+import { Shield, FileText, ExternalLink, Award, CheckCircle, Download } from "lucide-react";
+import Seo from "../components/Seo";
 
-// IMPORT GAMBAR (WAJIB DI REACT)
+// IMPORT GAMBAR
 import siupImg from "../img/siup.jpg";
 import siukakImg from "../img/siukak.jpg";
 import isoImg from "../img/logo_iso.png";
@@ -12,153 +13,154 @@ const Licenses = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    document.title =
-      "Our Licenses & Certifications - PT Kamandanu Jaya Samudera";
     const timer = setTimeout(() => setIsVisible(true), 100);
+    window.scrollTo(0, 0);
     return () => clearTimeout(timer);
   }, []);
 
-  // DATA LISENSI (LENGKAP & SEO FRIENDLY)
   const licensesData = [
     {
       id: 1,
       name: "SIUPAK",
-      description:
-        "Surat Izin Usaha Perusahaan Angkutan Laut sebagai legal authorization for maritime operations.",
+      fullName: "Surat Izin Usaha Perekrutan & Penempatan Awak Kapal",
+      description: "Official license from the Indonesian Ministry of Transportation for the recruitment and placement of ship crews globally.",
       imageUrl: siupImg,
+      badge: "National Standard",
     },
     {
       id: 2,
       name: "SIUKAK",
-      description:
-        "Surat Izin Usaha Keagenan Kapal ensuring compliance with national shipping regulations.",
+      fullName: "Surat Izin Usaha Keagenan Kapal",
+      description: "Legal permit to act as a ship agent, ensuring all vessel activities in Indonesian waters comply with maritime laws.",
       imageUrl: siukakImg,
+      badge: "Operational Permit",
     },
     {
       id: 3,
       name: "ISO Certification",
-      description:
-        "ISO certified management system demonstrating international quality and safety standards.",
+      fullName: "ISO 9001:2015 Management System",
+      description: "International recognition of our quality management systems, ensuring efficiency, safety, and consistent service quality.",
       imageUrl: isoImg,
+      badge: "International Quality",
     },
   ];
 
-  // STRUCTURED DATA (VALID SCHEMA)
+  // STRUCTURED DATA (JSON-LD)
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "Our Licenses & Certifications",
-    url: "https://ptkamandanujayasamudera.com/licenses",
-    description:
-      "Official licenses and certifications of PT Kamandanu Jaya Samudera including SIUPAK, SIUKAK, and ISO certifications.",
-    mainEntity: {
-      "@type": "ItemList",
-      itemListElement: licensesData.map((license, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        item: {
-          "@type": "ImageObject",
-          name: license.name,
-          description: license.description,
-          contentUrl: license.imageUrl,
-        },
-      })),
+    "@type": "GovernmentService",
+    "serviceType": "Maritime Licensing",
+    "provider": {
+      "@type": "Organization",
+      "name": "PT Kamandanu Jaya Samudera",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jakarta Utara",
+        "addressCountry": "ID"
+      }
     },
+    "hasCredential": licensesData.map((license) => ({
+      "@type": "EducationalOccupationalCredential",
+      "name": license.name,
+      "credentialCategory": "Professional License",
+      "description": license.description
+    }))
   };
 
-  return (
-    <>
-      {/* SEO STRUCTURED DATA */}
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
+   return (
+  <>
+    <Seo
+      title="Official Licenses & Maritime Certifications | PT Kamandanu Jaya Samudera"
+      description="View the official licenses of PT Kamandanu Jaya Samudera, including SIUPAK, SIUKAK, and ISO certifications."
+      url="/licenses"
+    />
 
-    <section
-  className="min-h-screen pt-36 sm:pt-40 md:pt-48 lg:pt-56 py-12 md:py-24 bg-gradient-to-br from-slate-50 to-blue-50"
-  aria-labelledby="licenses-heading"
->
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* HEADER */}
-          <div
-            className={`text-center mb-16 transition-all duration-1000 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            <span className="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-widest mb-4">
-              Official Documents
-            </span>
+    <main className="bg-gradient-to-b from-[#0A2540] to-[#0F3A60] min-h-screen pt-32 pb-20">
 
-            <h1
-              id="licenses-heading"
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900"
+      {/* HERO */}
+      <section className="px-6 text-center text-white max-w-4xl mx-auto mb-20">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-xs font-bold uppercase tracking-widest mb-6 border border-white/20">
+          <Award size={14} /> Legal & Compliance
+        </div>
+
+        <h1 className="text-4xl md:text-6xl font-black mb-6">
+          Our <span className="text-blue-400">Licenses</span>
+        </h1>
+
+        <p className="text-lg text-gray-200 leading-relaxed">
+          Fully licensed and certified maritime agency operating under Indonesian
+          and international standards.
+        </p>
+      </section>
+
+      {/* CARDS SECTION */}
+      <section className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+          {licensesData.map((license) => (
+            <div
+              key={license.id}
+              className="bg-white rounded-3xl shadow-2xl overflow-hidden hover:-translate-y-2 transition-all duration-500"
             >
-              Our Licenses &{" "}
-              <span className="text-blue-600">Certifications</span>
-            </h1>
+              {/* IMAGE */}
+              <div className="relative h-64 overflow-hidden">
+                <img
+                  src={license.imageUrl}
+                  alt={license.name}
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                />
+              </div>
 
-            <p className="mt-6 max-w-3xl mx-auto text-gray-600 text-base md:text-lg">
-              PT Kamandanu Jaya Samudera operates in full compliance with national
-              and international maritime standards.
-            </p>
-
-            <div className="w-20 h-1 bg-blue-600 mx-auto mt-8 rounded-full" />
-          </div>
-
-          {/* LICENSE GRID */}
-          <div
-            className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-200 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            {licensesData.map((license) => (
-              <div
-                key={license.id}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col"
-              >
-                <div className="relative overflow-hidden bg-gray-100">
-                  <img
-                    src={license.imageUrl}
-                    alt={`${license.name} - PT Kamandanu Jaya Samudera`}
-                    className="w-full h-64 object-cover hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-
-                <div className="p-6 flex flex-col flex-1">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-blue-100 p-2 rounded-lg text-blue-600">
-                      <Shield size={20} />
-                    </div>
-                    <h3 className="text-xl font-bold text-slate-900">
-                      {license.name}
-                    </h3>
+              {/* CONTENT */}
+              <div className="p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-blue-50 text-blue-600 p-3 rounded-xl">
+                    <Shield size={22} />
                   </div>
 
-                  <p className="text-gray-600 text-sm flex-grow">
-                    {license.description}
-                  </p>
+                  <h2 className="text-xl font-bold text-[#0A2540]">
+                    {license.name}
+                  </h2>
+                </div>
 
+                <p className="text-sm text-gray-500 mb-6">
+                  {license.fullName}
+                </p>
+
+                <p className="text-sm text-gray-600 mb-8">
+                  {license.description}
+                </p>
+
+                <div className="flex items-center justify-between">
                   <a
                     href={license.imageUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 font-semibold text-blue-600 hover:text-blue-700"
+                    className="text-blue-600 font-semibold text-sm hover:text-blue-800"
                   >
-                    <FileText size={18} />
-                    View Full License
-                    <ExternalLink size={16} />
+                    View Document
                   </a>
+
+                  <div className="flex items-center gap-1 text-emerald-500 text-xs font-bold">
+                    <CheckCircle size={14} />
+                    Verified
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+
+          ))}
+
         </div>
       </section>
-    </>
-  );
+
+    </main>
+  </>
+);
+
+
+    
+    
 };
 
 export default Licenses;

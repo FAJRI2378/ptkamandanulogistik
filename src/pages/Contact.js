@@ -1,176 +1,202 @@
 import React, { useEffect, useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
+import { MapPin,Clock, Send, MessageCircle, Globe, ShieldCheck } from "lucide-react";
+import Seo from "../components/Seo";
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    document.title = "Contact Us - PT Kamandanu Jaya Samudera";
-    // A slight delay for a smoother animation
+    window.scrollTo(0, 0);
     const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
   }, []);
 
-  // SEO: Structured Data for Organization/LocalBusiness
+  // SEO: Structured Data for LocalBusiness
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "LocalBusiness",
     "name": "PT Kamandanu Jaya Samudera",
-    "url": "https://www.kamandanujayasamudera.com", // Replace with your actual domain
-    "logo": "https://www.kamandanujayasamudera.com/logo.png", // Replace with your actual logo URL
-    "description": "A professional ship crew provider and trusted ship management company in Indonesia.",
+    "image": "https://www.ptkamandanujayasamudera.com/logo.png",
+    "@id": "https://www.ptkamandanujayasamudera.com",
+    "url": "https://www.ptkamandanujayasamudera.com",
+    "telephone": "+622143938505",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Jl. Warakas 3 No.23 RT 010 RW 004, Lantai 2",
       "addressLocality": "Tanjung Priok",
       "addressRegion": "Jakarta Utara",
-      "postalCode": "14330", // Added for completeness
+      "postalCode": "14330",
       "addressCountry": "ID"
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+62-21-43938505",
-      "contactType": "customer service",
-      "availableLanguage": ["English", "Indonesian"]
-    },
-    "telephone": "+62-813-1192-2417",
-    "email": "info@kamandanujayasamudera.com",
-    "openingHours": [
-      "Mo-Fr 08:30-17:30", // ISO 8601 format
-      "Sa 08:00-15:00"
-    ]
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -6.115858,
+      "longitude": 106.878734
+    }
   };
 
   return (
     <>
-      {/* SEO: Structured Data Script */}
+      <Seo 
+        title="Contact Us | PT Kamandanu Jaya Samudera - Crewing Agency Jakarta"
+        description="Connect with PT Kamandanu Jaya Samudera in Tanjung Priok, North Jakarta. Office location, WhatsApp recruitment, and business inquiry details."
+        keywords="contact ptkjs, crewing agency jakarta contact, alamat pt kamandanu jaya samudera"
+      />
+      
       <script type="application/ld+json">
         {JSON.stringify(structuredData)}
       </script>
 
-      {/* SEO: Use aria-labelledby to associate section with its main heading */}
-      <section
-        className="py-12 md:py-24 relative overflow-hidden min-h-screen pt-28 md:pt-36 bg-gradient-to-br from-slate-50 to-blue-50"
-        aria-labelledby="contact-heading"
-      >
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-12 md:mb-20 transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-100 border border-blue-300 text-blue-700 text-xs font-bold uppercase tracking-widest mb-4 backdrop-blur-sm">
-              Get In Touch
-            </span>
-            {/* SEO: Changed h2 to h1 for proper heading hierarchy on a page */}
-            <h1 id="contact-heading" className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
-              Contact <span className="text-blue-600">Us</span>
-            </h1>
-            <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              A professional ship crew provider and trusted ship management company in Indonesia. We are ready to serve your maritime needs.
-            </p>
-            <div className="w-16 h-1 bg-blue-600 mx-auto mt-8 rounded-full" />
+      <main className="bg-[#F8FAFC] min-h-screen font-sans selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
+        {/* --- HERO SECTION --- */}
+        <header className="relative pt-28 pb-20 md:pt-40 md:pb-32 bg-[#0A2540] overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: 'radial-gradient(circle, #3b82f6 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
           </div>
-
-          <div className="grid lg:grid-cols-12 gap-8 items-start">
-            {/* CONTACT INFO */}
-            <div className={`lg:col-span-5 space-y-4 md:space-y-6 transition-all duration-1000 delay-300 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"}`}>
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-lg group hover:shadow-xl transition-shadow">
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-100 p-3 rounded-xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                    <MapPin size={24} />
-                  </div>
-                  <div>
-                    <h4 className="text-slate-900 font-bold text-lg mb-2">Head Office</h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Jl. Warakas 3 No.23 RT 010 RW 004, 2nd Floor
-                      <br />
-                      Tanjung Priok, North Jakarta, Indonesia
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-lg group hover:shadow-xl transition-shadow">
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-100 p-3 rounded-xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                    <Phone size={24} />
-                  </div>
-                  <div>
-                    <h4 className="text-slate-900 font-bold text-lg mb-2">Phone & WhatsApp</h4>
-                    <p className="text-gray-600 text-sm">Office: <a href="tel:+622143938505" className="hover:text-blue-600 transition-colors">(021) 43938505</a></p>
-                    <a href="https://wa.me/6281311922417" target="_blank" rel="noopener noreferrer" className="text-blue-600 text-sm font-semibold hover:underline" title="Chat with us on WhatsApp">
-                      +62 813 1192 2417
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-lg group hover:shadow-xl transition-shadow">
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-100 p-3 rounded-xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                    <Mail size={24} />
-                  </div>
-                  <div>
-                    <h4 className="text-slate-900 font-bold text-lg mb-2">Official Email</h4>
-                    <a href="mailto:info@kamandanujayasamudera.com" className="text-gray-600 text-sm break-all hover:text-blue-600 transition-colors" title="Send us an email">
-                      info@kamandanujayasamudera.com
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-lg group hover:shadow-xl transition-shadow">
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-100 p-3 rounded-xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                    <Clock size={24} />
-                  </div>
-                  <div>
-                    <h4 className="text-slate-900 font-bold text-lg mb-2">Business Hours</h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Monday - Friday: 08:00 - 17:00 WIB
-                      <br />
-                      Saturday: 11:00 - 15:00 WIB
-                      <br />
-                      <span className="font-semibold text-red-500">Sunday : Closed</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
+          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
+          
+          <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <div className={`transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-6 md:mb-8">
+                <Globe size={14} className="animate-spin-slow" /> Global Inquiry Center
+              </span>
+              <h1 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tight leading-tight">
+                Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Touch</span>
+              </h1>
+              <p className="text-sm md:text-xl text-blue-100/70 max-w-2xl mx-auto leading-relaxed px-2">
+                Whether you're a ship owner or a seafarer, our team is ready to assist you. Connect with Indonesia's premier crewing agency.
+              </p>
             </div>
+          </div>
+        </header>
 
-            {/* MAP & ACTION BUTTONS */}
-            <div className={`lg:col-span-7 transition-all duration-1000 delay-500 ${isVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
-              <div className="bg-white p-2 rounded-3xl border border-gray-200 shadow-2xl overflow-hidden relative group">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d7562.260187217896!2d106.875993!3d-6.118949!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMDcnMDguMiJTIDEwNsKwNTInNDIuOSJF!5e1!3m2!1sen!2sid!4v1770910520471!5m2!1sen!2sid"
-                  width="100%"
-                  height="400"
-                  className="rounded-2xl h-[300px] md:h-[450px]"
-                  style={{ border: 0 }}
-                  loading="lazy"
-                  allowFullScreen=""
-                  referrerPolicy="no-referrer-when-downgrade"
-                  // SEO: Descriptive title for the iframe
-                  title="Location of PT Kamandanu Jaya Samudera on Google Maps"
-                />
-                <div className="absolute bottom-4 left-4 right-4 grid grid-cols-2 gap-3 md:hidden">
-                  <a href="https://wa.me/6281311922417" className="flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-xl font-bold text-xs shadow-lg hover:bg-green-500 transition-colors">
-                    <MessageCircle size={16} /> WhatsApp
-                  </a>
-                  <a href="mailto:info@kamandanujayasamudera.com" className="flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-xl font-bold text-xs shadow-lg hover:bg-blue-500 transition-colors">
-                    <Send size={16} /> Email
-                  </a>
-                </div>
-              </div>
-              <div className="hidden md:grid grid-cols-2 gap-4 mt-6">
-                <a href="https://wa.me/6281311922417" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 bg-green-600 hover:bg-green-500 text-white py-4 rounded-2xl transition-all shadow-lg font-bold">
-                  <MessageCircle /> Contact via WhatsApp
-                </a>
-                <a href="mailto:info@kamandanujayasamudera.com" className="flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white py-4 rounded-2xl transition-all shadow-lg font-bold">
-                  <Send /> Send Official Email
-                </a>
-              </div>
+        {/* --- BENTO GRID CONTENT --- */}
+      {/* --- BENTO GRID CONTENT --- */}
+<section className="max-w-7xl mx-auto px-4 md:px-6 -mt-12 md:-mt-20 pb-20 relative z-20">
+  {/* Gunakan flex-col untuk mobile dan lg:grid untuk desktop */}
+  <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6">
+    
+    {/* Left Column: Info Cards */}
+    <div className={`lg:col-span-5 flex flex-col gap-6 transition-all duration-1000 delay-300 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"}`}>
+      
+      {/* Headquarters Card */}
+      <div className="bg-white p-6 rounded-[2rem] shadow-xl border border-gray-100 group">
+        <div className="flex flex-col sm:flex-row items-start gap-4">
+          <div className="bg-blue-50 p-4 rounded-2xl text-blue-600 shrink-0">
+            <MapPin size={24} />
+          </div>
+          <div className="w-full min-w-0"> {/* min-w-0 mencegah teks memicu overflow */}
+            <h3 className="text-[#0A2540] font-black text-lg mb-2 uppercase tracking-tight">Main Headquarters</h3>
+            <address className="text-gray-500 not-italic text-sm leading-relaxed mb-4 block break-words">
+              Jl. Warakas 3 No.23 RT 010 RW 004, 2nd Floor<br />
+              Tanjung Priok, Jakarta Utara, 14330
+            </address>
+          </div>
+        </div>
+      </div>
+
+      {/* Direct Connect Card */}
+      <div className="bg-white p-6 rounded-[2rem] shadow-xl border border-gray-100 group">
+        <div className="flex flex-col sm:flex-row items-start gap-4">
+          <div className="bg-emerald-50 p-4 rounded-2xl text-emerald-600 shrink-0">
+            <MessageCircle size={24} />
+          </div>
+          <div className="w-full min-w-0">
+            <h3 className="text-[#0A2540] font-black text-lg mb-4 uppercase tracking-tight">Quick Connect</h3>
+            <div className="flex flex-col gap-3">
+              <a href="tel:+622143938505" className="flex items-center justify-between p-3 rounded-xl bg-gray-50">
+                <span className="text-gray-400 font-bold text-[10px] uppercase">Office</span>
+                <span className="text-[#0A2540] font-bold text-xs md:text-sm">(021) 43938505</span>
+              </a>
+              <a href="https://wa.me/6281311922417" target="_blank" rel="noreferrer" className="flex items-center justify-between p-3 rounded-xl bg-emerald-50">
+                <span className="text-emerald-700 font-bold text-[10px] uppercase">WhatsApp</span>
+                <span className="text-emerald-600 font-black text-xs md:text-sm text-right leading-tight ml-2">Connect Now</span>
+              </a>
+              <a href="mailto:info@kamandanujayasamudera.com" className="p-3 rounded-xl bg-blue-50/50 block">
+                <span className="text-blue-400 font-bold text-[10px] uppercase block mb-1">Email</span>
+                <span className="text-blue-600 font-bold text-[10px] md:text-xs break-all">info@kamandanujayasamudera.com</span>
+              </a>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+
+      {/* Availability Card */}
+      <div className="bg-white p-6 rounded-[2rem] shadow-xl border border-gray-100">
+        <div className="flex flex-col sm:flex-row items-start gap-4">
+          <div className="bg-slate-50 p-4 rounded-2xl text-slate-600 shrink-0">
+            <Clock size={24} />
+          </div>
+          <div className="w-full min-w-0">
+            <h3 className="text-[#0A2540] font-black text-lg mb-2 uppercase tracking-tight text-nowrap">Working Hours</h3>
+            <p className="text-gray-500 text-xs font-semibold flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span> Mon - Fri: 08:00 - 17:00
+            </p>
+            <p className="text-gray-400 text-xs font-semibold ml-3.5 italic">Sat: 11:00 - 15:00 WIB</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Right Column: Map & Actions */}
+    <div className={`lg:col-span-7 transition-all duration-1000 delay-500 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
+      <div className="bg-white p-3 rounded-[2.5rem] shadow-2xl border border-gray-100 h-full flex flex-col">
+        {/* Kontainer Peta: Dibuat tetap memiliki tinggi minimum yang cukup di mobile */}
+        <div className="relative rounded-[2rem] overflow-hidden w-full h-[300px] md:h-full min-h-[300px]">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!4v1771338739803!6m8!1m7!1sZsY2MJloRCiBclGrfg4OzQ!2m2!1d-6.11890142707253!2d106.8785436992975!3f168.31488865757458!4f6.967520248562295!5f0.7820865974627469"
+            width="100%"
+            height="100%"
+            className="absolute inset-0 border-0"
+            allowFullScreen=""
+            loading="lazy"
+            title="Office Location"
+          />
+        </div>
+
+        {/* Desktop Buttons */}
+        <div className="hidden lg:grid grid-cols-2 gap-4 mt-6">
+          <a href="https://wa.me/6281311922417" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 bg-[#075E54] hover:bg-[#128C7E] text-white py-5 rounded-2xl transition-all shadow-lg font-black uppercase tracking-widest text-[10px]">
+            <MessageCircle size={18} /> Recruitment Center
+          </a>
+          <a href="mailto:info@kamandanujayasamudera.com" className="flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white py-5 rounded-2xl transition-all shadow-lg font-black uppercase tracking-widest text-[10px]">
+            <Send size={18} /> Official Inquiry
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+        {/* --- TRUST BAR --- */}
+        <section className="max-w-4xl mx-auto px-6 mb-24">
+          <div className={`bg-white border-2 border-dashed border-blue-100 rounded-[3rem] p-8 md:p-12 text-center transition-all duration-1000 delay-700 ${isVisible ? "opacity-100" : "opacity-0"}`}>
+            <div className="bg-blue-50 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-600 shadow-inner">
+              <ShieldCheck size={40} />
+            </div>
+            <h3 className="text-xl md:text-2xl font-black text-[#0A2540] mb-3 uppercase">Licensed Agency</h3>
+            <p className="text-gray-500 max-w-lg mx-auto leading-relaxed text-xs md:text-sm font-medium">
+              PT Kamandanu Jaya Samudera is a fully certified crewing agency (SIUPKK) operating under the regulations of the Indonesian Ministry of Transportation.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        
+        main { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        .animate-spin-slow {
+          animation: spin 12s linear infinite;
+        }
+
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </>
   );
 };
