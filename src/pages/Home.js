@@ -1,101 +1,59 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AnimatedCounter from "../components/AnimatedCounter";
 import {
   Award,
   Ship,
   Users,
-  TrendingUp,
   ShieldCheck,
   Anchor,
   CheckCircle,
-  Star,
-  MapPin,
-  Phone,
-  Mail,
-  ChevronRight,
   FileText,
   Database,
-  Globe,
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import Seo from "../components/Seo";
+
+// Swiper Import
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-fade';
+
+// Import foto Anda
 import foto from "../img/foto.jpeg";
+const foto2 = "https://images.unsplash.com/photo-1524522173746-f628baad3644?q=80&w=1000&auto=format&fit=crop";
+const foto3 = "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop";
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   const stats = [
     { icon: Users, number: 360, suffix: "+", label: "Crews Deployed", color: "text-blue-500" },
     { icon: Database, number: 10000, suffix: "+", label: "Talent Pool", color: "text-cyan-500" },
     { icon: Ship, number: 8000, suffix: "", label: "Vessels Served", color: "text-indigo-500" },
     { icon: Award, number: 100, suffix: "%", label: "MLC Compliant", color: "text-emerald-500" },
-    { icon: Globe, number: 24, suffix: "/7", label: "Global Support", color: "text-blue-400" },
-  ];
-
-  const testimonials = [
-    {
-      name: "Captain M. Rahman",
-      position: "Fleet Manager",
-      company: "Global Shipping Lines",
-      content: "PT Kamandanu Jaya Samudera has been our trusted partner for crew management. Their professionalism and attention to detail is unmatched.",
-      rating: 5,
-    },
-    {
-      name: "S. Wijaya",
-      position: "HR Director",
-      company: "Pacific Maritime Corp",
-      content: "The quality of seafarers provided by Kamandanu Jaya Samudera has consistently exceeded our expectations. Highly recommended!",
-      rating: 5,
-    },
   ];
 
   useEffect(() => {
     setIsVisible(true);
-    
-    // Inject Structured Data for SEO
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "MarineService",
-      "name": "PT Kamandanu Jaya Samudera",
-      "description": "Leading Crew Manning Agency in Indonesia. STCW-certified seafarer recruitment and management.",
-      "areaServed": "Worldwide",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Manning Services",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Crew Recruitment" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vessel Manning" } }
-        ]
-      }
-    };
-
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.text = JSON.stringify(structuredData);
-    document.head.appendChild(script);
-
-    return () => document.head.removeChild(script);
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
+  const homePhotos = [foto, foto2, foto3];
 
   return (
     <>
       <Seo
         title="PT Kamandanu Jaya Samudera | #1 Crew Manning Agency Indonesia"
-        description="Trusted Indonesian crew manning agency. Providing STCW certified seafarers, recruitment, and maritime personnel management for global shipping companies since 2020."
-        keywords="crew manning agency jakarta, seafarer recruitment indonesia, maritime agency indonesia, ship crew supply, indonesian seaman"
+        description="Trusted Indonesian crew manning agency..."
         url="/"
       />
 
-      <main className="overflow-hidden font-sans text-[#0A2540]">
+      <main className="overflow-hidden font-['Plus_Jakarta_Sans'] text-[#0A2540]">
         {/* ─── HERO SECTION ─── */}
         <header className="relative min-h-screen flex items-center justify-center pt-20">
           <div className="absolute inset-0 z-0 bg-[#071829]">
@@ -117,83 +75,92 @@ const Home = () => {
                 Excellence.
               </h1>
               <p className="text-xl text-blue-100/80 mb-10 max-w-xl leading-relaxed">
-                Empowering global shipping with Indonesia's finest, STCW-certified seafarers. Since 2020, we've bridged the gap between talent and the open sea.
+                Empowering global shipping with Indonesia's finest, STCW-certified seafarers.
               </p>
               <div className="flex flex-wrap gap-5 justify-center lg:justify-start">
-                <Link to="/contact" className="px-10 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-xl shadow-blue-900/40 hover:-translate-y-1">
+                <Link to="/contact" className="px-10 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-xl shadow-blue-900/40">
                   Hire Our Crew
                 </Link>
-                <Link to="/about" className="px-10 py-4 border-2 border-white/20 hover:border-white text-white font-bold rounded-xl transition-all backdrop-blur-sm">
+                <Link to="/about" className="px-10 py-4 border-2 border-white/20 hover:border-white text-white font-bold rounded-xl transition-all">
                   Company Profile
                 </Link>
               </div>
             </div>
 
-            {/* Stats Bento Grid */}
             <div className="grid grid-cols-2 gap-4 lg:ml-10">
-              {stats.slice(0, 4).map((stat, i) => (
-                <div key={i} className="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-[2rem] hover:bg-white/10 transition-colors">
+              {stats.map((stat, i) => (
+                <div key={i} className="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-[2rem]">
                   <stat.icon className={`${stat.color} mb-4`} size={32} />
                   <div className="text-3xl font-bold text-white mb-1">
                     <AnimatedCounter value={stat.number} id={`hero-${i}`} />{stat.suffix}
                   </div>
-                  <p className="text-blue-200/60 text-sm uppercase tracking-widest font-bold">{stat.label}</p>
+                  <p className="text-blue-200/60 text-xs uppercase tracking-widest font-bold">{stat.label}</p>
                 </div>
               ))}
             </div>
           </div>
         </header>
 
-        {/* ─── TRUST BAR ─── */}
-        <section className="bg-white border-y border-gray-100 py-10">
-          <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-50 grayscale hover:grayscale-0 transition-all">
-             <span className="font-black text-2xl tracking-tighter">ISO 9001:2015</span>
-             <span className="font-black text-2xl tracking-tighter">STCW COMPLIANT</span>
-             <span className="font-black text-2xl tracking-tighter">MLC 2006</span>
-             <span className="font-black text-2xl tracking-tighter">IMO STANDARDS</span>
-          </div>
-        </section>
-
-        {/* ─── ABOUT / PROFILE ─── */}
+        {/* ─── ABOUT SECTION WITH SLIDER ─── */}
         <section className="py-24 bg-[#F8FAFC]">
           <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-blue-600/10 rounded-[3rem] blur-2xl group-hover:bg-blue-600/20 transition-all" />
-              <img 
-                src={foto} 
-                alt="Maritime Professionalism" 
-                className="relative rounded-[2.5rem] shadow-2xl object-cover h-[600px] w-full"
-                loading="lazy"
-              />
-              <div className="absolute bottom-8 right-8 bg-white p-8 rounded-[2rem] shadow-xl max-w-[240px]">
-                <p className="text-4xl font-black text-blue-600 mb-1">98%</p>
-                <p className="text-sm font-bold text-gray-500 leading-tight">Client Satisfaction & Crew Retention Rate</p>
+            
+            {/* SISI KIRI: SLIDER FOTO */}
+            <div className="relative group/slider">
+              <div className="absolute -inset-4 bg-blue-600/10 rounded-[3rem] blur-2xl transition-all" />
+              
+              <div className="relative rounded-[2.5rem] shadow-2xl overflow-hidden h-[400px] md:h-[600px] bg-gray-200">
+                <Swiper
+                  modules={[Autoplay, Pagination, Navigation, EffectFade]}
+                  effect={'fade'}
+                  autoplay={{ delay: 4000, disableOnInteraction: false }}
+                  pagination={{ clickable: true }}
+                  navigation={{ prevEl: '.prev-home', nextEl: '.next-home' }}
+                  loop={true}
+                  className="h-full w-full"
+                >
+                  {homePhotos.map((img, index) => (
+                    <SwiperSlide key={index}>
+                      <img 
+                        src={img} 
+                        alt={`Slide ${index}`} 
+                        className="w-full h-full object-cover"
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+
+                {/* Bulat Navigasi Custom (Arrow) */}
+                <button className="prev-home absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-all hover:bg-white hover:text-blue-600">
+                  <ChevronLeft size={24} />
+                </button>
+                <button className="next-home absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-all hover:bg-white hover:text-blue-600">
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+
+              {/* Floating Satisfaction Badge */}
+              <div className="absolute bottom-6 right-6 bg-white p-6 rounded-3xl shadow-xl z-20 border border-blue-50">
+                <p className="text-3xl font-black text-blue-600 mb-1">98%</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-tight">Retention Rate</p>
               </div>
             </div>
 
+            {/* SISI KANAN: TEKS */}
             <article>
               <h2 className="text-blue-600 font-black tracking-[0.2em] uppercase text-sm mb-4">Established 2020</h2>
               <h3 className="text-4xl md:text-5xl font-black mb-8 leading-tight text-[#0A2540]">
-                Indonesia's Premier Gateway to <br />
-                <span className="text-blue-600 underline decoration-blue-200 underline-offset-8">Global Crewing</span>
+                Indonesia's Premier Gateway to Global Crewing
               </h3>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                <strong>PT Kamandanu Jaya Samudera</strong> is more than just a manning agency. We are a strategic partner in maritime safety and operational efficiency. We specialize in the recruitment of top-tier Indonesian seafarers, ensuring every officer and rating is not just certified, but ready to excel in the most demanding sea conditions.
+                <strong>PT Kamandanu Jaya Samudera</strong> is more than just a manning agency. We are a strategic partner in maritime safety and operational efficiency.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-6 mb-10">
-                {[
-                  { title: "Rigorous Screening", desc: "Multi-stage competency tests" },
-                  { title: "Global Compliance", desc: "MLC & STCW documentation" },
-                  { title: "Welfare Support", desc: "Continuous crew insurance" },
-                  { title: "Expert Management", desc: "Led by Master Mariners" },
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="bg-blue-100 text-blue-600 p-2 rounded-lg h-fit"><CheckCircle size={20}/></div>
-                    <div>
-                      <h4 className="font-bold text-[#0A2540]">{item.title}</h4>
-                      <p className="text-sm text-gray-500">{item.desc}</p>
-                    </div>
+                {["Rigorous Screening", "Global Compliance", "Welfare Support", "Expert Management"].map((title, i) => (
+                  <div key={i} className="flex gap-4 items-center">
+                    <div className="bg-blue-100 text-blue-600 p-2 rounded-lg"><CheckCircle size={20}/></div>
+                    <h4 className="font-bold text-[#0A2540] text-sm">{title}</h4>
                   </div>
                 ))}
               </div>
@@ -205,58 +172,49 @@ const Home = () => {
           </div>
         </section>
 
-        {/* ─── PROCESS SECTION ─── */}
+        {/* ─── PROCESS & CTA (Sama seperti sebelumnya) ─── */}
         <section className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6 text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-black mb-4">Strategic Recruitment Process</h3>
-            <p className="text-gray-500">How we ensure the highest quality of seafarers for your fleet.</p>
-          </div>
-          
           <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
             {[
-              { icon: FileText, title: "Requirement", text: "Defining vessel & rank needs" },
-              { icon: Users, title: "Sourcing", text: "Selecting from 10k+ database" },
-              { icon: ShieldCheck, title: "Verification", text: "Physical & Cert validation" },
-              { icon: Ship, title: "Mobilization", text: "Safe deployment to port" },
+              { icon: FileText, title: "Requirement" },
+              { icon: Users, title: "Sourcing" },
+              { icon: ShieldCheck, title: "Verification" },
+              { icon: Ship, title: "Mobilization" },
             ].map((step, i) => (
-              <div key={i} className="relative group text-center">
-                <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
+              <div key={i} className="text-center group">
+                <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
                   <step.icon size={32} />
                 </div>
                 <h4 className="font-bold text-xl mb-2">{step.title}</h4>
-                <p className="text-gray-500 text-sm leading-relaxed">{step.text}</p>
-                {i < 3 && <div className="hidden lg:block absolute top-10 -right-4 w-8 border-t-2 border-dashed border-gray-200" />}
               </div>
             ))}
           </div>
         </section>
 
-        {/* ─── CTA BANNER ─── */}
-        <section className="py-20 bg-[#0A2540] relative overflow-hidden">
+        <section className="py-20 bg-[#0A2540] relative overflow-hidden text-center">
           <div className="absolute top-0 right-0 opacity-10"><Anchor size={400} /></div>
-          <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-8 leading-tight">
-              Optimize Your Crew Management <br /> With Expert Solutions
-            </h2>
-            <div className="flex flex-col sm:flex-row gap-5 justify-center">
-              <Link to="/contact" className="bg-blue-600 text-white px-10 py-4 rounded-xl font-bold shadow-lg hover:bg-blue-500 transition-all">
-                Request Proposal
-              </Link>
-              <a href="tel:02143938505" className="bg-white/10 text-white px-10 py-4 rounded-xl font-bold backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all">
-                Call Our Office
-              </a>
-            </div>
+          <div className="relative z-10 max-w-4xl mx-auto px-6">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-8">Optimize Your Crew Management</h2>
+            <Link to="/contact" className="inline-block bg-blue-600 text-white px-10 py-4 rounded-xl font-bold hover:bg-blue-500 transition-all">
+              Request Proposal
+            </Link>
           </div>
         </section>
       </main>
 
-      <style jsx>{`
-        .animate-fade-in-up {
-          animation: fadeInUp 1s ease-out forwards;
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        
+        .swiper-pagination-bullet {
+          background: white !important;
+          opacity: 0.6;
         }
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(40px); }
-          to { opacity: 1; transform: translateY(0); }
+        .swiper-pagination-bullet-active {
+          background: white !important;
+          opacity: 1;
+          width: 20px;
+          border-radius: 4px;
+          transition: all 0.3s;
         }
       `}</style>
     </>
