@@ -138,34 +138,42 @@ const Contact = () => {
       </div>
     </div>
 
-    {/* Right Column: Map & Actions */}
-    <div className={`lg:col-span-7 transition-all duration-1000 delay-500 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
-      <div className="bg-white p-3 rounded-[2.5rem] shadow-2xl border border-gray-100 h-full flex flex-col">
-        {/* Kontainer Peta: Dibuat tetap memiliki tinggi minimum yang cukup di mobile */}
-        <div className="relative rounded-[2rem] overflow-hidden w-full h-[300px] md:h-full min-h-[300px]">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!4v1771338739803!6m8!1m7!1sZsY2MJloRCiBclGrfg4OzQ!2m2!1d-6.11890142707253!2d106.8785436992975!3f168.31488865757458!4f6.967520248562295!5f0.7820865974627469"
-            width="100%"
-            height="100%"
-            className="absolute inset-0 border-0"
-            allowFullScreen=""
-            loading="lazy"
-            title="Office Location"
-          />
-        </div>
-
-        {/* Desktop Buttons */}
-        <div className="hidden lg:grid grid-cols-2 gap-4 mt-6">
-          <a href="https://wa.me/6281311922417" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 bg-[#075E54] hover:bg-[#128C7E] text-white py-5 rounded-2xl transition-all shadow-lg font-black uppercase tracking-widest text-[10px]">
-            <MessageCircle size={18} /> Recruitment Center
-          </a>
-          <a href="mailto:info@kamandanujayasamudera.com" className="flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white py-5 rounded-2xl transition-all shadow-lg font-black uppercase tracking-widest text-[10px]">
-            <Send size={18} /> Official Inquiry
-          </a>
-        </div>
+ {/* Right Column: Map & Satelite View */}
+<div className={`lg:col-span-7 transition-all duration-1000 delay-500 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
+  <div className="bg-white p-3 rounded-[2.5rem] shadow-2xl border border-gray-100 h-full flex flex-col">
+    {/* Kontainer Peta: Menggunakan view satelit untuk kesan 'Tata Surya/Space' */}
+    <div className="relative rounded-[2rem] overflow-hidden w-full h-[400px] md:h-full min-h-[350px] group">
+      <iframe
+        // Parameter t=k mengaktifkan mode Satelit (K-Satellite)
+        src="https://maps.google.com/?cid=5401322210352289103&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ"
+        width="100%"
+        height="100%"
+        className="absolute inset-0 border-0 contrast-110 saturate-125"
+        allowFullScreen=""
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Satelite View Office Location"
+      />
+      
+      {/* Overlay Dekoratif agar terasa lebih 'Hi-Tech' */}
+      <div className="absolute inset-0 pointer-events-none border-[12px] border-white/10 rounded-[2rem]"></div>
+      <div className="absolute top-4 left-4 bg-[#0A2540]/80 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] text-blue-300 font-bold uppercase tracking-widest flex items-center gap-2">
+        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+        Live Satellite Feed
       </div>
     </div>
 
+    {/* Desktop Buttons */}
+    <div className="hidden lg:grid grid-cols-2 gap-4 mt-6">
+      <a href="https://wa.me/6281311922417" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 bg-[#075E54] hover:bg-[#128C7E] text-white py-5 rounded-2xl transition-all shadow-lg font-black uppercase tracking-widest text-[10px]">
+        <MessageCircle size={18} /> Recruitment Center
+      </a>
+      <a href="mailto:info@kamandanujayasamudera.com" className="flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white py-5 rounded-2xl transition-all shadow-lg font-black uppercase tracking-widest text-[10px]">
+        <Send size={18} /> Official Inquiry
+      </a>
+    </div>
+  </div>
+</div>
   </div>
 </section>
 

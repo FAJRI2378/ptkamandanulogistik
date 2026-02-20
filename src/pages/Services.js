@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Users,
   FileCheck,
   Globe,
-  ShieldCheck,
-  CheckCircle,
   ArrowRight,
   Ship,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Truck,
 } from "lucide-react";
 import Seo from "../components/Seo";
 
@@ -25,45 +24,98 @@ import 'swiper/css/navigation';
 // Import gambar lokal
 import c1 from "../img/crew1.jpg";
 import c2 from "../img/crew2.jpg";
-import c3 from "../img/foto.jpeg"; // Contoh menggunakan string untuk path gambar  
+import c3 from "../img/foto.jpeg";
 
 const Services = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
-    setIsVisible(true);
     window.scrollTo(0, 0);
   }, []);
 
   const workflowSteps = [
-    { title: "Customer Request" },
-    { title: "Check Crew & Screening" },
-    { title: "Propose Customer Approval" },
-    { title: "Medical Check Up" },
-    { title: "Apply for Visa Requirement" },
-    { title: "Brief Crew & Document" },
+    { title: "Apply Job" },
+    { title: "Check & Screening Crew" },
+    { title: "Propose Crew To Ownership" },
+    { title: "Interview With Ownership" },
+    { title: "Travel Document (MCU, VISA, ETC)" },
+    { title: "Briefing For Departing Crew" },
   ];
 
-  const sliderImages = [c1, c2, c3];
+  const sliderImages = [
+    { src: c1, alt: "Professional Maritime Crew Training and Development" },
+    { src: c2, alt: "Rigorous Seafarer Recruitment and Screening Process" },
+    { src: c3, alt: "PT Kamandanu Jaya Samudera Global Logistics Support" },
+  ];
 
   const mainServices = [
     {
       icon: Users,
-      title: "Extensive crewing network and skilled seafarers",
-      description: "With a pool of over 10,800 seafarers and ownership of more than 10 manning offices around the world, we can supply you competent crew for your vessels.",
+      title: "Extensive Crewing Network",
+      description: "With a pool of over 10,800 skilled seafarers and 10+ manning offices worldwide, we provide competent crew recruitment for various vessel types.",
     },
     {
       icon: FileCheck,
       title: "Crew Management System",
-      description: "Our centralized system which stores all data related to seafarers for efficient monitoring of compliance with mandatory requirements (Flag State, Training, Certificates, Medical, Visa etc.). All data and documents are filed electronically for compliance check of seafarer's competence.",
+      description: "Our centralized digital system monitors Flag State compliance, training, medical records, and visa requirements to ensure total seafarer competence.",
+    },
+    {
+      icon: Truck,
+      title: "Maritime Logistics",
+      description: "We provide comprehensive logistics support for maritime operations, including supply chain management and coordination of resources at sea.",
     },
   ];
 
+  const crewingIncludes = [
+    "Global Recruiting", "Manning Office Coordination", "Proactive Communication", 
+    "Crew Training", "Maritime Accounting", "Cost Control", 
+    "Insurance Follow-up", "Payroll Services", "Compliance Standards", "Travel Coordination"
+  ];
+
+  // STRUCTURED DATA (SEO JSON-LD)
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Maritime Crewing and Logistics",
+    "provider": {
+      "@type": "Organization",
+      "name": "PT Kamandanu Jaya Samudera",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jakarta Utara",
+        "addressCountry": "ID"
+      }
+    },
+    "description": "Professional maritime services in Indonesia: Crew management, skilled seafarer recruitment, and global logistics support.",
+    "url": "https://www.ptkamandanujayasamudera.com/services",
+    "areaServed": "Global",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Maritime Service Portfolio",
+      "itemListElement": mainServices.map((service, index) => ({
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": service.title
+        }
+      }))
+    }
+  };
+
   return (
     <>
-      <Seo title="Services | PT Kamandanu Jaya Samudera" />
+      <Seo 
+        title="Maritime Services & Logistics | PT Kamandanu Jaya Samudera" 
+        description="Providing world-class maritime solutions: Professional crew management, global seafarer recruitment, and efficient sea logistics support."
+        url="/services"
+      />
+
+      {/* Structured Data Script - Injected for Google SEO */}
+      <script 
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
 
       <main className="bg-[#F8FAFC] min-h-screen font-['Plus_Jakarta_Sans']">
+        
         {/* --- Hero Section --- */}
         <header className="relative pt-32 pb-28 bg-[#0A2540] overflow-hidden text-center">
           <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -75,26 +127,31 @@ const Services = () => {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Service Solutions</span>
             </h1>
           </div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent opacity-50"></div>
         </header>
 
         {/* --- SECTION 1: VISUAL WORKFLOW --- */}
         <section className="max-w-7xl mx-auto px-6 -mt-16 relative z-20">
-          <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-4 md:p-10 shadow-2xl border border-white/20">
+          <div className="bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-4 md:p-10 shadow-2xl border border-white/20">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2">
               {workflowSteps.map((step, index) => (
-                <div key={index} className="relative group p-6 rounded-3xl transition-all duration-300 hover:bg-blue-50">
-                  <div className="flex flex-col items-center lg:items-start">
-                    <span className="text-5xl font-black text-blue-600/10 mb-2">0{index + 1}</span>
+                <div key={index} className="relative group p-6 rounded-3xl transition-all duration-300 hover:bg-blue-50/50">
+                  <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <span className="text-5xl font-black text-blue-600/10 mb-2 transition-colors group-hover:text-blue-600/20">0{index + 1}</span>
                     <h4 className="text-xs md:text-[13px] font-black text-[#0A2540] uppercase tracking-wider leading-snug">{step.title}</h4>
                   </div>
-                  {index < 5 && <div className="hidden lg:flex items-center absolute top-1/2 -right-2 -translate-y-1/2 text-gray-200"><ArrowRight size={20} /></div>}
+                  {index < 5 && (
+                    <div className="hidden lg:flex items-center absolute top-1/2 -right-2 -translate-y-1/2 text-gray-200 group-hover:text-blue-200 transition-colors">
+                      <ArrowRight size={20} />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* --- SECTION 2: WHAT WE DO (DENGAN SLIDER OTOMATIS + PAGINATION) --- */}
+        {/* --- SECTION 2: MAIN SERVICES --- */}
         <section className="max-w-7xl mx-auto px-6 py-24 md:py-32">
           <div className="flex items-center gap-4 mb-20">
             <h2 className="text-3xl md:text-5xl font-black text-[#0A2540]">What We Do</h2>
@@ -106,7 +163,7 @@ const Services = () => {
               {mainServices.map((service, idx) => (
                 <div key={idx} className="group">
                   <div className="flex items-center gap-5 mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-[#0A2540] flex items-center justify-center text-white shadow-lg">
+                    <div className="w-14 h-14 rounded-2xl bg-[#0A2540] flex items-center justify-center text-white shadow-lg group-hover:bg-blue-600 transition-colors duration-300">
                       <service.icon size={28} />
                     </div>
                     <div className="h-px w-10 bg-blue-600" />
@@ -121,99 +178,74 @@ const Services = () => {
               ))}
             </div>
 
-            {/* Slider Sisi Kanan dengan Bulat-bulat (Pagination) */}
+            {/* Slider Section */}
             <div className="w-full relative group/slider">
-              <div className="absolute -inset-4 border border-blue-100 rounded-[3rem] rotate-2" />
-              
+              <div className="absolute -inset-4 border border-blue-100 rounded-[3rem] rotate-2 hidden md:block" />
               <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl h-[400px] md:h-[600px]">
                 <Swiper
                   modules={[Autoplay, EffectFade, Pagination, Navigation]}
                   effect={'fade'}
-                  autoplay={{
-                    delay: 3500,
-                    disableOnInteraction: false,
-                  }}
-                  pagination={{
-                    clickable: true,
-                    dynamicBullets: true,
-                  }}
-                  navigation={{
-                    prevEl: '.prev-btn',
-                    nextEl: '.next-btn',
-                  }}
+                  autoplay={{ delay: 4000, disableOnInteraction: false }}
+                  pagination={{ clickable: true, dynamicBullets: true }}
+                  navigation={{ prevEl: '.prev-btn', nextEl: '.next-btn' }}
                   loop={true}
                   className="h-full w-full"
                 >
                   {sliderImages.map((img, index) => (
                     <SwiperSlide key={index}>
                       <img 
-                        src={img} 
-                        alt={`Maritime Support ${index + 1}`}
+                        src={img.src} 
+                        alt={img.alt}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                     </SwiperSlide>
                   ))}
                 </Swiper>
 
-                {/* Tombol Navigasi Manual (Muncul saat Hover) */}
-                <button className="prev-btn absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-all hover:bg-white hover:text-blue-600">
+                {/* Navigation Buttons */}
+                <button className="prev-btn absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-all hover:bg-white hover:text-blue-600 shadow-lg">
                   <ChevronLeft size={24} />
                 </button>
-                <button className="next-btn absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-all hover:bg-white hover:text-blue-600">
+                <button className="next-btn absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-all hover:bg-white hover:text-blue-600 shadow-lg">
                   <ChevronRight size={24} />
                 </button>
-              </div>
-
-              <div className="absolute -bottom-6 -right-6 bg-blue-600 p-6 rounded-3xl text-white shadow-xl z-20 hidden md:block">
-                <p className="text-3xl font-black">10.8k+</p>
-                <p className="text-[10px] uppercase font-bold tracking-widest opacity-80">Qualified Crew</p>
               </div>
             </div>
           </div>
 
-          <div className="mt-32 p-10 md:p-16 bg-white rounded-[3rem] shadow-sm border border-gray-100">
-            <h3 className="text-xl font-black text-blue-600 uppercase tracking-[0.2em] mb-12 text-center">Our crewing services include</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-6">
-              {["Recruiting", "Coordination of manning offices", "Proactive communication", "Training of crew", "Accounting", "Cost control", "Insurance Follow up", "Payroll service", "Industry Standards Compliance", "Travel coordination"].map((item, idx) => (
+          {/* Detailed Crewing Features */}
+          <div className="mt-32 p-10 md:p-16 bg-white rounded-[3rem] shadow-sm border border-gray-100 relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-8 text-blue-50/50">
+                <Ship size={120} />
+             </div>
+            <h3 className="text-xl font-black text-blue-600 uppercase tracking-[0.2em] mb-12 text-center relative z-10">
+              Our crewing services include
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-6 relative z-10">
+              {crewingIncludes.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-4 group">
-                  <div className="w-2 h-2 rounded-full bg-blue-600 group-hover:scale-150 transition-transform" />
+                  <div className="w-2 h-2 rounded-full bg-blue-600 group-hover:scale-150 transition-all duration-300" />
                   <span className="text-base font-bold text-gray-700 group-hover:text-blue-600 transition-colors">{item}</span>
                 </div>
               ))}
             </div>
           </div>
         </section>
-
-        {/* --- Bottom Trust CTA --- */}
-        <section className="max-w-7xl mx-auto px-6 pb-24">
-          <div className="bg-[#0A2540] rounded-[4rem] p-12 md:p-20 text-center relative overflow-hidden">
-            <div className="relative z-10">
-              <h3 className="text-4xl md:text-5xl font-black text-white mb-8">Ready to Strengthen Your Fleet?</h3>
-              <div className="flex flex-col sm:flex-row gap-5 justify-center">
-                <a href="/contact" className="px-10 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all uppercase tracking-widest text-xs text-center">Contact Us</a>
-                <a href="/licenses" className="px-10 py-4 bg-white text-[#0A2540] font-bold rounded-2xl hover:bg-gray-100 transition-all uppercase tracking-widest text-xs text-center">View Licenses</a>
-              </div>
-            </div>
-            <Ship className="absolute -bottom-20 -right-20 text-white/5 w-96 h-96 -rotate-12" />
-          </div>
-        </section>
       </main>
 
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
-        
-        /* Custom Pagination (Putih-putih bulat) */
         .swiper-pagination-bullet {
           background: white !important;
           opacity: 0.5;
-          width: 10px;
-          height: 10px;
+          width: 8px;
+          height: 8px;
         }
         .swiper-pagination-bullet-active {
           opacity: 1;
           background: white !important;
-          width: 25px;
-          border-radius: 5px;
+          width: 24px;
+          border-radius: 4px;
           transition: all 0.3s ease;
         }
         .swiper-pagination {

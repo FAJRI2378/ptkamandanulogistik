@@ -22,6 +22,8 @@ import l6 from "../img/lclient6.jpg";
 import l7 from "../img/lclient7.jpg";
 import l8 from "../img/lclient8.png";
 import l9 from "../img/lclient9.png";
+import bp3ip from "../img/bp3ip.png";
+import pip from "../img/pip.png";
 
 // Import MoU Partner Logos
 import stipJakarta from "../img/logo_stip.png";
@@ -47,7 +49,7 @@ const Clients = () => {
     {
       name: "STIP Jakarta",
       fullName: "Sekolah Tinggi Ilmu Pelayaran Jakarta",
-      type: "Premium Education Partner",
+      type: "Academic Maritime",
       description: "Indonesia's premier maritime academy. Our collaboration focuses on producing elite STCW-compliant officers for international tankers and container vessels.",
       region: "Jakarta, Indonesia",
       logo: stipJakarta,
@@ -59,7 +61,7 @@ const Clients = () => {
     {
       name: "Poltekpel Banten",
       fullName: "Politeknik Pelayaran Banten",
-      type: "Vocational Excellence",
+      type: "Academic Maritime",
       description: "Center of excellence for maritime vocational training. Partnering to develop industry-ready ratings and support crew for global shipping fleets.",
       region: "Banten, Indonesia",
       logo: poltekpelBanten,
@@ -67,6 +69,30 @@ const Clients = () => {
       documentation: bantenDoc1,
       docTitle: "Institutional Partnership",
       highlights: ["Rating Certification Support", "Maritime Safety Training", "Industry Placement"],
+    },
+     {
+      name: "BP3IP Jakarta",
+      fullName: "Sekolah Tinggi Ilmu Pelayaran Jakarta",
+      type: "Academic Maritime",
+      description: "Indonesia's premier maritime academy. Our collaboration focuses on producing elite STCW-compliant officers for international tankers and container vessels.",
+      region: "Jakarta, Indonesia",
+      logo: bp3ip,
+      website: "https://www.stipjakarta.ac.id",
+      documentation: bp3ip,
+      docTitle: "Strategic MoU Signing",
+      highlights: ["Senior Deck & Engine Programs", "Competency Upgrading", "Cadet Recruitment Pipeline"],
+    },
+     {
+      name: "PIP Makassar",
+      fullName: "Politeknik Pelayaran Indonesia Makassar",
+      type: "Academic Maritime",
+      description: "Center of excellence for maritime vocational training in South Sulawesi. Partnering to develop industry-ready ratings and support crew for global shipping fleets.",
+      region: "Makassar, Indonesia",
+      logo: pip,
+      website: "https://www.stipjakarta.ac.id",
+      documentation: stipDoc1,
+      docTitle: "Strategic MoU Signing",
+      highlights: ["Senior Deck & Engine Programs", "Competency Upgrading", "Cadet Recruitment Pipeline"],
     },
   ];
 
@@ -140,7 +166,7 @@ const Clients = () => {
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="space-y-4">
                     <h3 className="font-black text-[#0A2540] text-sm uppercase tracking-widest flex items-center gap-2">
-                      <CheckCircle size={18} className="text-emerald-500" /> Key Objectives
+                      <CheckCircle size={18} className="text-emerald-500" /> Collaboration
                     </h3>
                     {partner.highlights.map((h, i) => (
                       <div key={i} className="flex items-center gap-3 text-sm font-bold text-gray-700">
@@ -197,26 +223,7 @@ const Clients = () => {
           </div>
         </section>
 
-        {/* ─── CTA ─── */}
-        <section className="bg-gradient-to-br from-blue-600 to-[#0A2540] rounded-[3rem] p-12 md:p-24 text-center text-white relative overflow-hidden shadow-2xl">
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-black mb-8 leading-tight">
-              Ready to Secure Your <br /> Fleet's Future?
-            </h2>
-            <p className="text-blue-100/80 mb-12 max-w-xl mx-auto text-lg font-medium">
-              Join our network of elite partners and experience the pinnacle of Indonesian maritime manpower.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-5 justify-center">
-              <a href="/contact" className="bg-white text-blue-600 px-10 py-4 rounded-2xl font-black hover:bg-blue-50 transition-all shadow-xl shadow-blue-900/40">
-                Become a Partner
-              </a>
-              <a href="/services" className="bg-white/10 text-white border border-white/20 px-10 py-4 rounded-2xl font-black hover:bg-white/20 transition-all backdrop-blur-md">
-                Our Services
-              </a>
-            </div>
-          </div>
-        </section>
+
       </div>
 
       {/* ─── ENHANCED MODAL ─── */}

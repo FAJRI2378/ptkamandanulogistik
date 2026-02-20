@@ -112,7 +112,7 @@ const Footer = () => {
               maritime personnel management, and comprehensive ship management
               services for domestic and international shipping companies.
               Certified and compliant with{" "}
-              <abbr title="Maritime Labour Convention">MLC</abbr> 2006 and
+              <abbr title="Maritime Labour Convention">MLC</abbr>  and
               <abbr title="Standards of Training, Certification and Watchkeeping">
                 STCW
               </abbr>{" "}
@@ -127,7 +127,7 @@ const Footer = () => {
               </div>
               <div className="bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg flex items-center text-xs">
                 <Award className="w-4 h-4 text-blue-400 mr-2" />
-                <span>MLC 2006 Compliant</span>
+                <span>Mlc Compliant Regulation</span>
               </div>
             </div>
 
