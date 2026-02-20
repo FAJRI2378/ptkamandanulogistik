@@ -22,6 +22,7 @@ import g14 from "../img/g14.jpg";
 import g15 from "../img/g15.jpg";
 import g16 from "../img/g16.jpg";
 import g17 from "../img/g17.jpg";
+import backgroundImageHeader from "../img/gh.png";
 
 const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -74,82 +75,66 @@ const Gallery = () => {
         description="Explore our visual journey. View our professional crew, maritime operations, and vessel management in action."
       />
 
-      <section
-        className="min-h-screen pt-28 md:pt-36 py-12 md:py-24 bg-gradient-to-br from-slate-50 to-blue-50"
-        aria-labelledby="gallery-heading"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* HEADER */}
-          <div
-            className={`text-center mb-16 transition-all duration-1000 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-widest mb-4">
-              <Camera size={14} />
-              Operational Excellence
-            </span>
+  <section className="min-h-screen bg-[#F8FAFC]">
+  {/* --- AREA HEADER DENGAN BACKGROUND --- */}
+<header className="relative pt-12 pb-24 bg-[#0A2540] overflow-hidden text-center">
+  {/* BACKGROUND IMAGE LAYER - Diperbaiki agar tidak terlalu zoom */}
+  <div 
+    className="absolute inset-0 z-0 opacity-30 bg-no-repeat transition-transform duration-700"
+    style={{ 
+      backgroundImage: `linear-gradient(to bottom, rgba(10, 37, 64, 0.3), #0A2540), url(${backgroundImageHeader})`,
+      // Menggunakan 'contain' agar gambar tidak terpotong, atau '100% 100%' untuk pas badan
+      backgroundSize: 'cover', 
+      backgroundPosition: 'center 20%', // Menyesuaikan fokus gambar agak ke atas sedikit
+    }}
+  />
+    {/* Elemen Dekoratif Cahaya */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-600/20 via-transparent to-transparent opacity-50 z-0" />
 
-            <h1
-              id="gallery-heading"
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900"
-            >
-              Our Visual <span className="text-blue-600">Portfolio</span>
-            </h1>
+    <div className={`max-w-7xl mx-auto px-6 relative z-10 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+      <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-widest mb-6 border border-blue-400/20 backdrop-blur-sm">
+        <Camera size={14} /> Operational Excellence
+      </span>
 
-            <p className="mt-6 max-w-2xl mx-auto text-gray-600 text-base md:text-lg italic">
-              "Capturing our commitment to providing world-class maritime human resources and professional vessel management."
-            </p>
+      <h1 id="gallery-heading" className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tighter drop-shadow-lg">
+        Our Visual <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Portfolio</span>
+      </h1>
 
-            <div className="w-20 h-1 bg-blue-600 mx-auto mt-8 rounded-full" />
-          </div>
+      <p className="mt-6 max-w-2xl mx-auto text-blue-100/80 text-lg md:text-xl italic leading-relaxed drop-shadow-md">
+        "Capturing our commitment to providing world-class maritime human resources and professional vessel management."
+      </p>
 
-          {/* GALLERY GRID */}
-          <div
-            className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 transition-all duration-1000 delay-200 ${
-              isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-            }`}
-          >
-            {galleryData.map((photo) => (
-              <div
-                key={photo.id}
-                className="relative group overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 bg-white"
-              >
-                <a
-                  href={photo.imageUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={photo.imageUrl}
-                      alt={`${photo.caption} - PT Kamandanu Jaya Samudera`}
-                      loading="lazy"
-                      className="w-full h-48 md:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    
-                    {/* Overlay Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    {/* Caption on Hover */}
-                    <div className="absolute inset-x-0 bottom-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <p className="text-white text-sm font-medium leading-snug">
-                        {photo.caption}
-                      </p>
-                    </div>
+      <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto mt-10 rounded-full" />
+    </div>
+  </header>
 
-                    {/* Icon Zoom */}
-                    <div className="absolute top-3 right-3 bg-blue-600 text-white p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100">
-                      <Maximize2 size={18} />
-                    </div>
-                  </div>
-                </a>
+  {/* --- AREA GRID GALLERY (Background Bersih/Putih) --- */}
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
+      {galleryData.map((photo) => (
+        <div key={photo.id} className="relative group overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 bg-white border border-gray-100">
+          <a href={photo.imageUrl} target="_blank" rel="noopener noreferrer" className="block">
+            <div className="relative overflow-hidden">
+           <img
+  src={photo.imageUrl}
+  alt={`${photo.caption} - PT Kamandanu Jaya Samudera`}
+  loading="lazy"
+  className="w-full h-48 md:h-56 lg:h-64 object-contain bg-white group-hover:scale-105 transition-transform duration-700"
+/>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-x-0 bottom-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <p className="text-white text-sm font-medium leading-snug">{photo.caption}</p>
               </div>
-            ))}
-          </div>
+              <div className="absolute top-3 right-3 bg-blue-600 text-white p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100">
+                <Maximize2 size={18} />
+              </div>
+            </div>
+          </a>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
     </>
   );
 };

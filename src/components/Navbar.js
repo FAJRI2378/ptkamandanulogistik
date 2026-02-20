@@ -35,7 +35,7 @@ const navigation = [
   return (
     <header>
       <nav 
-        className="fixed w-full z-50 transition-all duration-500 ease-in-out"
+  className="sticky top-0 w-full z-50 transition-all duration-500 ease-in-out"
         aria-label="Main Navigation"
       >
         {/* COMPACT ANNOUNCEMENT BAR */}
@@ -87,9 +87,11 @@ const navigation = [
                     <span className="block sm:inline">PT KAMANDANU JAYA</span>
                     <span className="text-blue-600 block sm:inline sm:ml-1">SAMUDERA</span>
                   </h1>
-                  <span className="text-blue-500/80 font-bold text-[6px] sm:text-[7px] md:text-[9px] uppercase tracking-widest mt-0.5">
-                    Official Website 2026
-                  </span>
+                 <span className="text-blue-500/80 font-bold 
+                 text-[10px] sm:text-xs md:text-sm 
+                 uppercase tracking-widest mt-1">
+  Official Website 2026
+</span>
                 </div>
               </Link>
 

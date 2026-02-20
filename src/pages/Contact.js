@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { MapPin,Clock, Send, MessageCircle, Globe, ShieldCheck } from "lucide-react";
+import { MapPin,Clock, Mail, MessageCircle, Globe, ShieldCheck } from "lucide-react";
 import Seo from "../components/Seo";
-
+import backgroundImageHeader from "../img/ch.jpg";
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -49,9 +49,17 @@ const Contact = () => {
 
       <main className="bg-[#F8FAFC] min-h-screen font-sans selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
         {/* --- HERO SECTION --- */}
-        <header className="relative pt-28 pb-20 md:pt-40 md:pb-32 bg-[#0A2540] overflow-hidden">
+        <header className="relative pt-16 pb-20 md:pt-24 md:pb-32 bg-[#0A2540] overflow-hidden">
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: 'radial-gradient(circle, #3b82f6 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+             <div
+    className="absolute inset-0 z-0 opacity-40 bg-cover bg-center"
+    style={{
+      backgroundImage: `url(${backgroundImageHeader})`,
+      // Tambahkan WebkitMaskImage untuk dukungan browser Safari/Chrome
+      WebkitMaskImage: "linear-gradient(to bottom, black 80%, transparent 100%)",
+      maskImage: "linear-gradient(to bottom, black 80%, transparent 100%)",
+    }}
+  />
           </div>
           <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
           
@@ -130,7 +138,7 @@ const Contact = () => {
           <div className="w-full min-w-0">
             <h3 className="text-[#0A2540] font-black text-lg mb-2 uppercase tracking-tight text-nowrap">Working Hours</h3>
             <p className="text-gray-500 text-xs font-semibold flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span> Mon - Fri: 08:00 - 17:00
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span> Mon - Fri: 08:30 - 17:30
             </p>
             <p className="text-gray-400 text-xs font-semibold ml-3.5 italic">Sat: 11:00 - 15:00 WIB</p>
           </div>
@@ -138,57 +146,37 @@ const Contact = () => {
       </div>
     </div>
 
- {/* Right Column: Map & Satelite View */}
+    {/* Right Column: Map & Satelite View */}
 <div className={`lg:col-span-7 transition-all duration-1000 delay-500 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
   <div className="bg-white p-3 rounded-[2.5rem] shadow-2xl border border-gray-100 h-full flex flex-col">
     {/* Kontainer Peta: Menggunakan view satelit untuk kesan 'Tata Surya/Space' */}
     <div className="relative rounded-[2rem] overflow-hidden w-full h-[400px] md:h-full min-h-[350px] group">
       <iframe
-        // Parameter t=k mengaktifkan mode Satelit (K-Satellite)
-        src="https://maps.google.com/?cid=5401322210352289103&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ"
-        width="100%"
-        height="100%"
-        className="absolute inset-0 border-0 contrast-110 saturate-125"
-        allowFullScreen=""
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-        title="Satelite View Office Location"
-      />
-      
-      {/* Overlay Dekoratif agar terasa lebih 'Hi-Tech' */}
-      <div className="absolute inset-0 pointer-events-none border-[12px] border-white/10 rounded-[2rem]"></div>
-      <div className="absolute top-4 left-4 bg-[#0A2540]/80 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] text-blue-300 font-bold uppercase tracking-widest flex items-center gap-2">
-        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-        Live Satellite Feed
-      </div>
+  // Parameter t=k mengaktifkan mode Satelit, q=lokasi menentukan titik koordinat/alamat
+  src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d15083.19654827613!2d106.875993!3d-6.118949!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMDcnMDguMiJTIDEwNsKwNTInNDIuOSJF!5e1!3m2!1sen!2sid!4v1771599591642!5m2!1sen!2sid"
+  width="100%"
+  height="100%"
+  className="absolute inset-0 border-0 contrast-110 saturate-125"
+  allowFullScreen=""
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+  title="Satelite View Office Location"
+/>
     </div>
 
     {/* Desktop Buttons */}
     <div className="hidden lg:grid grid-cols-2 gap-4 mt-6">
       <a href="https://wa.me/6281311922417" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 bg-[#075E54] hover:bg-[#128C7E] text-white py-5 rounded-2xl transition-all shadow-lg font-black uppercase tracking-widest text-[10px]">
-        <MessageCircle size={18} /> Recruitment Center
+        <MessageCircle size={18} /> WhatsApp
       </a>
       <a href="mailto:info@kamandanujayasamudera.com" className="flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white py-5 rounded-2xl transition-all shadow-lg font-black uppercase tracking-widest text-[10px]">
-        <Send size={18} /> Official Inquiry
+        <Mail size={18} /> Email Us
       </a>
     </div>
   </div>
 </div>
   </div>
 </section>
-
-        {/* --- TRUST BAR --- */}
-        <section className="max-w-4xl mx-auto px-6 mb-24">
-          <div className={`bg-white border-2 border-dashed border-blue-100 rounded-[3rem] p-8 md:p-12 text-center transition-all duration-1000 delay-700 ${isVisible ? "opacity-100" : "opacity-0"}`}>
-            <div className="bg-blue-50 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-600 shadow-inner">
-              <ShieldCheck size={40} />
-            </div>
-            <h3 className="text-xl md:text-2xl font-black text-[#0A2540] mb-3 uppercase">Licensed Agency</h3>
-            <p className="text-gray-500 max-w-lg mx-auto leading-relaxed text-xs md:text-sm font-medium">
-              PT Kamandanu Jaya Samudera is a fully certified crewing agency (SIUPKK) operating under the regulations of the Indonesian Ministry of Transportation.
-            </p>
-          </div>
-        </section>
       </main>
 
       <style jsx>{`

@@ -30,8 +30,28 @@ import bs from "../img/bs.jpg";
 import bsi from "../img/bsi.jpg";
 
 const managementTeam = {
-  tier1: [{ role: "Owner & Founder", name: "Mr. Makkama Patontonan", tenure: "Founded since 2010", education: "Master Mariner (ANT-I) - STIP Jakarta", wa: "6281234567890", avatar: capt, quote: "Success in the maritime industry is built on the foundation of trust and unwavering integrity." }],
-  tier2: [{ role: "Crewing Manager", name: "Vivi Savitri, S.Pd M.Pd", tenure: "5 Years Experience", education:"Master of English Education, Syarif Hidayatullah State Islamic University Jakarta", wa: "6281211112222", avatar: bv, quote: "Success is built on consistency, discipline, and the courage to keep going." }],
+  tier1: [{ 
+    role: "Owner & Founder", 
+    name: "Mr. Makkama Patontonan", 
+    tenure: "Founded since 2010", 
+    education: "Master Mariner (ANT-I) - STIP Jakarta", 
+    wa: "6281234567890", 
+    avatar: capt, 
+    quote: "Success in the maritime industry is built on the foundation of trust and unwavering integrity.",
+    vision: "Menjadi perusahaan crewing management kelas dunia yang menjadi standar utama integritas pelaut Indonesia.",
+    mission: "Menyalurkan tenaga kerja maritim yang profesional, kompeten, dan berkarakter ke pasar global."
+  }],
+  tier2: [{ 
+    role: "Crewing Manager", 
+    name: "Vivi Savitri, S.Pd M.Pd", 
+    tenure: "5 Years Experience", 
+    education:"Master of English Education, Syarif Hidayatullah State Islamic University Jakarta", 
+    wa: "6281211112222", 
+    avatar: bv, 
+    quote: "Success is built on consistency, discipline, and the courage to keep going.",
+    vision: "Menciptakan ekosistem kerja yang transparan dan efisien bagi seluruh kru dan klien.",
+    mission: "Meningkatkan standar pelatihan dan kesejahteraan kru melalui manajemen yang berbasis pendidikan dan empati."
+  }],
   tier3: [
     { role: "Crewing", name: "Putri Naflah Tabitah Mth S.Pd.", tenure: "3 Years Experience", education: "English Education - UIN Palopo", wa: "6281233334444", avatar: kp, quote: "The strength of a ship lies in its crew." },
     { role: "Crewing", name: "Riska S.Pd", tenure: "3 Years Experience", education: " English Education - UIN Palopo", wa: "6281255556666", avatar: kr, quote: "Smooth seas do not make skillful sailors." },
@@ -54,31 +74,69 @@ const onboardCrew = [
   { position: "CO", vessel: "GENERAL CARGO", status: "Onboard", nextPort: "CHINA", avatar: onboard7 },
   { position: "4E", vessel: "VLCC", status: "Onboard", nextPort: "CHINA", avatar: onboard8 },
 ];
-
 const MemberCard = ({ member, layout = "vertical" }) => (
   <div className="group relative bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl h-full">
     <div className={`flex flex-col h-full ${layout === "horizontal" ? "lg:flex-row" : ""}`}>
+      {/* Kolom Gambar */}
       <div className={`${layout === "horizontal" ? "lg:w-2/5" : "w-full"} relative overflow-hidden h-80 lg:h-auto`}>
         <img src={member.avatar} alt={member.name} className="w-full h-full object-cover grayscale-[10%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A2540]/60 via-transparent to-transparent" />
       </div>
+
+      {/* Kolom Konten */}
       <div className={`${layout === "horizontal" ? "lg:w-3/5" : "w-full"} p-8 flex flex-col justify-between relative bg-white`}>
         <div className="absolute top-4 right-6 text-blue-500/10 pointer-events-none"><Quote size={80} /></div>
+        
         <div className="relative z-10">
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="bg-blue-600 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest">{member.role}</span>
             <span className="flex items-center gap-1 text-[9px] font-bold text-gray-400 uppercase"><Calendar size={12} className="text-blue-500" /> {member.tenure}</span>
           </div>
+          
           <h3 className="text-xl font-black text-[#0A2540] mb-2 group-hover:text-blue-600 transition-colors leading-tight">{member.name}</h3>
-          <p className="text-gray-500 italic text-xs mb-6 leading-relaxed">"{member.quote}"</p>
-          <div className="flex items-start gap-3">
-            <div className="p-2 bg-blue-50 rounded-lg text-blue-600"><GraduationCap size={16} /></div>
-            <div>
-              <p className="text-[9px] text-gray-400 font-black uppercase tracking-widest">Education</p>
-              <p className="text-[11px] font-bold text-[#0A2540] leading-tight">{member.education}</p>
-            </div>
+<p className="text-gray-600 italic text-sm md:text-base mb-6 leading-relaxed border-l-4 border-blue-100 pl-4">
+  "{member.quote}"
+</p>
+
+<div className="space-y-6">
+  {/* Education Section */}
+  <div className="flex items-start gap-4">
+    <div className="p-3 bg-blue-50 rounded-xl text-blue-600 shadow-sm">
+      <GraduationCap size={20} />
+    </div>
+    <div>
+      <p className="text-xs text-blue-500 font-black uppercase tracking-[0.15em] mb-1">
+        Education Background
+      </p>
+      <p className="text-sm md:text-base font-bold text-[#0A2540] leading-snug">
+        {member.education}
+      </p>
+    </div>
+  </div>
+
+           {/* VISI & MISI (Tampilan Atas-Bawah dengan Teks Lebih Besar) */}
+{member.vision && (
+  <div className="flex flex-col gap-4 pt-6 border-t border-gray-100">
+    {/* Baris Visi */}
+    <div className="bg-blue-50/40 p-4 rounded-2xl border border-blue-100/50">
+      <p className="text-[11px] md:text-xs text-blue-600 font-black uppercase tracking-[0.2em] mb-2">Our Vision</p>
+      <p className="text-sm md:text-base text-gray-800 leading-relaxed font-semibold">
+        {member.vision}
+      </p>
+    </div>
+    
+    {/* Baris Misi */}
+    <div className="bg-gray-50/80 p-4 rounded-2xl border border-gray-200/50">
+      <p className="text-[11px] md:text-xs text-blue-600 font-black uppercase tracking-[0.2em] mb-2">Our Mission</p>
+      <p className="text-sm md:text-base text-gray-800 leading-relaxed font-semibold">
+        {member.mission}
+      </p>
+    </div>
+  </div>
+)}
           </div>
         </div>
+
         <div className="mt-6 pt-5 border-t border-gray-50">
           <a href={`https://wa.me/${member.wa}`} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white py-3 rounded-xl font-bold transition-all text-[10px] uppercase tracking-widest">
             <MessageCircle size={14} /> WhatsApp Direct
@@ -123,31 +181,32 @@ const Team = () => {
     <main className="bg-[#F8FAFC] min-h-screen font-['Plus_Jakarta_Sans'] overflow-x-hidden">
       
       {/* ─── HERO HEADER (NO MORE CUTTING OFF) ─── */}
-      <header className="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden bg-[#0A2540]">
-        {/* Background Layer - Using object-center and scale to ensure the group is visible */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={teamPhoto} 
-            alt="PT Kamandanu Jaya Samudera Team" 
-            className="w-full h-full object-cover object-[center_25%] md:object-center opacity-90 transition-transform duration-1000 scale-100" 
-          />
-          {/* Overlay Gradient: Fokus gelap di bawah agar teks putih terbaca, tapi atas terang agar wajah tim terlihat */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#F8FAFC]" />
-        </div>
-        
-        {/* Content Layer - Positioned to not cover faces too much */}
-        <div className={`relative z-10 text-center px-6 pb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          <div className="inline-flex items-center gap-2 bg-blue-600/90 backdrop-blur-md border border-white/20 px-6 py-2 rounded-full text-white text-[10px] font-black uppercase tracking-[0.4em] mb-6 shadow-xl">
-            <ShieldCheck size={14} className="text-white animate-pulse"/> Professional Crew Management
-          </div>
-          <h1 className="text-5xl md:text-8xl font-black text-[#0A2540] mb-4 uppercase tracking-tighter leading-none drop-shadow-sm">
-            Meet Our <span className="text-blue-600">Great Team</span>
-          </h1>
-          <p className="text-[#0A2540]/80 max-w-2xl mx-auto text-base md:text-xl font-bold leading-relaxed px-4">
-            One vision, one mission to provide the best crewing services in the global maritime industry.
-          </p>
-        </div>
-      </header>
+     <header className="relative w-full min-h-[90vh] pt-[180px] md:pt-[200px] flex items-end justify-center overflow-hidden bg-[#0A2540]">
+  {/* Background Layer */}
+  <div className="absolute inset-0 z-0">
+    <img 
+      src={teamPhoto} 
+      alt="PT Kamandanu Jaya Samudera Team" 
+      // object-[center_15%] memastikan wajah tim tetap terlihat di bagian atas
+      className="w-full h-full object-cover object-[center_15%] md:object-center opacity-90 transition-transform duration-1000 scale-100" 
+    />
+    {/* Overlay Gradient: Dibuat sedikit lebih gelap di bawah agar teks tetap kontras */}
+    <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-[#F8FAFC]" />
+  </div>
+  
+  {/* Content Layer - Sekarang menggunakan pb-24 atau pb-32 agar teks berada di bawah */}
+  <div className={`relative z-10 text-center px-6 pb-24 md:pb-32 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+    <div className="inline-flex items-center gap-2 bg-blue-600/90 backdrop-blur-md border border-white/20 px-6 py-2 rounded-full text-white text-[10px] font-black uppercase tracking-[0.4em] mb-6 shadow-xl">
+      <ShieldCheck size={14} className="text-white animate-pulse"/> Professional Crew Management
+    </div>
+    <h1 className="text-5xl md:text-8xl font-black text-[#0A2540] mb-4 uppercase tracking-tighter leading-none drop-shadow-sm">
+      Meet Our <span className="text-blue-600">Great Team</span>
+    </h1>
+    <p className="text-[#0A2540]/80 max-w-2xl mx-auto text-base md:text-xl font-bold leading-relaxed px-4">
+      One vision, one mission to provide the best crewing services in the global maritime industry.
+    </p>
+  </div>
+</header>
 
       {/* ─── MAIN CONTENT ─── */}
       <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-20 pb-24">

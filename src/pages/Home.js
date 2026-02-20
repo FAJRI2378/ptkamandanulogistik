@@ -6,9 +6,6 @@ import {
   Ship,
   Users,
   ShieldCheck,
-  Anchor,
-  CheckCircle,
-  FileText,
   Database,
   ArrowRight,
   ChevronLeft,
@@ -24,7 +21,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 
-// Import foto Anda
+// Import Assets
 import foto from "../img/foto.jpeg";
 import foto2 from "../img/crew1.jpg";
 import foto3 from "../img/crew2.jpg";
@@ -32,35 +29,67 @@ import foto3 from "../img/crew2.jpg";
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
 
+  useEffect(() => {
+    setIsVisible(true);
+    window.scrollTo(0, 0);
+  }, []);
+
   const stats = [
     { icon: Users, number: 360, suffix: "+", label: "Crews Deployed", color: "text-blue-500" },
     { icon: Database, number: 10000, suffix: "+", label: "Talent Pool", color: "text-cyan-500" },
     { icon: Ship, number: 8000, suffix: "", label: "Vessels Served", color: "text-indigo-500" },
-    { icon: Award, number: 100, suffix: "%", label: "Mlc Compliant Regulation", color: "text-emerald-500" },
+    { icon: Award, number: 100, suffix: "%", label: "MLC Compliant Regulation", color: "text-emerald-500" },
   ];
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+  const sliderData = [
+    { src: foto, alt: "PT Kamandanu Jaya Samudera Professional Crew Management" },
+    { src: foto2, alt: "Skilled Indonesian Seafarers Training Center" },
+    { src: foto3, alt: "Maritime Excellence and Global Vessel Support" },
+  ];
 
-  const homePhotos = [foto, foto2, foto3];
+  // STRUCTURED DATA (SEO)
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PT Kamandanu Jaya Samudera",
+    "url": "https://www.ptkamandanujayasamudera.com",
+    "logo": "https://www.ptkamandanujayasamudera.com/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+62-8131-1922-417",
+      "contactType": "customer service",
+      "areaServed": "Global",
+      "availableLanguage": ["English", "Indonesian"]
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/pt-kamandanu-jaya-samudera",
+      "https://www.instagram.com/kamandanujayasamudera_"
+    ]
+  };
 
   return (
     <>
       <Seo
         title="PT Kamandanu Jaya Samudera | #1 Crew Manning Agency Indonesia"
-        description="Trusted Indonesian crew manning agency..."
+        description="Trusted Indonesian crew manning agency providing STCW-certified seafarers, maritime logistics, and comprehensive crew management solutions worldwide."
         url="/"
       />
 
-      <main className="overflow-hidden font-['Plus_Jakarta_Sans'] text-[#0A2540]">
+      {/* Structured Data Script */}
+      <script 
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+
+   <main className="font-['Plus_Jakarta_Sans'] text-[#0A2540]">
+        
         {/* ─── HERO SECTION ─── */}
-        <header className="relative min-h-screen flex items-center justify-center pt-20">
+        <header className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden pt-32 sm:pt-36 lg:pt-40">
           <div className="absolute inset-0 z-0 bg-[#071829]">
             <iframe
               className="absolute inset-0 w-full h-full object-cover scale-110 opacity-40 pointer-events-none"
               src="https://www.youtube.com/embed/b_q0Tb2y_qI?autoplay=1&mute=1&loop=1&playlist=b_q0Tb2y_qI&controls=0&showinfo=0&rel=0&modestbranding=1"
-              title="Maritime Background"
+              title="Maritime Background Video"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#0A2540]/80 via-transparent to-[#0A2540]" />
           </div>
@@ -68,14 +97,14 @@ const Home = () => {
           <div className="relative z-10 max-w-7xl mx-auto px-6 text-center lg:text-left grid lg:grid-cols-2 gap-12 items-center">
             <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
               <div className="inline-flex items-center gap-2 bg-blue-500/20 backdrop-blur-md border border-blue-400/30 px-4 py-2 rounded-full text-blue-300 text-sm font-bold mb-8">
-                <ShieldCheck size={18} /> Official Licensed Manning Agency
+                <ShieldCheck size={18} /> Official Website of PT Kamandanu Jaya Samudera
               </div>
               <h1 className="text-5xl md:text-7xl font-black text-white leading-[1.1] mb-6 tracking-tighter">
                 Reliable <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Maritime</span> <br />
                 Excellence.
               </h1>
               <p className="text-xl text-blue-100/80 mb-10 max-w-xl leading-relaxed">
-                Empowering global shipping with Indonesia's finest, STCW-certified seafarers.
+                Empowering global shipping with Indonesia's finest, STCW-certified seafarers and world-class management.
               </p>
               <div className="flex flex-wrap gap-5 justify-center lg:justify-start">
                 <Link to="/contact" className="px-10 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-xl shadow-blue-900/40">
@@ -101,74 +130,110 @@ const Home = () => {
           </div>
         </header>
 
-        {/* ─── ABOUT SECTION WITH SLIDER ─── */}
-        <section className="py-24 bg-[#F8FAFC]">
-          <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
-            
-            {/* SISI KIRI: SLIDER FOTO */}
-            <div className="relative group/slider">
-              <div className="absolute -inset-4 bg-blue-600/10 rounded-[3rem] blur-2xl transition-all" />
-              
-              <div className="relative rounded-[2.5rem] shadow-2xl overflow-hidden h-[400px] md:h-[600px] bg-gray-200">
-                <Swiper
-                  modules={[Autoplay, Pagination, Navigation, EffectFade]}
-                  effect={'fade'}
-                  autoplay={{ delay: 4000, disableOnInteraction: false }}
-                  pagination={{ clickable: true }}
-                  navigation={{ prevEl: '.prev-home', nextEl: '.next-home' }}
-                  loop={true}
-                  className="h-full w-full"
-                >
-                  {homePhotos.map((img, index) => (
-                    <SwiperSlide key={index}>
-                      <img 
-                        src={img} 
-                        alt={`Slide ${index}`} 
-                        className="w-full h-full object-cover"
-                      />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+      {/* ─── ABOUT SECTION WITH SLIDER ─── */}
+<section className="relative py-12 lg:py-24 bg-[#F8FAFC] overflow-hidden">
+  <div className="max-w-7xl mx-auto px-6 lg:px-8 
+                  flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
-                {/* Bulat Navigasi Custom (Arrow) */}
-                <button className="prev-home absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-all hover:bg-white hover:text-blue-600">
-                  <ChevronLeft size={24} />
-                </button>
-                <button className="next-home absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-all hover:bg-white hover:text-blue-600">
-                  <ChevronRight size={24} />
-                </button>
-              </div>
-            </div>
+    {/* ───────── LEFT SIDE : SLIDER ───────── */}
+    {/* order-2 di mobile agar teks dibaca duluan, atau hapus 'order' jika slider ingin tetap di atas */}
+    <div className="relative group/slider w-full order-1 lg:order-1">
 
-            {/* SISI KANAN: TEKS */}
-            <article>
-              <h3 className="text-4xl md:text-5xl font-black mb-8 leading-tight text-[#0A2540]">
-                Indonesia's Premier Gateway to Global Crewing
-              </h3>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                <strong>PT Kamandanu Jaya Samudera</strong> is more than just a manning agency. We are a strategic partner in maritime safety and operational efficiency.
-              </p>
-              
-              {/* <div className="grid sm:grid-cols-2 gap-6 mb-10">
-                {["Rigorous Screening", "Global Compliance", "Welfare Support", "Expert Management"].map((title, i) => (
-                  <div key={i} className="flex gap-4 items-center">
-                    <div className="bg-blue-100 text-blue-600 p-2 rounded-lg"><CheckCircle size={20}/></div>
-                    <h4 className="font-bold text-[#0A2540] text-sm">{title}</h4>
-                  </div>
-                ))}
-              </div> */}
+      {/* Soft Glow Background - Ukuran lebih halus di mobile */}
+      <div className="absolute -inset-2 md:-inset-4 bg-blue-600/10 
+                      rounded-[2rem] lg:rounded-[2.5rem] blur-2xl -z-10" />
 
-              <Link to="/services" className="inline-flex items-center gap-2 group text-[#0A2540] font-black hover:text-blue-600 transition-colors">
-                VIEW ALL SERVICES <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-              </Link>
-            </article>
-          </div>
-        </section> 
+      {/* Slider Container - Height disesuaikan agar proporsional di semua layar */}
+      <div className="relative rounded-[2rem] lg:rounded-[2.5rem] 
+                      shadow-2xl overflow-hidden 
+                      h-[280px] sm:h-[350px] md:h-[450px] lg:h-[600px] 
+                      bg-gray-200 w-full">
+
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation, EffectFade]}
+          effect="fade"
+          autoplay={{ delay: 4500, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          navigation={{
+            prevEl: '.prev-home',
+            nextEl: '.next-home',
+          }}
+          loop={true}
+          className="h-full w-full"
+        >
+          {sliderData.map((img, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full h-full object-cover"
+                loading={index === 0 ? "eager" : "lazy"}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Custom Navigation - Disembunyikan di mobile agar tidak mengganggu touch area */}
+        <button
+          aria-label="Previous Slide"
+          className="prev-home absolute left-3 top-1/2 -translate-y-1/2 z-30 
+                     w-9 h-9 bg-white/30 backdrop-blur-md rounded-full 
+                     hidden md:flex items-center justify-center text-white 
+                     opacity-0 lg:group-hover/slider:opacity-100 transition-all"
+        >
+          <ChevronLeft size={20} />
+        </button>
+
+        <button
+          aria-label="Next Slide"
+          className="next-home absolute right-3 top-1/2 -translate-y-1/2 z-30 
+                     w-9 h-9 bg-white/30 backdrop-blur-md rounded-full 
+                     hidden md:flex items-center justify-center text-white 
+                     opacity-0 lg:group-hover/slider:opacity-100 transition-all"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
+    </div>
+
+    {/* ───────── RIGHT SIDE : CONTENT ───────── */}
+    <article className="order-2 lg:order-2 space-y-4 md:space-y-6">
+      {/* Judul Tambahan untuk Mobile agar lebih informatif */}
+      <h3 className="text-2xl md:text-4xl font-black text-[#0A2540] leading-tight">
+        Company profile
+      </h3>
+
+      <div className="space-y-4 text-gray-600">
+        <p className="text-base md:text-lg leading-relaxed">
+          <strong>KAMANDANU JAYA SAMUDERA</strong> is a professional manning company specializing in the recruitment of qualified seafarers for international shipping.
+        </p>
+
+        <p className="text-base md:text-lg leading-relaxed">
+          Supported by maritime experts and modern computerized systems, we ensure transparency, efficiency, and full regulatory compliance.
+        </p>
+
+        <p className="text-base md:text-lg leading-relaxed">
+          We deliver "service with a smile," safeguarding your assets by providing competent, work-ready crews that meet global standards.
+        </p>
+      </div>
+
+      <div className="pt-4">
+        <Link
+          to="/services"
+          className="inline-flex items-center gap-2 text-[#0A2540] font-black 
+                     hover:text-blue-600 transition-all group"
+        >
+          EXPLORE OUR SERVICES
+          <ArrowRight className="transition-transform group-hover:translate-x-2" />
+        </Link>
+      </div>
+    </article>
+
+  </div>
+</section>
       </main>
 
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
-        
         .swiper-pagination-bullet {
           background: white !important;
           opacity: 0.6;
@@ -176,7 +241,7 @@ const Home = () => {
         .swiper-pagination-bullet-active {
           background: white !important;
           opacity: 1;
-          width: 20px;
+          width: 24px;
           border-radius: 4px;
           transition: all 0.3s;
         }

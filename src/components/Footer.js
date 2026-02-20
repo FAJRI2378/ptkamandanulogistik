@@ -23,12 +23,12 @@ const Footer = () => {
     const localBusinessSchema = {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "@id": "https://kamandanujayasamudera.com/#organization",
+      "@id": "https://www.ptkamandanujayasamudera.com/#organization",
       name: "PT Kamandanu Jaya Samudera",
       alternateName: "Kamandanu Jaya Samudera",
       description:
         "Professional crew manning agency and ship management services in Indonesia, providing qualified seafarers for international vessels",
-      url: "https://kamandanujayasamudera.com",
+      url: "https://www.ptkamandanujayasamudera.com",
       telephone: "+6281311922417",
       email: "info@kamandanujayasamudera.com",
       address: {
@@ -51,8 +51,7 @@ const Footer = () => {
         closes: "17:30",
       },
       sameAs: [
-        "https://www.facebook.com/kamandanujayasamudera",
-        "https://twitter.com/kamandanujaya",
+        "https://www.facebook.com/kamandanujaya.samudera",
         "https://www.linkedin.com/company/pt-kamandanu-jaya-samudera",
         "https://www.instagram.com/kamandanujayasamudera_",
       ],
@@ -368,13 +367,13 @@ const Footer = () => {
                   aria-hidden="true"
                 />
                 <a
-                  href="https://kamandanujayasamudera.com"
+                  href="https://www.ptkamandanujayasamudera.com"
                   className="hover:text-white transition-colors hover:underline"
                   itemProp="url"
                   aria-label="Visit our website"
                 >
-                  www.kamandanujayasamudera.com
-                  <p>www.kamandanujayasamudera.com</p>
+                
+                  <p>www.ptkamandanujayasamudera.com</p>
                 </a>
               </li>
               <li className="flex items-center">

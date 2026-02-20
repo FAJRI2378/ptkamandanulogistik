@@ -25,6 +25,7 @@ import 'swiper/css/navigation';
 import c1 from "../img/crew1.jpg";
 import c2 from "../img/crew2.jpg";
 import c3 from "../img/foto.jpeg";
+import backgroundImageHeader from "../img/as.jpg";
 
 const Services = () => {
   useEffect(() => {
@@ -50,7 +51,7 @@ const Services = () => {
     {
       icon: Users,
       title: "Extensive Crewing Network",
-      description: "With a pool of over 10,800 skilled seafarers and 10+ manning offices worldwide, we provide competent crew recruitment for various vessel types.",
+      description: "With a pool of over 10,800 skilled seafarers  , we provide competent crew recruitment for various vessel types.",
     },
     {
       icon: FileCheck,
@@ -117,19 +118,30 @@ const Services = () => {
       <main className="bg-[#F8FAFC] min-h-screen font-['Plus_Jakarta_Sans']">
         
         {/* --- Hero Section --- */}
-        <header className="relative pt-32 pb-28 bg-[#0A2540] overflow-hidden text-center">
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-widest mb-6 border border-blue-400/20">
-              <Globe size={14} /> Global Maritime Support
-            </div>
-            <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
-              Our Comprehensive <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Service Solutions</span>
-            </h1>
-          </div>
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent opacity-50"></div>
-        </header>
+        <header className="relative pt-12 pb-28 bg-[#0A2540] overflow-hidden text-center">
+  {/* BACKGROUND IMAGE DENGAN GRADIENT OVERLAY */}
+  <div 
+    className="absolute inset-0 z-0 opacity-40 bg-cover bg-center"
+    style={{ 
+      backgroundImage: `linear-gradient(to bottom, rgba(10, 37, 64, 0.2), #0A2540), url(${backgroundImageHeader})`,
+    }}
+  />
 
+  <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-widest mb-6 border border-blue-400/20 backdrop-blur-sm">
+      <Globe size={14} /> Global Maritime Support
+    </div>
+    <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight drop-shadow-lg">
+      Our Comprehensive <br />
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+        Service Solutions
+      </span>
+    </h1>
+  </div>
+
+  {/* GRADIENT RADIAL BAWAAN ANDA */}
+  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent opacity-50 z-0"></div>
+</header>
         {/* --- SECTION 1: VISUAL WORKFLOW --- */}
         <section className="max-w-7xl mx-auto px-6 -mt-16 relative z-20">
           <div className="bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-4 md:p-10 shadow-2xl border border-white/20">
