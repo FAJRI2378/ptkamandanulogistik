@@ -35,9 +35,9 @@ const Home = () => {
   }, []);
 
   const stats = [
-    { icon: Users, number: 360, suffix: "+", label: "Crews Deployed", color: "text-blue-500" },
-    { icon: Database, number: 10000, suffix: "+", label: "Talent Pool", color: "text-cyan-500" },
-    { icon: Ship, number: 8000, suffix: "", label: "Vessels Served", color: "text-indigo-500" },
+    { icon: Users, number: 5000, suffix: "+", label: "Crews Deployed", color: "text-blue-500" },
+    { icon: Database, number: 7000, suffix: "+", label: "Talent Pool", color: "text-cyan-500" },
+    { icon: Ship, number: 5000, suffix: "+", label: "Vessels Served", color: "text-indigo-500" },
     { icon: Award, number: 100, suffix: "%", label: "MLC Compliant Regulation", color: "text-emerald-500" },
   ];
 
@@ -97,7 +97,7 @@ const Home = () => {
           <div className="relative z-10 max-w-7xl mx-auto px-6 text-center lg:text-left grid lg:grid-cols-2 gap-12 items-center">
             <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
               <div className="inline-flex items-center gap-2 bg-blue-500/20 backdrop-blur-md border border-blue-400/30 px-4 py-2 rounded-full text-blue-300 text-sm font-bold mb-8">
-                <ShieldCheck size={18} /> Official Website of PT Kamandanu Jaya Samudera
+                <ShieldCheck size={18} /> Official New Website of PT Kamandanu Jaya Samudera
               </div>
               <h1 className="text-5xl md:text-7xl font-black text-white leading-[1.1] mb-6 tracking-tighter">
                 Reliable <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Maritime</span> <br />

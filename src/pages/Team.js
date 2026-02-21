@@ -34,12 +34,12 @@ const managementTeam = {
     role: "Owner & Founder", 
     name: "Mr. Makkama Patontonan", 
     tenure: "Founded since 2010", 
-    education: "Master Mariner (ANT-I) - STIP Jakarta", 
+    education: "Banten Maritime Academy Poltekpel", 
     wa: "6281234567890", 
     avatar: capt, 
-    quote: "Success in the maritime industry is built on the foundation of trust and unwavering integrity.",
-    vision: "Menjadi perusahaan crewing management kelas dunia yang menjadi standar utama integritas pelaut Indonesia.",
-    mission: "Menyalurkan tenaga kerja maritim yang profesional, kompeten, dan berkarakter ke pasar global."
+    quote: "Kami berkomitmen membentuk insan maritim yang profesional, disiplin, dan siap menghadapi tantangan global, karena kami percaya kemajuan sektor maritim dimulai dari peningkatan kualitas manusia yang menggerakkannya.",
+    vision: "Menjadi perusahaan crewing management kelas dunia yang menjadi standar utama integritas pelaut di dunia.",
+    mission: "Menyalurkan tenaga kerja maritim yang profesional, kompeten, dan berkarakter ke kancah maritim dunia."
   }],
   tier2: [{ 
     role: "Crewing Manager", 
@@ -53,14 +53,14 @@ const managementTeam = {
     mission: "Meningkatkan standar pelatihan dan kesejahteraan kru melalui manajemen yang berbasis pendidikan dan empati."
   }],
   tier3: [
-    { role: "Crewing", name: "Putri Naflah Tabitah Mth S.Pd.", tenure: "3 Years Experience", education: "English Education - UIN Palopo", wa: "6281233334444", avatar: kp, quote: "The strength of a ship lies in its crew." },
-    { role: "Crewing", name: "Riska S.Pd", tenure: "3 Years Experience", education: " English Education - UIN Palopo", wa: "6281255556666", avatar: kr, quote: "Smooth seas do not make skillful sailors." },
-    { role: "Crewing", name: "Jasmin B. Saijeng, S.Pd", tenure: "3 Years Experience", education: "English Education - UIN Palopo", wa: "6281277778888", avatar: kj, quote: "Nothing is a Coincidence." }
+    { role: "Crewing", name: "Putri Naflah Tabitah Mth S.Pd.", tenure: "3 Years Experience", education: "English Education - UIN Palopo", wa: "6281233334444", avatar: kp, quote: "A winner is a dreamer who never gives up." },
+    { role: "Crewing", name: "Riska S.Pd", tenure: "3 Years Experience", education: " English Education - UIN Palopo", wa: "6281255556666", avatar: kr, quote: "The future belongs to the relentless." },
+    { role: "Crewing", name: "Jasmin B. Saijeng, S.Pd", tenure: "3 Years Experience", education: "English Education - UIN Palopo", wa: "6281277778888", avatar: kj, quote: "Nothing is a Coincedence, Everything Happens for a Reason." }
   ],
   tier4: [
-    { role: "Crewing Staff", name: "Shinta Melati Sudarsono, S.M", tenure: "3 Years Experience", education: "Management - Univ. 17 Agustus 1945", wa: "6281277778888", avatar: bs, quote: "Earn the best day of your life." },
-    { role: "Crewing Staff", name: "Rezha Afrida Yanti S.Tr.Pel", tenure: "1 Year Experience", education: "PIP Makassar", wa: "6281277778888", avatar: be, quote: "Stop when you're finished." },
-    { role: "Crewing Staff", name: "Silmi Atma Ayu S.Pd", tenure: "1 Year Experience", education: "English Education - UIN Palopo", wa: "6281277778888", avatar: bsi, quote: "Success is the sum of small efforts." }
+    { role: "Crewing Staff", name: "Shinta Melati Sudarsono, S.M", tenure: "3 Years Experience", education: "Management - Univ. 17 Agustus 1945", wa: "6281277778888", avatar: bs, quote: ":you have through some bad days, you earn the best day of your life." },
+    { role: "Crewing Staff", name: "Rezha Afrida Yanti S.Tr.Pel", tenure: "1 Year Experience", education: "PIP Makassar", wa: "6281277778888", avatar: be, quote: "Don't stop when you're tired, stop when you're finished." },
+    { role: "Crewing Staff", name: "Silmi Atma Ayu S.Pd", tenure: "1 Year Experience", education: "English Education - UIN Palopo", wa: "6281277778888", avatar: bsi, quote: "Success is the sum of small efforts, repeated day in and day out." }
   ]
 };
 
@@ -90,7 +90,7 @@ const MemberCard = ({ member, layout = "vertical" }) => (
         <div className="relative z-10">
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="bg-blue-600 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest">{member.role}</span>
-            <span className="flex items-center gap-1 text-[9px] font-bold text-gray-400 uppercase"><Calendar size={12} className="text-blue-500" /> {member.tenure}</span>
+            {/* <span className="flex items-center gap-1 text-[9px] font-bold text-gray-400 uppercase"><Calendar size={12} className="text-blue-500" /> {member.tenure}</span> */}
           </div>
           
           <h3 className="text-xl font-black text-[#0A2540] mb-2 group-hover:text-blue-600 transition-colors leading-tight">{member.name}</h3>
@@ -279,7 +279,7 @@ const Team = () => {
                </div>
                <div>
                  <p className="text-[10px] text-blue-300 font-black uppercase tracking-widest mb-1">Total Pool</p>
-                 <p className="text-4xl font-black text-white">10,800+</p>
+                 <p className="text-4xl font-black text-white">7000+</p>
                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Verified Seafarers</p>
                </div>
             </div>
