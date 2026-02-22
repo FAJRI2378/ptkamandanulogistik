@@ -11,7 +11,7 @@ import {
   MapPin,
 } from "lucide-react";
 import Seo from "../components/Seo";
-import backgroundImageHeader from "../img/ah.jpg";
+import backgroundImageHeader from "../img/ah.webp";
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -40,40 +40,7 @@ const About = () => {
     return () => document.head.removeChild(script);
   }, []);
 
-  const services = [
-    {
-      title: "Talent Acquisition",
-      desc: "Rigorous selection of top-tier, certified maritime talent.",
-    },
-    {
-      title: "Global Manning",
-      desc: "Seamless coordination via our worldwide network of offices.",
-    },
-    {
-      title: "Training & Growth",
-      desc: "Continuous skill development and STCW compliance.",
-    },
-    {
-      title: "Financial Admin",
-      desc: "Streamlined payroll, accounting, and cost monitoring.",
-    },
-    {
-      title: "Compliance",
-      desc: "Automated tracking of Meds, Visas, and Flag State requirements.",
-    },
-    {
-      title: "Logistics",
-      desc: "Efficient travel and crew change coordination.",
-    },
-    {
-      title: "Consultancy",
-      desc: "Expert maritime advice and regulatory guidance.",
-    },
-    {
-      title: "Risk Management",
-      desc: "Comprehensive P&I insurance and asset protection.",
-    },
-  ];
+ 
 
   return (
     <>

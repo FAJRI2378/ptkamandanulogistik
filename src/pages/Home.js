@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import AnimatedCounter from "../components/AnimatedCounter";
 import {
   Award,
@@ -22,9 +23,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 
 // Import Assets
-import foto from "../img/foto.jpeg";
-import foto2 from "../img/crew1.jpg";
-import foto3 from "../img/crew2.jpg";
+import foto from "../img/foto.webp";
+import foto2 from "../img/crew1.webp";
+import foto3 from "../img/crew2.webp";
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -47,7 +48,7 @@ const Home = () => {
     { src: foto3, alt: "Maritime Excellence and Global Vessel Support" },
   ];
 
-  // STRUCTURED DATA (SEO)
+  // STRUCTURED DATA (SEO) — dipindah ke Helmet
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -75,21 +76,25 @@ const Home = () => {
         url="/"
       />
 
-      {/* Structured Data Script */}
-      <script 
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
+      {/* ✅ FIX #1: Structured Data dipindah ke Helmet (bukan <script> langsung di JSX) */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
+      </Helmet>
 
-   <main className="font-['Plus_Jakarta_Sans'] text-[#0A2540]">
-        
+      <main className="font-['Plus_Jakarta_Sans'] text-[#0A2540]">
+
         {/* ─── HERO SECTION ─── */}
         <header className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden pt-32 sm:pt-36 lg:pt-40">
           <div className="absolute inset-0 z-0 bg-[#071829]">
+            {/* ✅ FIX #5: Tambah allow="autoplay; encrypted-media" agar iframe tidak diblokir browser */}
             <iframe
               className="absolute inset-0 w-full h-full object-cover scale-110 opacity-40 pointer-events-none"
               src="https://www.youtube.com/embed/b_q0Tb2y_qI?autoplay=1&mute=1&loop=1&playlist=b_q0Tb2y_qI&controls=0&showinfo=0&rel=0&modestbranding=1"
               title="Maritime Background Video"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#0A2540]/80 via-transparent to-[#0A2540]" />
           </div>
@@ -130,107 +135,103 @@ const Home = () => {
           </div>
         </header>
 
-      {/* ─── ABOUT SECTION WITH SLIDER ─── */}
-<section className="relative py-12 lg:py-24 bg-[#F8FAFC] overflow-hidden">
-  <div className="max-w-7xl mx-auto px-6 lg:px-8 
-                  flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+        {/* ─── ABOUT SECTION WITH SLIDER ─── */}
+        <section className="relative py-12 lg:py-24 bg-[#F8FAFC] overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8
+                          flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
-    {/* ───────── LEFT SIDE : SLIDER ───────── */}
-    {/* order-2 di mobile agar teks dibaca duluan, atau hapus 'order' jika slider ingin tetap di atas */}
-    <div className="relative group/slider w-full order-1 lg:order-1">
+            {/* ───────── LEFT SIDE : SLIDER ───────── */}
+            <div className="relative group/slider w-full order-1 lg:order-1">
+              <div className="absolute -inset-2 md:-inset-4 bg-blue-600/10
+                              rounded-[2rem] lg:rounded-[2.5rem] blur-2xl -z-10" />
 
-      {/* Soft Glow Background - Ukuran lebih halus di mobile */}
-      <div className="absolute -inset-2 md:-inset-4 bg-blue-600/10 
-                      rounded-[2rem] lg:rounded-[2.5rem] blur-2xl -z-10" />
+              <div className="relative rounded-[2rem] lg:rounded-[2.5rem]
+                              shadow-2xl overflow-hidden
+                              h-[280px] sm:h-[350px] md:h-[450px] lg:h-[600px]
+                              bg-gray-200 w-full">
 
-      {/* Slider Container - Height disesuaikan agar proporsional di semua layar */}
-      <div className="relative rounded-[2rem] lg:rounded-[2.5rem] 
-                      shadow-2xl overflow-hidden 
-                      h-[280px] sm:h-[350px] md:h-[450px] lg:h-[600px] 
-                      bg-gray-200 w-full">
+                <Swiper
+                  modules={[Autoplay, Pagination, Navigation, EffectFade]}
+                  effect="fade"
+                  autoplay={{ delay: 4500, disableOnInteraction: false }}
+                  pagination={{ clickable: true }}
+                  navigation={{
+                    prevEl: '.prev-home',
+                    nextEl: '.next-home',
+                  }}
+                  loop={true}
+                  className="h-full w-full"
+                >
+                  {sliderData.map((img, index) => (
+                    <SwiperSlide key={index}>
+                      {/* ✅ FIX #6: Gambar pertama pakai fetchpriority="high" + loading="eager" */}
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        className="w-full h-full object-cover"
+                        loading={index === 0 ? "eager" : "lazy"}
+                        fetchpriority={index === 0 ? "high" : "auto"}
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
 
-        <Swiper
-          modules={[Autoplay, Pagination, Navigation, EffectFade]}
-          effect="fade"
-          autoplay={{ delay: 4500, disableOnInteraction: false }}
-          pagination={{ clickable: true }}
-          navigation={{
-            prevEl: '.prev-home',
-            nextEl: '.next-home',
-          }}
-          loop={true}
-          className="h-full w-full"
-        >
-          {sliderData.map((img, index) => (
-            <SwiperSlide key={index}>
-              <img
-                src={img.src}
-                alt={img.alt}
-                className="w-full h-full object-cover"
-                loading={index === 0 ? "eager" : "lazy"}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+                <button
+                  aria-label="Previous Slide"
+                  className="prev-home absolute left-3 top-1/2 -translate-y-1/2 z-30
+                             w-9 h-9 bg-white/30 backdrop-blur-md rounded-full
+                             hidden md:flex items-center justify-center text-white
+                             opacity-0 lg:group-hover/slider:opacity-100 transition-all"
+                >
+                  <ChevronLeft size={20} />
+                </button>
 
-        {/* Custom Navigation - Disembunyikan di mobile agar tidak mengganggu touch area */}
-        <button
-          aria-label="Previous Slide"
-          className="prev-home absolute left-3 top-1/2 -translate-y-1/2 z-30 
-                     w-9 h-9 bg-white/30 backdrop-blur-md rounded-full 
-                     hidden md:flex items-center justify-center text-white 
-                     opacity-0 lg:group-hover/slider:opacity-100 transition-all"
-        >
-          <ChevronLeft size={20} />
-        </button>
+                <button
+                  aria-label="Next Slide"
+                  className="next-home absolute right-3 top-1/2 -translate-y-1/2 z-30
+                             w-9 h-9 bg-white/30 backdrop-blur-md rounded-full
+                             hidden md:flex items-center justify-center text-white
+                             opacity-0 lg:group-hover/slider:opacity-100 transition-all"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            </div>
 
-        <button
-          aria-label="Next Slide"
-          className="next-home absolute right-3 top-1/2 -translate-y-1/2 z-30 
-                     w-9 h-9 bg-white/30 backdrop-blur-md rounded-full 
-                     hidden md:flex items-center justify-center text-white 
-                     opacity-0 lg:group-hover/slider:opacity-100 transition-all"
-        >
-          <ChevronRight size={20} />
-        </button>
-      </div>
-    </div>
+            {/* ───────── RIGHT SIDE : CONTENT ───────── */}
+            <article className="order-2 lg:order-2 space-y-4 md:space-y-6">
+              <h3 className="text-2xl md:text-4xl font-black text-[#0A2540] leading-tight">
+                Company profile
+              </h3>
 
-    {/* ───────── RIGHT SIDE : CONTENT ───────── */}
-    <article className="order-2 lg:order-2 space-y-4 md:space-y-6">
-      {/* Judul Tambahan untuk Mobile agar lebih informatif */}
-      <h3 className="text-2xl md:text-4xl font-black text-[#0A2540] leading-tight">
-        Company profile
-      </h3>
+              <div className="space-y-4 text-gray-600">
+                <p className="text-base md:text-lg leading-relaxed">
+                  <strong>KAMANDANU JAYA SAMUDERA</strong> is a professional manning company specializing in the recruitment of qualified seafarers for international shipping.
+                </p>
 
-      <div className="space-y-4 text-gray-600">
-        <p className="text-base md:text-lg leading-relaxed">
-          <strong>KAMANDANU JAYA SAMUDERA</strong> is a professional manning company specializing in the recruitment of qualified seafarers for international shipping.
-        </p>
+                <p className="text-base md:text-lg leading-relaxed">
+                  Supported by maritime experts and modern computerized systems, we ensure transparency, efficiency, and full regulatory compliance.
+                </p>
 
-        <p className="text-base md:text-lg leading-relaxed">
-          Supported by maritime experts and modern computerized systems, we ensure transparency, efficiency, and full regulatory compliance.
-        </p>
+                <p className="text-base md:text-lg leading-relaxed">
+                  We deliver "service with a smile," safeguarding your assets by providing competent, work-ready crews that meet global standards.
+                </p>
+              </div>
 
-        <p className="text-base md:text-lg leading-relaxed">
-          We deliver "service with a smile," safeguarding your assets by providing competent, work-ready crews that meet global standards.
-        </p>
-      </div>
+              <div className="pt-4">
+                <Link
+                  to="/services"
+                  className="inline-flex items-center gap-2 text-[#0A2540] font-black
+                             hover:text-blue-600 transition-all group"
+                >
+                  EXPLORE OUR SERVICES
+                  <ArrowRight className="transition-transform group-hover:translate-x-2" />
+                </Link>
+              </div>
+            </article>
 
-      <div className="pt-4">
-        <Link
-          to="/services"
-          className="inline-flex items-center gap-2 text-[#0A2540] font-black 
-                     hover:text-blue-600 transition-all group"
-        >
-          EXPLORE OUR SERVICES
-          <ArrowRight className="transition-transform group-hover:translate-x-2" />
-        </Link>
-      </div>
-    </article>
-
-  </div>
-</section>
+          </div>
+        </section>
       </main>
 
       <style jsx global>{`

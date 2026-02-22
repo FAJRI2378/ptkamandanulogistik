@@ -1,41 +1,37 @@
 import React, { useState, useEffect } from "react";
 import {
-  Ship,
-  Globe,
   CheckCircle,
   MapPin,
-  GraduationCap,
   Image as ImageIcon,
   X,
-  ExternalLink,
   ShieldCheck,
   ArrowUpRight,
 } from "lucide-react";
 
-import backgroundImageHeader from "../img/hp.jpg";
+import backgroundImageHeader from "../img/hp.webp";
 // Import Scroller Logos
-import l1 from "../img/lclient1.jpg";
-import l2 from "../img/lclient2.jpg";
-import l3 from "../img/lclient3.png";
-import l4 from "../img/lclient4.png";
-import l5 from "../img/lclient5.png";
-import l6 from "../img/lclient6.jpg";
-import l7 from "../img/lclient7.jpg";
-import l8 from "../img/lclient8.png";
-import l9 from "../img/lclient9.png";
-import l10 from "../img/yuhua.png";
+import l1 from "../img/lclient1.webp";
+import l2 from "../img/lclient2.webp";
+import l3 from "../img/lclient3.webp";
+import l4 from "../img/lclient4.webp";
+import l5 from "../img/lclient5.webp";
+import l6 from "../img/lclient6.webp";
+import l7 from "../img/lclient7.webp";
+import l8 from "../img/lclient8.webp";
+import l9 from "../img/lclient9.webp";
+import l10 from "../img/yuhua.webp";
 
 // Import MoU Partner Logos
-import stipJakarta from "../img/logo_stip.png";
-import poltekpelBanten from "../img/logo_poli.png";
-import bp3ip from "../img/bp3ip.png";
-import pip from "../img/pip.png";
-import ht from "../img/hangtuah.jpg";
+import stipJakarta from "../img/logo_stip.webp";
+import poltekpelBanten from "../img/logo_poli.webp";
+import bp3ip from "../img/bp3ip.webp";
+import pip from "../img/pip.webp";
+import ht from "../img/hangtuah.webp";
 import smkp from "../img/smkp.webp";
 
 // Import Documentation Images (Hanya yang tersedia)
-import stipDoc1 from "../img/stip_ttd.jpg";
-import bantenDoc1 from "../img/ttd_poli.jpg";
+import stipDoc1 from "../img/stip_ttd.webp";
+import bantenDoc1 from "../img/ttd_poli.webp";
 
 const Clients = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -48,77 +44,123 @@ const Clients = () => {
   }, []);
 
   const scrollerLogos = [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10];
-
-  const mouPartners = [
-    {
-      name: "STIP Jakarta",
-      fullName: "Sekolah Tinggi Ilmu Pelayaran Jakarta",
-      type: "Academic Maritime",
-      description: "Indonesia's premier maritime academy. Our collaboration focuses on producing elite STCW-compliant officers for international All Vessels.",
-      region: "Jakarta, Indonesia",
-      logo: stipJakarta,
-      website: "https://www.stipjakarta.ac.id",
-      documentation: stipDoc1,
-      docTitle: "Strategic MoU Signing",
-      highlights: ["Pelaksanaan Diklat Kepelautan", "Revalidasi Sertifikat Pelaut", "Perekrutran Kelulusan Fresh Graduate","Seleksi dan Penerimaan Cadet","Sebagai Narasumber atau Intrukstur ahli dalam menunjang kegiatan yang di selenggarakan oleh pihak pertama","Perekrutan Diklat Peningkatan COC"],
-    },
-    {
-      name: "Poltekpel Banten",
-      fullName: "Politeknik Pelayaran Banten",
-      type: "Academic Maritime",
-      description: "Center of excellence for maritime vocational training. Partnering to develop industry-ready ratings and support crew for global shipping fleets.",
-      region: "Banten, Indonesia",
-      logo: poltekpelBanten,
-      website: "https://poltekpel-banten.ac.id",
-      documentation: bantenDoc1,
-      docTitle: "Institutional Partnership",
-      highlights: ["Kerja Sama Study Onboard", "Maritime Safety Training", "Industry Placement","Revalidasi Sertifikat Pelaut","Seminar Maritime"],
-    },
-    {
-      name: "BP3IP Jakarta",
-      fullName: "Balai Besar Pendidikan Penyegaran dan Peningkatan Ilmu Pelayaran",
-      type: "Academic Maritime",
-      description: "Center of excellence for maritime vocational training. Partnering to develop industry-ready ratings and support crew for global shipping fleets.",
-      region: "Jakarta, Indonesia",
-      logo: bp3ip,
-      website: "https://bp3ip.ac.id/",
-      documentation: null,
-      highlights: ["Kerja Sama Study Onboard", "Maritime Safety Training", "Industry Placement","Revalidasi Sertifikat Pelaut","Medical Check Up","Upgrading Sertifikat Endorsment","Updating Sertifikat Endorsment","Seleksi dan Penerimaan Cadet"],
-    },
-    {
-      name: "PIP Makassar",
-      fullName: "Politeknik Pelayaran Indonesia Makassar",
-      type: "Academic Maritime",
-      description: "Center of excellence for maritime vocational training. Partnering to develop industry-ready ratings and support crew for global shipping fleets.",
-      region: "Makassar, Indonesia",
-      logo: pip,
-      website: "https://pipmakassar.ac.id/",
-      documentation: null,
-       highlights: ["Kerja Sama Study Onboard", "Maritime Safety Training", "Industry Placement","Revalidasi Sertifikat Pelaut","Medical Check Up","Upgrading Sertifikat Endorsment","Updating Sertifikat Endorsment","Seleksi dan Penerimaan Cadet"],
-    },
-    {
-      name: "SMKS Pelayaran  Jakarta Raya",
-      fullName: "SMKS Hang Tuah Pelayaran Jakarta Raya",
-      type: "Vocational Maritime School",
-      description: "Specializing in early-stage maritime education. We support the development of young maritime professionals through internship and career placement programs.",
-      region: "Jakarta, Indonesia",
-      logo: ht,
-      website: "https://sekolah.data.kemendikdasmen.go.id/profil-sekolah/C0A3BAE0-016F-412F-9F91-AB8FAB6EAE30",
-      documentation: null,
-      highlights: ["Seleksi dan Penerimaan Cadet", "Perekrutran Kelulusan Fresh Graduate","Sebagai Narasumber atau Intrukstur ahli dalam menunjang kegiatan yang di selenggarakan oleh pihak pertama"],
-    },
-    {
-      name: "SMKS Pelayaran Jakarta",
-      fullName: "SMK Pelayaran Jakarta",
-      type: "Vocational Maritime School",
-      description: "Focusing on building a strong foundation for future seafarers. Our partnership helps bridge the gap between secondary maritime education and global industry demands.",
-      region: "Jakarta, Indonesia",
-      logo: smkp,
-      website: "https://smkpelayaranjkt.sch.id/",
-      documentation: null,
-           highlights: ["Seleksi dan Penerimaan Cadet", "Perekrutran Kelulusan Fresh Graduate","Sebagai Narasumber atau Intrukstur ahli dalam menunjang kegiatan yang di selenggarakan oleh pihak pertama"],
-    },
-  ];
+const mouPartners = [
+  {
+    name: "STIP Jakarta",
+    fullName: "Jakarta Maritime Higher Education Institute",
+    type: "Academic Maritime",
+    description:
+      "Indonesia's premier maritime academy. Our collaboration focuses on producing elite STCW-compliant officers for international vessels.",
+    region: "Jakarta, Indonesia",
+    logo: stipJakarta,
+    website: "https://www.stipjakarta.ac.id",
+    documentation: stipDoc1,
+    docTitle: "Strategic MoU Signing",
+    highlights: [
+      "Maritime Training & Certification Programs",
+      "Seafarer Certificate Revalidation",
+      "Fresh Graduate Recruitment",
+      "Cadet Selection & Placement",
+      "Industry Expert Speaker & Instructor Collaboration",
+      "COC Upgrading Programs"
+    ],
+  },
+  {
+    name: "Poltekpel Banten",
+    fullName: "Banten Maritime Polytechnic",
+    type: "Academic Maritime",
+    description:
+      "Center of excellence for maritime vocational training. Partnering to develop industry-ready ratings and support crew for global shipping fleets.",
+    region: "Banten, Indonesia",
+    logo: poltekpelBanten,
+    website: "https://poltekpel-banten.ac.id",
+    documentation: bantenDoc1,
+    docTitle: "Institutional Partnership",
+    highlights: [
+      "Onboard Training Collaboration",
+      "Maritime Safety Training",
+      "Industry Placement Programs",
+      "Seafarer Certificate Revalidation",
+      "Maritime Seminars"
+    ],
+  },
+  {
+    name: "BP3IP Jakarta",
+    fullName:
+      "Center for Maritime Education Refresher and Advanced Training",
+    type: "Academic Maritime",
+    description:
+      "Advanced maritime training institution focused on professional skill enhancement and certification upgrading.",
+    region: "Jakarta, Indonesia",
+    logo: bp3ip,
+    website: "https://bp3ip.ac.id/",
+    documentation: null,
+    highlights: [
+      "Onboard Training Collaboration",
+      "Maritime Safety Training",
+      "Industry Placement Programs",
+      "Seafarer Certificate Revalidation",
+      "Medical Check-Up Services",
+      "Certificate Endorsement Upgrading",
+      "Certificate Endorsement Updating",
+      "Cadet Selection & Placement"
+    ],
+  },
+  {
+    name: "PIP Makassar",
+    fullName: "Indonesian Maritime Polytechnic Makassar",
+    type: "Academic Maritime",
+    description:
+      "Center of excellence for maritime vocational training. Partnering to develop globally competitive maritime professionals.",
+    region: "Makassar, Indonesia",
+    logo: pip,
+    website: "https://pipmakassar.ac.id/",
+    documentation: null,
+    highlights: [
+      "Onboard Training Collaboration",
+      "Maritime Safety Training",
+      "Industry Placement Programs",
+      "Seafarer Certificate Revalidation",
+      "Medical Check-Up Services",
+      "Certificate Endorsement Upgrading",
+      "Certificate Endorsement Updating",
+      "Cadet Selection & Placement"
+    ],
+  },
+  {
+    name: "SMKS Hang Tuah Maritime Jakarta",
+    fullName: "SMKS Hang Tuah Maritime Jakarta",
+    type: "Vocational Maritime School",
+    description:
+      "Specializing in early-stage maritime education. Supporting the development of young maritime professionals through internship and career placement programs.",
+    region: "Jakarta, Indonesia",
+    logo: ht,
+    website:
+      "https://sekolah.data.kemendikdasmen.go.id/profil-sekolah/C0A3BAE0-016F-412F-9F91-AB8FAB6EAE30",
+    documentation: null,
+    highlights: [
+      "Cadet Selection & Placement",
+      "Fresh Graduate Recruitment",
+      "Industry Expert Speaker & Instructor Collaboration"
+    ],
+  },
+  {
+    name: "SMK Pelayaran Jakarta",
+    fullName: "Jakarta Maritime Vocational School",
+    type: "Vocational Maritime School",
+    description:
+      "Focusing on building a strong foundation for future seafarers and bridging the gap between secondary maritime education and global industry demands.",
+    region: "Jakarta, Indonesia",
+    logo: smkp,
+    website: "https://smkpelayaranjkt.sch.id/",
+    documentation: null,
+    highlights: [
+      "Cadet Selection & Placement",
+      "Fresh Graduate Recruitment",
+      "Industry Expert Speaker & Instructor Collaboration"
+    ],
+  },
+];
 
   return (
     <article className="bg-[#F8FAFC] min-h-screen">

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Globe, ChevronRight, Menu, X } from "lucide-react";
-import logo from "../img/logo.png";
-import iso from "../img/iso.png";
+import logo from "../img/logo.webp";
+import iso from "../img/iso.webp";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

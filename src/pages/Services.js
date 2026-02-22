@@ -9,6 +9,7 @@ import {
   ChevronRight,
   Truck,
 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import Seo from "../components/Seo";
 
 // Import Swiper React components & Styles
@@ -22,10 +23,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 // Import gambar lokal
-import c1 from "../img/crew1.jpg";
-import c2 from "../img/crew2.jpg";
-import c3 from "../img/foto.jpeg";
-import backgroundImageHeader from "../img/as.jpg";
+import c1 from "../img/crew1.webp";
+import c2 from "../img/crew2.webp";
+import c3 from "../img/foto.webp";
+import backgroundImageHeader from "../img/as.webp";
 
 const Services = () => {
   useEffect(() => {
@@ -51,7 +52,7 @@ const Services = () => {
     {
       icon: Users,
       title: "Extensive Crewing Network",
-      description: "With a pool of over 10,800 skilled seafarers  , we provide competent crew recruitment for various vessel types.",
+      description: "With a pool of over 10,800 skilled seafarers, we provide competent crew recruitment for various vessel types.",
     },
     {
       icon: FileCheck,
@@ -66,8 +67,8 @@ const Services = () => {
   ];
 
   const crewingIncludes = [
-    "Global Recruiting", "Manning Office Coordination", "Proactive Communication", 
-    "Crew Training", "Maritime Accounting", "Cost Control", 
+    "Global Recruiting", "Manning Office Coordination", "Proactive Communication",
+    "Crew Training", "Maritime Accounting", "Cost Control",
     "Insurance Follow-up", "Payroll Services", "Compliance Standards", "Travel Coordination"
   ];
 
@@ -91,7 +92,7 @@ const Services = () => {
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Maritime Service Portfolio",
-      "itemListElement": mainServices.map((service, index) => ({
+      "itemListElement": mainServices.map((service) => ({
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
@@ -103,45 +104,45 @@ const Services = () => {
 
   return (
     <>
-      <Seo 
-        title="Maritime Services & Logistics | PT Kamandanu Jaya Samudera" 
+      <Seo
+        title="Maritime Services & Logistics | PT Kamandanu Jaya Samudera"
         description="Providing world-class maritime solutions: Professional crew management, global seafarer recruitment, and efficient sea logistics support."
         url="/services"
       />
 
-      {/* Structured Data Script - Injected for Google SEO */}
-      <script 
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      {/* ✅ FIX #1: Structured Data dipindah ke Helmet */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
 
       <main className="bg-[#F8FAFC] min-h-screen font-['Plus_Jakarta_Sans']">
-        
+
         {/* --- Hero Section --- */}
         <header className="relative pt-12 pb-28 bg-[#0A2540] overflow-hidden text-center">
-  {/* BACKGROUND IMAGE DENGAN GRADIENT OVERLAY */}
-  <div 
-    className="absolute inset-0 z-0 opacity-40 bg-cover bg-center"
-    style={{ 
-      backgroundImage: `linear-gradient(to bottom, rgba(10, 37, 64, 0.2), #0A2540), url(${backgroundImageHeader})`,
-    }}
-  />
+          <div
+            className="absolute inset-0 z-0 opacity-40 bg-cover bg-center"
+            style={{
+              backgroundImage: `linear-gradient(to bottom, rgba(10, 37, 64, 0.2), #0A2540), url(${backgroundImageHeader})`,
+            }}
+          />
 
-  <div className="max-w-7xl mx-auto px-6 relative z-10">
-    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-widest mb-6 border border-blue-400/20 backdrop-blur-sm">
-      <Globe size={14} /> Global Maritime Support
-    </div>
-    <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight drop-shadow-lg">
-      Our Comprehensive <br />
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-        Service Solutions
-      </span>
-    </h1>
-  </div>
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-widest mb-6 border border-blue-400/20 backdrop-blur-sm">
+              <Globe size={14} /> Global Maritime Support
+            </div>
+            <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight drop-shadow-lg">
+              Our Comprehensive <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+                Service Solutions
+              </span>
+            </h1>
+          </div>
 
-  {/* GRADIENT RADIAL BAWAAN ANDA */}
-  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent opacity-50 z-0"></div>
-</header>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent opacity-50 z-0"></div>
+        </header>
+
         {/* --- SECTION 1: VISUAL WORKFLOW --- */}
         <section className="max-w-7xl mx-auto px-6 -mt-16 relative z-20">
           <div className="bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-4 md:p-10 shadow-2xl border border-white/20">
@@ -205,8 +206,8 @@ const Services = () => {
                 >
                   {sliderImages.map((img, index) => (
                     <SwiperSlide key={index}>
-                      <img 
-                        src={img.src} 
+                      <img
+                        src={img.src}
                         alt={img.alt}
                         className="w-full h-full object-cover"
                         loading="lazy"
@@ -215,7 +216,6 @@ const Services = () => {
                   ))}
                 </Swiper>
 
-                {/* Navigation Buttons */}
                 <button className="prev-btn absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-all hover:bg-white hover:text-blue-600 shadow-lg">
                   <ChevronLeft size={24} />
                 </button>
@@ -228,9 +228,9 @@ const Services = () => {
 
           {/* Detailed Crewing Features */}
           <div className="mt-32 p-10 md:p-16 bg-white rounded-[3rem] shadow-sm border border-gray-100 relative overflow-hidden">
-             <div className="absolute top-0 right-0 p-8 text-blue-50/50">
-                <Ship size={120} />
-             </div>
+            <div className="absolute top-0 right-0 p-8 text-blue-50/50">
+              <Ship size={120} />
+            </div>
             <h3 className="text-xl font-black text-blue-600 uppercase tracking-[0.2em] mb-12 text-center relative z-10">
               Our crewing services include
             </h3>

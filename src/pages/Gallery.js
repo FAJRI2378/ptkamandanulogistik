@@ -1,27 +1,30 @@
 // src/pages/Gallery.jsx
 import React, { useEffect, useState } from "react";
-import { Camera, Ship, Users, Handshake, Heart, ArrowRight, MapPin } from "lucide-react";
+import { Ship, Users, Handshake, Heart, ArrowRight, MapPin } from "lucide-react";
 import Seo from "../components/Seo";
 
 // IMPORT SEMUA GAMBAR
-import g1 from "../img/g1.jpg";
-import g2 from "../img/g2.jpg";
-import g3 from "../img/g3.jpg";
-import g4 from "../img/g4.jpg";
-import g5 from "../img/g5.jpg";
-import g6 from "../img/g6.jpg";
-import g7 from "../img/g7.jpg";
-import g8 from "../img/g8.jpg";
-import g9 from "../img/g9.jpg";
-import g10 from "../img/g10.jpg";
-import g11 from "../img/g11.jpg";
-import g12 from "../img/g12.jpg";
-import g13 from "../img/g13.jpg";
-import g14 from "../img/g14.jpg";
-import g15 from "../img/g15.jpg";
-import g16 from "../img/g16.jpg";
-import g17 from "../img/g17.jpg";
-import backgroundImageHeader from "../img/gh.png";
+import g1 from "../img/g1.webp";
+import g2 from "../img/g2.webp";
+import g3 from "../img/g3.webp";
+import g4 from "../img/g4.webp";
+import g5 from "../img/g5.webp";
+import g6 from "../img/g6.webp";
+import g7 from "../img/g7.webp";
+import g8 from "../img/g8.webp";
+import g9 from "../img/g9.webp";
+import g10 from "../img/g10.webp";
+import g11 from "../img/g11.webp";
+import g12 from "../img/g12.webp";
+import g13 from "../img/g13.webp";
+import g14 from "../img/g14.webp";
+import g15 from "../img/g15.webp";
+import g16 from "../img/g16.webp";
+import g17 from "../img/g17.webp";
+import backgroundImageHeader from "../img/gh.webp";
+import g18 from "../img/baru.webp";
+import g19 from "../img/baru2.webp";
+import g20 from "../img/baru3.webp";
 
 const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,21 +39,24 @@ const Gallery = () => {
       id: "onboard",
       icon: <Ship className="text-blue-600" size={24} />,
       items: [
-        { id: 6, img: g6, caption: "Deck Maintenance Procedures", sub: "Regular maintenance by our skilled deck department." },
-        { id: 7, img: g7, caption: "Bridge Navigation Watch", sub: "Ensuring safety and precision during vessel transit." },
-        { id: 8, img: g8, caption: "Engine Room Inspection", sub: "Routine checks on propulsion systems and auxiliary machinery." },
-        { id: 9, img: g9, caption: "Safety Drill Operations", sub: "Maintaining high standards of emergency preparedness." },
-        { id: 10, img: g10, caption: "Vessel Cargo Monitoring", sub: "Professional oversight of cargo handling and stability." },
+{ id: 6, img: g6, caption: "Crew Departure Preparation", sub: "Our crew preparing for deployment at the airport before joining the vessel." },
+{ id: 7, img: g7, caption: "Crew Departure Preparation", sub: "Our crew preparing for deployment at the airport before joining the vessel." },
+{ id: 8, img: g8, caption: "Crew Departure Preparation", sub: "Our crew preparing for deployment at the airport before joining the vessel." },
+{ id: 9, img: g9, caption: "Crew Departure Preparation", sub: "Our crew preparing for deployment at the airport before joining the vessel." },
+{ id: 10, img: g10, caption: "Crew Departure Preparation", sub: "Our crew preparing for deployment at the airport before joining the vessel." },
+{ id: 5, img: g5, caption: "Onboard Crew Activity", sub: "Our professional crew performing duties onboard the vessel." },
+{ id: 18, img: g18, caption: "Onboard Crew Activity", sub: "Our professional crew performing duties onboard the vessel." },
+{ id: 19, img: g19, caption: "Onboard Crew Activity", sub: "Our professional crew performing duties onboard the vessel." },
+{ id: 20, img: g20, caption: "Onboard Crew Activity", sub: "Our professional crew performing duties onboard the vessel." },
       ]
     },
     {
-      title: "Crew Briefing & Training",
+      title: "Training",
       id: "briefing",
       icon: <Users className="text-blue-600" size={24} />,
       items: [
         { id: 1, img: g1, caption: "Handling Crew Dispute Resolution", sub: "Professional mediation and legal compliance handling." },
-        { id: 5, img: g5, caption: "Pre-Departure Briefing", sub: "Final instruction session before crew deployment." },
-        { id: 12, img: g12, caption: "Handover of SIUKAK Documentation", sub: "Official certification for maritime human resources." },
+        { id: 12, img: g12, caption: "Handover of SIUKAK Documentation", sub: "Official certification." },
       ]
     },
     {
@@ -58,29 +64,34 @@ const Gallery = () => {
       id: "principal",
       icon: <Handshake className="text-blue-600" size={24} />,
       items: [
-        { id: 2, img: g2, caption: "Headquarters Facility Tour", sub: "Showcasing our management infrastructure to partners." },
-        { id: 3, img: g3, caption: "Strategic Quarterly Meeting", sub: "Discussing fleet performance and future crew planning." },
-        { id: 4, img: g4, caption: "Principal Office Visit", sub: "Strengthening bilateral cooperation with vessel owners." },
-        { id: 13, img: g13, caption: "Operational Synergy Discussion", sub: "Optimizing manning solutions for global shipping." },
-        { id: 14, img: g14, caption: "Executive Site Visit", sub: "On-site evaluation of crew management operations." },
-        { id: 15, img: g15, caption: "Annual Audit - Sea Transportation", sub: "Compliance audit by the Directorate General of Sea Transportation." },
-        { id: 16, img: g16, caption: "Technical Management Review", sub: "Reviewing vessel maintenance and crew performance logs." },
-        { id: 17, img: g17, caption: "Digital Manning Presentation", sub: "Introducing our new automated crew tracking system." },
+       { id: 2, img: g2, caption: "Principal Meeting Session", sub: "Official meeting with principal to strengthen maritime collaboration and partnership." },
+{ id: 3, img: g3, caption: "Principal Meeting Session", sub: "Official meeting with principal to strengthen maritime collaboration and partnership." },
+{ id: 4, img: g4, caption: "Principal Meeting Session", sub: "Official meeting with principal to strengthen maritime collaboration and partnership." },
+{ id: 13, img: g13, caption: "Principal Meeting Session", sub: "Official meeting with principal to strengthen maritime collaboration and partnership." },
+{ id: 14, img: g14, caption: "Principal Meeting Session", sub: "Official meeting with principal to strengthen maritime collaboration and partnership." },
+{ id: 15, img: g15, caption: "Principal Meeting Session", sub: "Official meeting with principal to strengthen maritime collaboration and partnership." },
+{ id: 16, img: g16, caption: "Principal Meeting Session", sub: "Official meeting with principal to strengthen maritime collaboration and partnership." },
+{ id: 17, img: g17, caption: "Principal Meeting Session", sub: "Official meeting with principal to strengthen maritime collaboration and partnership." },
       ]
     },
     {
-      title: "Kegiatan Sosial",
+      title: "Social Activity",
       id: "sosial",
       icon: <Heart className="text-red-500" size={24} />,
       items: [
-        { id: 11, img: g11, caption: "Kegiatan Sosial Santunan Anak Yatim", sub: "Support at Yayasan Mufakat Al Banna" },
+{ id: 11, img: g11, caption: "Social Program", sub: "Supporting orphaned children at Mufakat Al Banna Foundation." },
       ]
     }
   ];
 
   return (
     <>
-      <Seo title="Operational Gallery | PT Kamandanu Jaya Samudera" />
+      {/* ✅ FIX #2: Tambah description yang informatif */}
+      <Seo
+        title="Operational Gallery | PT Kamandanu Jaya Samudera"
+        description="Visual documentation of PT Kamandanu Jaya Samudera's maritime operations, crew briefings, principal visits, and social activities across global shipping routes."
+        url="/gallery"
+      />
 
       <section className="min-h-screen bg-white">
         <header className="relative pt-20 pb-20 bg-[#0A2540] text-center">
@@ -95,7 +106,7 @@ const Gallery = () => {
         <div className="max-w-6xl mx-auto px-6 py-16">
           {sections.map((section, sIdx) => (
             <div key={section.id} className={`mb-24 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`} style={{ transitionDelay: `${sIdx * 150}ms` }}>
-              
+
               {/* Header Kategori */}
               <div className="flex items-center gap-4 mb-8">
                 <div className="p-2.5 bg-blue-50 rounded-xl">{section.icon}</div>
@@ -109,7 +120,7 @@ const Gallery = () => {
               <div className="flex flex-col border-t border-gray-100">
                 {section.items.map((item) => (
                   <div key={item.id} className="group flex flex-col md:flex-row items-center gap-8 py-8 border-b border-gray-100 hover:bg-slate-50 transition-all duration-300 px-4 -mx-4 rounded-2xl">
-                    
+
                     {/* Image Container */}
                     <div className="w-full md:w-64 h-40 flex-shrink-0 overflow-hidden rounded-xl shadow-sm bg-gray-100 border border-gray-200/50">
                       <img src={item.img} alt={item.caption} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -127,14 +138,14 @@ const Gallery = () => {
                           </p>
                         </div>
                         <div className="flex items-center gap-1.5 pt-2">
-                           <MapPin size={12} className="text-blue-500" />
-                           <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">PT Kamandanu Jaya Samudera</span>
+                          <MapPin size={12} className="text-blue-500" />
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">PT Kamandanu Jaya Samudera</span>
                         </div>
                       </div>
 
-                      <a 
-                        href={item.img} 
-                        target="_blank" 
+                      <a
+                        href={item.img}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 text-xs font-bold text-gray-600 hover:bg-[#0A2540] hover:text-white hover:border-[#0A2540] transition-all"
                       >

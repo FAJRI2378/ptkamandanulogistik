@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { MapPin,Clock, Mail, MessageCircle, Globe, ShieldCheck } from "lucide-react";
+import { MapPin,Clock, Mail, MessageCircle, Globe } from "lucide-react";
 import Seo from "../components/Seo";
-import backgroundImageHeader from "../img/ch.jpg";
+import backgroundImageHeader from "../img/ch.webp";
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
 
