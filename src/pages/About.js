@@ -51,18 +51,19 @@ const About = () => {
       />
      <section className="relative pt-10 pb-20 bg-[#0A2540] overflow-hidden">
         {/* BACKGROUND IMAGE DENGAN OVERLAY */}
-        <div
-          className="absolute inset-0 z-0 opacity-40 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${backgroundImageHeader})`,
-            // Memberikan efek gradasi agar bagian bawah menyatu dengan konten
-            maskImage:
-              "linear-gradient(to bottom, black 80%, transparent 100%)",
-          }}
-        />
+          <div
+    className="absolute inset-0 z-0 bg-cover bg-center"
+    style={{
+      backgroundImage: `url(${backgroundImageHeader})`,
+    }}
+  />
 
-        {/* AKSEN SKEW (Opsional, bawaan kode Anda sebelumnya) */}
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-600/10 skew-x-12 transform translate-x-20 z-0" />
+  {/* Overlay Gradient */}
+  <div className="absolute inset-0 bg-gradient-to-b from-[#0A2540]/80 via-[#0A2540]/90 to-[#0A2540] z-0" />
+
+  {/* Content */}
+  <div className="relative z-10 text-center text-white">
+
 
         <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
           <div
@@ -82,6 +83,7 @@ const About = () => {
               skilled and professional seafarers.
             </p>
           </div>
+        </div>
         </div>
       </section>
 
