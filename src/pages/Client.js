@@ -29,7 +29,7 @@ import pip from "../img/pip.webp";
 import ht from "../img/hangtuah.webp";
 import smkp from "../img/smkp.webp";
 
-// Import Documentation Images (Hanya yang tersedia)
+// Import Documentation Images
 import stipDoc1 from "../img/stip_ttd.webp";
 import bantenDoc1 from "../img/ttd_poli.webp";
 
@@ -40,130 +40,123 @@ const Clients = () => {
   useEffect(() => {
     document.title = "Strategic Partnerships & Global Clients | PT Kamandanu Jaya Samudera";
     window.scrollTo(0, 0);
-    setTimeout(() => setIsVisible(true), 100);
+    setIsVisible(true);
   }, []);
 
   const scrollerLogos = [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10];
-const mouPartners = [
-  {
-    name: "STIP Jakarta",
-    fullName: "Jakarta Maritime Higher Education Institute",
-    type: "Academic Maritime",
-    description:
-      "Indonesia's premier maritime academy. Our collaboration focuses on producing elite STCW-compliant officers for international vessels.",
-    region: "Jakarta, Indonesia",
-    logo: stipJakarta,
-    website: "https://www.stipjakarta.ac.id",
-    documentation: stipDoc1,
-    docTitle: "Strategic MoU Signing",
-    highlights: [
-      "Maritime Training & Certification Programs",
-      "Seafarer Certificate Revalidation",
-      "Fresh Graduate Recruitment",
-      "Cadet Selection & Placement",
-      "Industry Expert Speaker & Instructor Collaboration",
-      "COC Upgrading Programs"
-    ],
-  },
-  {
-    name: "Poltekpel Banten",
-    fullName: "Banten Maritime Polytechnic",
-    type: "Academic Maritime",
-    description:
-      "Center of excellence for maritime vocational training. Partnering to develop industry-ready ratings and support crew for global shipping fleets.",
-    region: "Banten, Indonesia",
-    logo: poltekpelBanten,
-    website: "https://poltekpel-banten.ac.id",
-    documentation: bantenDoc1,
-    docTitle: "Institutional Partnership",
-    highlights: [
-      "Onboard Training Collaboration",
-      "Maritime Safety Training",
-      "Industry Placement Programs",
-      "Seafarer Certificate Revalidation",
-      "Maritime Seminars"
-    ],
-  },
-  {
-    name: "BP3IP Jakarta",
-    fullName:
-      "Center for Maritime Education Refresher and Advanced Training",
-    type: "Academic Maritime",
-    description:
-      "Advanced maritime training institution focused on professional skill enhancement and certification upgrading.",
-    region: "Jakarta, Indonesia",
-    logo: bp3ip,
-    website: "https://bp3ip.ac.id/",
-    documentation: null,
-    highlights: [
-      "Onboard Training Collaboration",
-      "Maritime Safety Training",
-      "Industry Placement Programs",
-      "Seafarer Certificate Revalidation",
-      "Medical Check-Up Services",
-      "Certificate Endorsement Upgrading",
-      "Certificate Endorsement Updating",
-      "Cadet Selection & Placement"
-    ],
-  },
-  {
-    name: "PIP Makassar",
-    fullName: "Indonesian Maritime Polytechnic Makassar",
-    type: "Academic Maritime",
-    description:
-      "Center of excellence for maritime vocational training. Partnering to develop globally competitive maritime professionals.",
-    region: "Makassar, Indonesia",
-    logo: pip,
-    website: "https://pipmakassar.ac.id/",
-    documentation: null,
-    highlights: [
-      "Onboard Training Collaboration",
-      "Maritime Safety Training",
-      "Industry Placement Programs",
-      "Seafarer Certificate Revalidation",
-      "Medical Check-Up Services",
-      "Certificate Endorsement Upgrading",
-      "Certificate Endorsement Updating",
-      "Cadet Selection & Placement"
-    ],
-  },
-  {
-    name: "SMKS Hang Tuah Maritime Jakarta",
-    fullName: "SMKS Hang Tuah Maritime Jakarta",
-    type: "Vocational Maritime School",
-    description:
-      "Specializing in early-stage maritime education. Supporting the development of young maritime professionals through internship and career placement programs.",
-    region: "Jakarta, Indonesia",
-    logo: ht,
-    website:
-      "https://sekolah.data.kemendikdasmen.go.id/profil-sekolah/C0A3BAE0-016F-412F-9F91-AB8FAB6EAE30",
-    documentation: null,
-    highlights: [
-      "Cadet Selection & Placement",
-      "Fresh Graduate Recruitment",
-      "Industry Expert Speaker & Instructor Collaboration"
-    ],
-  },
-  {
-    name: "SMK Pelayaran Jakarta",
-    fullName: "Jakarta Maritime Vocational School",
-    type: "Vocational Maritime School",
-    description:
-      "Focusing on building a strong foundation for future seafarers and bridging the gap between secondary maritime education and global industry demands.",
-    region: "Jakarta, Indonesia",
-    logo: smkp,
-    website: "https://smkpelayaranjkt.sch.id/",
-    documentation: null,
-    highlights: [
-      "Cadet Selection & Placement",
-      "Fresh Graduate Recruitment",
-      "Industry Expert Speaker & Instructor Collaboration"
-    ],
-  },
-];
+  
+  const mouPartners = [
+    {
+      name: "STIP Jakarta",
+      fullName: "Jakarta Maritime Higher Education Institute",
+      type: "Academic Maritime",
+      description: "Indonesia's premier maritime academy. Our collaboration focuses on producing elite STCW-compliant officers for international vessels.",
+      region: "Jakarta, Indonesia",
+      logo: stipJakarta,
+      website: "https://www.stipjakarta.ac.id",
+      documentation: stipDoc1,
+      docTitle: "Strategic MoU Signing",
+      highlights: [
+        "Maritime Training & Certification Programs",
+        "Seafarer Certificate Revalidation",
+        "Fresh Graduate Recruitment",
+        "Cadet Selection & Placement",
+        "Industry Expert Speaker & Instructor Collaboration",
+        "COC Upgrading Programs"
+      ],
+    },
+    {
+      name: "Poltekpel Banten",
+      fullName: "Banten Maritime Polytechnic",
+      type: "Academic Maritime",
+      description: "Center of excellence for maritime vocational training. Partnering to develop industry-ready ratings and support crew for global shipping fleets.",
+      region: "Banten, Indonesia",
+      logo: poltekpelBanten,
+      website: "https://poltekpel-banten.ac.id",
+      documentation: bantenDoc1,
+      docTitle: "Institutional Partnership",
+      highlights: [
+        "Onboard Training Collaboration",
+        "Maritime Safety Training",
+        "Industry Placement Programs",
+        "Seafarer Certificate Revalidation",
+        "Maritime Seminars"
+      ],
+    },
+    {
+      name: "BP3IP Jakarta",
+      fullName: "Center for Maritime Education Refresher and Advanced Training",
+      type: "Academic Maritime",
+      description: "Advanced maritime training institution focused on professional skill enhancement and certification upgrading.",
+      region: "Jakarta, Indonesia",
+      logo: bp3ip,
+      website: "https://bp3ip.ac.id/",
+      documentation: null,
+      highlights: [
+        "Onboard Training Collaboration",
+        "Maritime Safety Training",
+        "Industry Placement Programs",
+        "Seafarer Certificate Revalidation",
+        "Medical Check-Up Services",
+        "Certificate Endorsement Upgrading",
+        "Certificate Endorsement Updating",
+        "Cadet Selection & Placement"
+      ],
+    },
+    {
+      name: "PIP Makassar",
+      fullName: "Indonesian Maritime Polytechnic Makassar",
+      type: "Academic Maritime",
+      description: "Center of excellence for maritime vocational training. Partnering to develop globally competitive maritime professionals.",
+      region: "Makassar, Indonesia",
+      logo: pip,
+      website: "https://pipmakassar.ac.id/",
+      documentation: null,
+      highlights: [
+        "Onboard Training Collaboration",
+        "Maritime Safety Training",
+        "Industry Placement Programs",
+        "Seafarer Certificate Revalidation",
+        "Medical Check-Up Services",
+        "Certificate Endorsement Upgrading",
+        "Certificate Endorsement Updating",
+        "Cadet Selection & Placement"
+      ],
+    },
+    {
+      name: "SMKS Hang Tuah Maritime Jakarta",
+      fullName: "SMKS Hang Tuah Maritime Jakarta",
+      type: "Vocational Maritime School",
+      description: "Specializing in early-stage maritime education. Supporting the development of young maritime professionals through internship and career placement programs.",
+      region: "Jakarta, Indonesia",
+      logo: ht,
+      website: "https://sekolah.data.kemendikdasmen.go.id/profil-sekolah/C0A3BAE0-016F-412F-9F91-AB8FAB6EAE30",
+      documentation: null,
+      highlights: [
+        "Cadet Selection & Placement",
+        "Fresh Graduate Recruitment",
+        "Industry Expert Speaker & Instructor Collaboration"
+      ],
+    },
+    {
+      name: "SMK Pelayaran Jakarta",
+      fullName: "Jakarta Maritime Vocational School",
+      type: "Vocational Maritime School",
+      description: "Focusing on building a strong foundation for future seafarers and bridging the gap between secondary maritime education and global industry demands.",
+      region: "Jakarta, Indonesia",
+      logo: smkp,
+      website: "https://smkpelayaranjkt.sch.id/",
+      documentation: null,
+      highlights: [
+        "Cadet Selection & Placement",
+        "Fresh Graduate Recruitment",
+        "Industry Expert Speaker & Instructor Collaboration"
+      ],
+    },
+  ];
 
   return (
-    <article className="bg-[#F8FAFC] min-h-screen">
+    <>
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
@@ -179,40 +172,47 @@ const mouPartners = [
         })}
       </script>
 
-      <header className="relative pt-10 pb-20 overflow-hidden bg-[#0A2540]">
+      {/* HEADER SECTION - IDENTIK DENGAN VERSI ATAS */}
+      <section className="relative pt-10 pb-20 bg-[#0A2540] overflow-hidden">
         <div
-          className="absolute inset-0 z-0 opacity-40 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${backgroundImageHeader})`,
-            WebkitMaskImage: "linear-gradient(to bottom, black 80%, transparent 100%)",
-            maskImage: "linear-gradient(to bottom, black 80%, transparent 100%)",
-          }}
+          className="absolute inset-0 z-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${backgroundImageHeader})` }}
         />
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <div className={`transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
-            <span className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-400/30 px-4 py-2 rounded-full text-blue-300 text-xs font-black uppercase tracking-[0.2em] mb-8">
-              <ShieldCheck size={16} /> Verified Global Network
-            </span>
-            <h1 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tighter">
-              Partnerships <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Driven by Quality.</span>
-            </h1>
-            <p className="text-xl text-blue-100/70 max-w-3xl mx-auto leading-relaxed font-medium">
-              We leverage strategic alliances with Indonesia's top maritime academies to ensure our clients receive seafarers of the highest technical caliber.
-            </p>
+
+        {/* Overlay Gradient identical to About */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A2540]/80 via-[#0A2540]/90 to-[#0A2540] z-0" />
+
+        <div className="relative z-10 text-center text-white">
+          <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
+            <div
+              className={`transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+            >
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-widest mb-6 border border-blue-400/20 backdrop-blur-sm">
+                <ShieldCheck size={14} /> Verified Global Network
+              </span>
+              <h1 className="text-4xl md:text-6xl font-black text-white mb-6 drop-shadow-lg">
+                Partnerships{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+                  Driven by Quality
+                </span>
+              </h1>
+              <p className="text-xl text-blue-50/90 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                We leverage strategic alliances with Indonesia's top maritime academies to ensure our clients receive seafarers of the highest technical caliber.
+              </p>
+            </div>
           </div>
         </div>
-      </header>
+      </section>
 
-      <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-20 pb-24">
-        
+      {/* BODY CONTENT - Padding & Margins aligned */}
+      <div className="max-w-7xl mx-auto px-4 -mt-10 pb-24 relative z-20">
         <section className="grid lg:grid-cols-2 gap-8 mb-32">
           {mouPartners.map((partner, idx) => (
-            <div 
-              key={idx} 
-              className={`bg-white rounded-[2.5rem] shadow-2xl shadow-blue-900/5 overflow-hidden border border-gray-100 group transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
+            <div
+              key={idx}
+              className={`bg-white rounded-[2.5rem] shadow-xl overflow-hidden border border-gray-100 group transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
               style={{ transitionDelay: `${idx * 200}ms` }}
             >
-              {/* h-full dan justify-center membuat konten yang tidak ada gambarnya tetap seimbang di tengah */}
               <div className="p-8 md:p-12 h-full flex flex-col justify-center">
                 <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
                   <div className="bg-slate-50 p-6 rounded-3xl border border-gray-100 group-hover:bg-blue-50 transition-colors shrink-0">
@@ -239,7 +239,6 @@ const mouPartners = [
                     <h3 className="font-black text-[#0A2540] text-sm uppercase tracking-widest flex items-center gap-2">
                       <CheckCircle size={18} className="text-emerald-500" /> Collaboration
                     </h3>
-                    {/* Grid kolom disesuaikan jika tidak ada gambar agar lebih lebar/rata */}
                     <div className={`grid gap-3 ${partner.documentation ? 'grid-cols-1' : 'md:grid-cols-2'}`}>
                         {partner.highlights.map((h, i) => (
                         <div key={i} className="flex items-center gap-3 text-sm font-bold text-gray-700 bg-slate-50/50 p-2 rounded-xl border border-transparent hover:border-blue-100 transition-all">
@@ -270,14 +269,11 @@ const mouPartners = [
           ))}
         </section>
 
+        {/* LOGO MARQUEE */}
         <section className="mb-32">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-[#0A2540] mb-4">
-              World-Class Portfolios
-            </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto font-medium">
-              Trusted by leading ship owners and operators across the global maritime industry.
-            </p>
+            <h2 className="text-4xl font-black text-[#0A2540] mb-4">World-Class Portfolios</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto font-medium">Trusted by leading ship owners and operators across the global maritime industry.</p>
           </div>
 
           <div className="relative overflow-hidden py-12 space-y-10">
@@ -290,9 +286,9 @@ const mouPartners = [
             </div>
 
             <div className="flex animate-marquee-reverse whitespace-nowrap gap-16 items-center">
-              {[...[...scrollerLogos].reverse(), ...[...scrollerLogos].reverse()].map((logo, i) => (
+              {[...scrollerLogos, ...scrollerLogos].map((logo, i) => (
                 <div key={`bottom-${i}`} className="w-40 flex-shrink-0 flex items-center justify-center bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-700 hover:scale-110">
-                  <img src={logo} alt={`Client ${scrollerLogos.length - i}`} className="h-16 w-auto object-contain" />
+                  <img src={logo} alt={`Client ${i + 1}`} className="h-16 w-auto object-contain" />
                 </div>
               ))}
             </div>
@@ -300,6 +296,7 @@ const mouPartners = [
         </section>
       </div>
 
+      {/* MODAL DOCUMENTATION */}
       {selectedPartner && (
         <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-[9999] flex items-center justify-center p-4 transition-all duration-500" onClick={() => setSelectedPartner(null)}>
           <div className="relative max-w-5xl w-full bg-white rounded-[2rem] overflow-hidden shadow-2xl animate-scale-in" onClick={e => e.stopPropagation()}>
@@ -327,16 +324,26 @@ const mouPartners = [
       )}
 
       <style jsx>{`
+        @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap");
+        
+        :global(body), :global(html) {
+          font-family: "Plus Jakarta Sans", sans-serif;
+          background-color: #F8FAFC;
+        }
+
         @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         @keyframes marqueeReverse { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-        .animate-marquee { animation: marquee 100s linear infinite; }
-        .animate-marquee-reverse { animation: marqueeReverse 100s linear infinite; }
+        
+        .animate-marquee { animation: marquee 40s linear infinite; }
+        .animate-marquee-reverse { animation: marqueeReverse 40s linear infinite; }
         .animate-scale-in { animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
-        article { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        @keyframes scaleIn { 
+          from { opacity: 0; transform: scale(0.95); } 
+          to { opacity: 1; transform: scale(1); } 
+        }
       `}</style>
-    </article>
+    </>
   );
 };
 

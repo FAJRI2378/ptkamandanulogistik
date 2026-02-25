@@ -8,11 +8,12 @@ import {
   Quote,
   Users,
   ExternalLink,
-  Award
+  Award,
+  Target
 } from "lucide-react";
 import Seo from "../components/Seo";
 
-// Asset imports (Tetap sama seperti kode Anda)
+// Asset imports
 import onboard1 from "../img/onboard1.webp";
 import onboard2 from "../img/onboard2.webp";
 import onboard3 from "../img/onboard3.webp";
@@ -113,12 +114,27 @@ const MemberCard = ({ member, layout = "vertical" }) => (
               <span className="text-sm font-medium">{member.education}</span>
             </div>
             
-            {member.vision && (
-              <div className="mt-8 grid grid-cols-1 gap-4">
-                <div className="p-4 bg-blue-50/50 rounded-2xl border border-blue-100">
-                  <h4 className="text-[10px] uppercase font-bold text-blue-600 tracking-widest mb-1">Visionary Goal</h4>
-                  <p className="text-sm text-slate-800 font-medium leading-snug">{member.vision}</p>
-                </div>
+            {/* Vision & Mission Block (Conditional) */}
+            {(member.vision || member.mission) && (
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 animate-in fade-in duration-700">
+                {member.vision && (
+                  <div className="p-4 bg-blue-50/50 rounded-2xl border border-blue-100">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Target size={14} className="text-blue-600" />
+                      <h4 className="text-[10px] uppercase font-bold text-blue-600 tracking-widest">Our Vision</h4>
+                    </div>
+                    <p className="text-xs text-slate-700 font-medium leading-relaxed">{member.vision}</p>
+                  </div>
+                )}
+                {member.mission && (
+                  <div className="p-4 bg-indigo-50/50 rounded-2xl border border-indigo-100">
+                    <div className="flex items-center gap-2 mb-2">
+                      <ShieldCheck size={14} className="text-indigo-600" />
+                      <h4 className="text-[10px] uppercase font-bold text-indigo-600 tracking-widest">Our Mission</h4>
+                    </div>
+                    <p className="text-xs text-slate-700 font-medium leading-relaxed">{member.mission}</p>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -129,7 +145,7 @@ const MemberCard = ({ member, layout = "vertical" }) => (
             href={`https://wa.me/${member.wa}`} 
             target="_blank" 
             rel="noreferrer" 
-            className="inline-flex items-center justify-center gap-2 w-full bg-slate-900 hover:bg-blue-600 text-white py-4 rounded-xl font-bold transition-all duration-300 text-xs uppercase tracking-widest group/btn"
+            className="inline-flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 rounded-xl font-bold transition-all duration-300 text-xs uppercase tracking-widest group/btn shadow-lg shadow-emerald-200"
           >
             <MessageCircle size={16} />
             Connect via WhatsApp
@@ -138,6 +154,14 @@ const MemberCard = ({ member, layout = "vertical" }) => (
         </div>
       </div>
     </div>
+  </div>
+);
+
+const SectionHeader = ({ title, subtitle }) => (
+  <div className="text-center mb-16 relative">
+    <h2 className="text-xs font-black text-blue-600 uppercase tracking-[0.4em] mb-4">{title}</h2>
+    <div className="h-1 w-12 bg-blue-600 mx-auto rounded-full mb-6" />
+    {subtitle && <p className="text-slate-400 text-sm font-medium uppercase tracking-widest">{subtitle}</p>}
   </div>
 );
 
@@ -166,27 +190,12 @@ const Team = () => {
     <>
       <Seo 
         title="Our Experts | PT Kamandanu Jaya Samudera"
-        description="Connect with the leadership and crewing experts at PT Kamandanu Jaya Samudera. Over a decade of excellence in maritime human resources."
+        description="Connect with the leadership and crewing experts at PT Kamandanu Jaya Samudera."
       />
-
-      {/* JSON-LD for SEO */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "PT Kamandanu Jaya Samudera",
-          "founder": "Capt. Makkama Patontonan",
-          "member": managementTeam.tier1.concat(managementTeam.tier2, managementTeam.tier3).map(m => ({
-            "@type": "Person",
-            "name": m.name,
-            "jobTitle": m.role
-          }))
-        })}
-      </script>
 
       <main className="bg-[#FBFCFE] min-h-screen font-['Plus_Jakarta_Sans']">
         {/* --- HERO SECTION --- */}
-       <section className="relative pt-24 md:pt-28 pb-16 overflow-hidden">
+        <section className="relative pt-24 md:pt-28 pb-16 overflow-hidden">
           <div className="container mx-auto px-6 relative z-10 text-center">
             <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-[0.3em] mb-6">
@@ -194,21 +203,17 @@ const Team = () => {
               </span>
               <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tight leading-[0.9] mb-8">
                 Meet Our <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">GTeam</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">Great Team</span>
               </h1>
               <p className="max-w-2xl mx-auto text-slate-500 text-lg md:text-xl font-medium leading-relaxed">
-                Meet our dedicated experts driving the future of global maritime workforce with integrity and innovation.
+                Driving the future of global maritime workforce with integrity and innovation.
               </p>
             </div>
           </div>
 
           <div className="mt-20 container mx-auto px-6">
             <div className="relative rounded-[2.5rem] overflow-hidden shadow-xl h-[380px] md:h-[500px] lg:h-[600px]">
-  <img 
-    src={teamPhoto} 
-    alt="Management Team" 
-    className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
-  />
+              <img src={teamPhoto} alt="Management Team" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
             </div>
           </div>
@@ -219,36 +224,49 @@ const Team = () => {
           <div className="max-w-6xl mx-auto space-y-32">
             
             {/* TIER 1 - Founder */}
-            <div className="relative">
-              <div className="absolute -left-10 top-0 text-[10rem] font-black text-slate-50 opacity-[0.03] select-none">01</div>
-              <MemberCard member={managementTeam.tier1[0]} layout="horizontal" />
+            <div>
+              <SectionHeader title="The Founder" subtitle="Owner & Visionary" />
+              <div className="relative">
+                <div className="absolute -left-10 top-0 text-[10rem] font-black text-slate-50 opacity-[0.03] select-none">01</div>
+                <MemberCard member={managementTeam.tier1[0]} layout="horizontal" />
+              </div>
             </div>
 
             {/* TIER 2 - Manager */}
-            <div className="relative">
-               <div className="absolute -right-10 top-0 text-[10rem] font-black text-slate-50 opacity-[0.03] select-none text-right">02</div>
-               <div className="max-w-4xl mx-auto">
-                <MemberCard member={managementTeam.tier2[0]} layout="horizontal" />
-               </div>
+            <div>
+              <SectionHeader title="Leadership" subtitle="Crewing Management" />
+              <div className="relative">
+                <div className="absolute -right-10 top-0 text-[10rem] font-black text-slate-50 opacity-[0.03] select-none text-right">02</div>
+                <div className="max-w-4xl mx-auto">
+                  <MemberCard member={managementTeam.tier2[0]} layout="horizontal" />
+                </div>
+              </div>
             </div>
 
-            {/* TIER 3 & 4 - The Grid */}
+            {/* TIER 3 - Senior Crewing */}
             <div>
-              <div className="text-center mb-16">
-                <h2 className="text-xs font-black text-blue-600 uppercase tracking-[0.4em] mb-4">Operations Team</h2>
-                <div className="h-1 w-12 bg-blue-600 mx-auto rounded-full" />
-              </div>
-              
+              <SectionHeader title="Operations" subtitle="Senior Crewing Officers" />
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[...managementTeam.tier3, ...managementTeam.tier4].map((member, idx) => (
+                {managementTeam.tier3.map((member, idx) => (
                   <MemberCard key={idx} member={member} />
                 ))}
               </div>
             </div>
+
+            {/* TIER 4 - Crewing Staff */}
+            <div>
+              <SectionHeader title="Support Team" subtitle="Crewing Staff" />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {managementTeam.tier4.map((member, idx) => (
+                  <MemberCard key={idx} member={member} />
+                ))}
+              </div>
+            </div>
+
           </div>
         </section>
 
-        {/* --- CREW REGISTRY (NEUMORPHIC STYLE) --- */}
+        {/* --- CREW REGISTRY --- */}
         <section ref={crewRef} className="bg-slate-900 py-32 text-white overflow-hidden">
           <div className="container mx-auto px-6">
             <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-8">
@@ -271,7 +289,7 @@ const Team = () => {
               {currentCrew.map((crew, idx) => (
                 <div key={idx} className="group relative bg-slate-800/50 border border-white/5 rounded-[2rem] overflow-hidden hover:bg-slate-800 transition-all duration-500">
                   <div className="aspect-square overflow-hidden">
-                    <img src={crew.avatar} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" />
+                    <img src={crew.avatar} alt={crew.position} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" />
                   </div>
                   <div className="p-6">
                     <div className="flex items-center gap-2 mb-4">
@@ -289,7 +307,7 @@ const Team = () => {
               ))}
             </div>
 
-            {/* Modern Pagination */}
+            {/* Pagination */}
             <div className="flex justify-center items-center gap-3">
               <button 
                 onClick={() => paginate(currentPage - 1)}
