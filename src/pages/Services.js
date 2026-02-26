@@ -3,10 +3,6 @@ import {
   Users,
   FileCheck,
   Globe,
-  ArrowRight,
-  Ship,
-  ChevronLeft,
-  ChevronRight,
   Truck,
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MapPin, Clock, Mail, MessageCircle, Globe, Award } from "lucide-react";
+import { MapPin, Clock, MessageCircle, Globe} from "lucide-react";
 import Seo from "../components/Seo";
 import backgroundImageHeader from "../img/ch.webp";
 

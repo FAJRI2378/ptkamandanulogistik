@@ -1,6 +1,6 @@
 // src/pages/Gallery.jsx
 import React, { useEffect, useState } from "react";
-import { Ship, Users, Handshake, Heart, ArrowRight, MapPin, ShieldCheck } from "lucide-react";
+import { Ship, Users, Handshake, Heart, ArrowRight, ShieldCheck } from "lucide-react";
 import Seo from "../components/Seo";
 
 // IMPORT GAMBAR
@@ -203,9 +203,9 @@ const Gallery = () => {
 
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2">
                           <div className="flex items-center gap-2">
-                            <MapPin size={16} className="text-blue-500" />
+                      
                             <span className="text-[11px] font-bold uppercase tracking-widest text-gray-400">
-                              Operations Dept
+                               Kamandanu Jaya Samudera
                             </span>
                           </div>
                           
