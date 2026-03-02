@@ -25,7 +25,7 @@ import kp from "../img/kp.webp";
 import kr from "../img/kr.webp";
 import kj from "../img/kj.webp";
 import be from "../img/be.webp";
-import bs from "../img/bs.jpg";
+import bs from "../img/bss.jpg";
 import bsi from "../img/bsi.webp";
 import allTeamPhoto from "../img/team.webp"; 
 import backgroundImageHeader from "../img/image.png";

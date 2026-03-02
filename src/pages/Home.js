@@ -9,8 +9,6 @@ import {
   ShieldCheck,
   Database,
   ArrowRight,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
 import Seo from "../components/Seo";
 
