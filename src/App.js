@@ -6,14 +6,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import ScrollToTop from "./components/ScrollToTop";
-import Home from "./pages/Home";
-import Licenses from "./pages/Licenses";
-import Gallery from "./pages/Gallery";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Team from "./pages/Team";
-import Contact from "./pages/Contact";
-import Client from "./pages/Client"; // atau Clients.jsx kalau nama filenya beda
+import Home from "./pages/Home.tsx";
+import Licenses from "./pages/Licenses.tsx";
+import Gallery from "./pages/Gallery.tsx";
+import About from "./pages/About.tsx";
+import Services from "./pages/Services.tsx";
+import Team from "./pages/Team.tsx";
+import Contact from "./pages/Contact.tsx";
+import Client from "./pages/Client.tsx"; // atau Clients.jsx kalau nama filenya beda
 import "./App.css";
 
 // Inisialisasi GA4 dengan ID kamu
